@@ -70,8 +70,8 @@ const SearchBox = ({ data, setName, getDataPlayer, name, summonerNameLS, summDat
                             {!data & savedValue.length > 0
                                 ?
                                 <i onClick={() => handleDeleteLS(summonerNameLS[0])}
-                                    className="far fa-trash-alt"
-                                    style={{ transform: 'scale(0.8,0.8)', marginBottom: '10px', marginRight: '10px', cursor: 'pointer' }}
+                                    className="far fa-trash-alt icon-delete"
+                                    style={{ transform: 'scale(0.8,0.8)', marginBottom: '10px', marginRight: '.2rem', cursor: 'pointer' }}
                                 />
                                 :
                                 null}
@@ -89,8 +89,8 @@ const SearchBox = ({ data, setName, getDataPlayer, name, summonerNameLS, summDat
                                 ?
                                 <i
                                     onClick={() => handleDeleteLS(summonerNameLS[1])}
-                                    className="far fa-trash-alt"
-                                    style={{ transform: 'scale(0.8,0.8)', marginBottom: '10px', marginRight: '10px', cursor: 'pointer' }}
+                                    className="far fa-trash-alt icon-delete"
+                                    style={{ transform: 'scale(0.8,0.8)', marginBottom: '10px', marginRight: '.2rem', cursor: 'pointer' }}
                                 />
                                 :
                                 null}
@@ -107,8 +107,8 @@ const SearchBox = ({ data, setName, getDataPlayer, name, summonerNameLS, summDat
                             {!data & savedValue.length > 2
                                 ?
                                 <i onClick={() => handleDeleteLS(summonerNameLS[2])}
-                                    className="far fa-trash-alt"
-                                    style={{ transform: 'scale(0.8,0.8)', marginBottom: '10px', marginRight: '10px', cursor: 'pointer' }}
+                                    className="far fa-trash-alt icon-delete"
+                                    style={{ transform: 'scale(0.8,0.8)', marginBottom: '10px', marginRight: '.2rem', cursor: 'pointer' }}
                                 />
                                 :
                                 null}
