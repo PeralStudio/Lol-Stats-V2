@@ -15,16 +15,16 @@ export function useLocalStorage(key, initialValue) {
         return getSavedValue(key, initialValue);
     });
 
-    const unicos = [];
+    const unique = [];
 
     for (let i = 0; i < value.length; i++) {
-        const elemento = value[i];
+        const element = value[i];
 
-        if (!unicos.includes(value[i])) unicos.push(elemento);
-        if (unicos.length > 3) unicos.shift();
+        if (!unique.includes(value[i])) unique.push(element);
+        if (unique.length > 3) unique.shift();
     }
 
-    useEffect(() => localStorage.setItem(key, JSON.stringify(unicos)), [unicos, key]);
+    useEffect(() => localStorage.setItem(key, JSON.stringify(unique)), [unique, key]);
 
     return [value, setValue];
 }
