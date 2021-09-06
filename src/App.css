@@ -1,0 +1,416 @@
+.App {
+    text-align: center;
+    color: white;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+.container-inputs {
+    margin: 2rem;
+}
+
+.container-data {
+    width: 22rem;
+    margin: auto;
+    margin-top: 40px;
+    color: white;
+}
+
+.circleDiv2 {
+    border-radius: 50%;
+    border: 2px solid rgb(146, 138, 23);
+}
+
+.winrate-red {
+    color: #ee5952;
+}
+
+.winrate-green {
+    color: #64af7e;
+}
+
+.red {
+    background-color: #7219143f;
+}
+
+.green {
+    background-color: #09722e3a;
+}
+
+.iron {
+    border-radius: 50%;
+    border: 2px solid #847575;
+}
+.bronze {
+    border-radius: 50%;
+    border: 2px solid #8c4f37;
+}
+.silver {
+    border-radius: 50%;
+    border: 2px solid #626d74;
+}
+.gold {
+    border-radius: 50%;
+    border: 2px solid #c1962a;
+}
+.platinum {
+    border-radius: 50%;
+    border: 2px solid #4fa299;
+}
+.diamond {
+    border-radius: 50%;
+    border: 2px solid #8683dc;
+}
+.grandmaster {
+    border-radius: 50%;
+    border: 2px solid #ae4036;
+}
+.master {
+    border-radius: 50%;
+    border: 2px solid #92468d;
+}
+.challenger {
+    border-radius: 50%;
+    border: 2px solid #ac8740;
+}
+
+.iron-font {
+    color: #847575;
+}
+.bronze-font {
+    color: #8c4f37;
+}
+.silver-font {
+    color: #626d74;
+}
+.gold-font {
+    color: #c1962a;
+}
+.platinum-font {
+    color: #4fa299;
+}
+.diamond-font {
+    color: #8683dc;
+}
+.grandmaster-font {
+    color: #ae4036;
+}
+.master-font {
+    color: #92468d;
+}
+.challenger-font {
+    color: #ac8740;
+}
+
+.table-dark {
+    --bs-table-bg: transparent !important;
+    --bs-table-striped-bg: transparent !important;
+}
+
+.table > :not(caption) > * > * {
+    padding: 0.6rem 3em !important;
+}
+
+td {
+    font-size: 0.9rem;
+}
+
+.win-green {
+    background-color: rgba(23, 126, 23, 0.568) !important;
+}
+
+.lose-red {
+    background-color: rgba(145, 30, 30, 0.589) !important;
+}
+
+.green-level {
+    background-color: rgba(23, 126, 23, 0.247) !important;
+    /* border: 1px solid rgba(24, 175, 24, 0.658); */
+}
+
+.red-level {
+    background-color: rgba(145, 30, 30, 0.473) !important;
+    /* border: 1px solid rgba(201, 11, 11, 0.726); */
+}
+
+.me-win {
+    background-color: rgba(22, 109, 22, 0.582) !important;
+    font-weight: 600;
+}
+
+.me-lose {
+    background-color: rgba(139, 32, 32, 0.589) !important;
+    font-weight: 600;
+}
+
+.green-graph {
+    border-radius: 50%;
+    border: 2px solid #64af7e;
+}
+
+.red-graph {
+    border-radius: 50%;
+    border: 2px solid #ee5952;
+}
+
+.doughnut {
+    width: 250px;
+    display: inline-block;
+}
+
+.button-back {
+    margin-bottom: 7px;
+    margin-top: 20px;
+}
+
+.h1-history {
+    margin: 10px;
+}
+
+.table {
+    width: max-content !important;
+    margin: auto !important;
+}
+
+.common-td {
+    vertical-align: middle;
+}
+
+.graphics {
+    margin: 100px 10px;
+}
+
+.chart {
+    max-width: 900px;
+    margin: auto;
+    opacity: 1;
+}
+
+.gold-earned {
+    margin-bottom: 0.6rem;
+}
+
+.img-items {
+    width: 1.8rem;
+}
+
+.apexcharts-menu {
+    background-color: #27293d !important;
+    border: 0px;
+}
+
+.apexcharts-legend-text {
+    color: white !important;
+}
+
+.first-td img {
+    width: 3rem;
+    border-radius: 50%;
+}
+
+.champ-graph {
+    width: 4.5rem;
+    margin-left: 6px;
+}
+
+.btn-outline-info {
+    color: #00c0b1 !important;
+    border-color: #00c0b1 !important;
+}
+
+.btn-outline-info:hover {
+    background-color: #00c0b1 !important;
+    color: black !important;
+}
+
+.Level {
+    display: inline;
+    margin-right: 2px;
+    width: 15px;
+    border-radius: 50%;
+    color: rgb(255, 255, 255);
+    font-size: 10px;
+    padding: 4px;
+    font-family: "Tahoma";
+    font-weight: 900;
+    text-align: center;
+}
+
+.summ1,
+.summ2 {
+    width: 1.5rem !important;
+}
+
+.div-input-search {
+    display: flex;
+    justify-content: center;
+}
+
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+    margin-top: 3rem;
+    /* margin-bottom: 2rem; */
+}
+
+.searchTerm {
+    width: 100%;
+    border: 3px solid #00c0b1;
+    border-right: none;
+    padding: 5px;
+    height: 36px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #05535e;
+    font-weight: 500;
+}
+
+.searchTerm:focus {
+    color: #05535e;
+}
+
+.searchButton {
+    width: 40px;
+    height: 36px;
+    border: 2px solid #00c0b1;
+    background: #00c0b1;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.wrap {
+    width: 30%;
+    display: flex;
+    margin: auto;
+}
+
+.logoportada {
+    width: 20rem;
+    margin-top: 30px;
+    margin-bottom: -36px;
+}
+.btnnoborder {
+    border: 0px !important;
+    cursor: pointer;
+    color: #00c0b1;
+    font-size: 12px;
+    text-transform: capitalize;
+    /* background-color: #0b4641;
+    border-radius: 5%;
+    padding: 3px; */
+}
+
+.kda-histories {
+    display: flex;
+    justify-content: space-evenly;
+    font-weight: bold;
+    margin-top: 0.3rem;
+}
+
+@media only screen and (max-width: 920px) {
+    .table > :not(caption) > * > * {
+        padding: 0.6rem 1.6em !important;
+    }
+
+    .first-td {
+        vertical-align: middle;
+        font-size: 0.6rem;
+    }
+
+    .img-items {
+        width: 1.5rem;
+    }
+
+    .champ-graph {
+        width: 3.5rem;
+    }
+
+    .input-search {
+        width: 30% !important;
+        margin-right: 10px !important;
+    }
+
+    .wrap {
+        width: 45%;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    .table > :not(caption) > * > * {
+        padding: 0.6rem 1.2em !important;
+    }
+
+    .img-items {
+        width: 1.2rem;
+    }
+
+    .champ-graph {
+        width: 2.5rem;
+    }
+
+    .input-search {
+        width: 40% !important;
+        margin-right: 10px !important;
+    }
+}
+
+@media only screen and (max-width: 520px) {
+    .table > :not(caption) > * > * {
+        padding: 0.2rem 0.2em !important;
+    }
+
+    .first-td img {
+        width: 2rem;
+    }
+
+    .img-items {
+        width: 1rem;
+    }
+
+    .gold-earned {
+        margin-bottom: 0.2rem;
+    }
+
+    .champ-graph {
+        width: 3rem;
+        margin: 0.8px;
+    }
+
+    .Level {
+        display: inline;
+        width: 15px;
+        /* background-color: #30e9c775; */
+        border-radius: 50%;
+        color: rgb(255, 255, 255);
+        font-size: 8px;
+        padding: 2px;
+        font-family: "Tahoma";
+        font-weight: 900;
+        text-align: center;
+    }
+
+    .summ1,
+    .summ2 {
+        width: 1rem !important;
+    }
+
+    .input-search {
+        width: 70% !important;
+        margin-right: 10px !important;
+    }
+
+    .wrap {
+        width: 80%;
+    }
+
+    .logoportada {
+        width: 16rem;
+    }
+}
