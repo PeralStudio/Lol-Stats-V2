@@ -302,9 +302,11 @@ td {
     color: #00c0b1;
     font-size: 12px;
     text-transform: capitalize;
-    /* background-color: #0b4641;
-    border-radius: 5%;
-    padding: 3px; */
+}
+
+.btnnoborder:hover {
+    color: #09f3dc;
+    border-radius: 5px;
 }
 
 .kda-histories {
@@ -312,6 +314,10 @@ td {
     justify-content: space-evenly;
     font-weight: bold;
     margin-top: 0.3rem;
+}
+
+.icon-delete:hover {
+    color: rgb(175, 33, 33);
 }
 
 @media only screen and (max-width: 920px) {
