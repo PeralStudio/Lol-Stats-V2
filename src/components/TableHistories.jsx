@@ -95,7 +95,10 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
     // const foundId0 = queueId.find(element => element.queueId == `${gameOne && gameOne.queueId}`);
 
     // console.log(foundId0);
-
+    const champUpperCase = (found) => {
+        let champLowerCase = found.championName.toLowerCase();
+        return `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${champLowerCase[0].toUpperCase()}${champLowerCase.slice(1)}.png`;
+    };
 
     return (
         <>
@@ -110,7 +113,12 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                 <td style={{ borderLeft: `6px solid ${found0.win ? 'green' : 'red'}` }}>
                                     <Link to={`/history/${gameOne && gameOne.gameId}`}>
                                         {found0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found0.championName}.png`}
+                                            src={
+                                                found0.championName ===
+                                                    "FiddleSticks"
+                                                    ? champUpperCase(found0)
+                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found0.championName}.png`
+                                            }
                                             alt='avatar'
                                             style={{ width: '3rem', borderRadius: '50%', border: '2px solid #c1962a' }}
                                         />}
@@ -218,7 +226,12 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                 <td style={{ borderLeft: `6px solid ${found1.win ? 'green' : 'red'}` }}>
                                     <Link to={`/history/${gameTwo && gameTwo.gameId}`}>
                                         {found1 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found1.championName}.png`}
+                                            src={
+                                                found1.championName ===
+                                                    "FiddleSticks"
+                                                    ? champUpperCase(found1)
+                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found1.championName}.png`
+                                            }
                                             alt='avatar'
                                             style={{ width: '3rem', borderRadius: '50%', border: '2px solid #c1962a' }}
                                         />}
@@ -333,7 +346,12 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                 <td style={{ borderLeft: `6px solid ${found2.win ? 'green' : 'red'}` }}>
                                     <Link to={`/history/${gameThree && gameThree.gameId}`}>
                                         {found2 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found2.championName}.png`}
+                                            src={
+                                                found2.championName ===
+                                                    "FiddleSticks"
+                                                    ? champUpperCase(found2)
+                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found2.championName}.png`
+                                            }
                                             alt='avatar'
                                             style={{ width: '3rem', borderRadius: '50%', border: '2px solid #c1962a' }}
                                         />}
@@ -443,7 +461,12 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                 <td style={{ borderLeft: `6px solid ${found3.win ? 'green' : 'red'}` }}>
                                     <Link to={`/history/${gameFour && gameFour.gameId}`}>
                                         {found3 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found3.championName}.png`}
+                                            src={
+                                                found3.championName ===
+                                                    "FiddleSticks"
+                                                    ? champUpperCase(found3)
+                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found3.championName}.png`
+                                            }
                                             alt='avatar'
                                             style={{ width: '3rem', borderRadius: '50%', border: '2px solid #c1962a' }}
                                         />}
@@ -553,7 +576,12 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                 <td style={{ borderLeft: `6px solid ${found4.win ? 'green' : 'red'}` }}>
                                     <Link to={`/history/${gameFive && gameFive.gameId}`}>
                                         {found4 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found4.championName}.png`}
+                                            src={
+                                                found4.championName ===
+                                                    "FiddleSticks"
+                                                    ? champUpperCase(found4)
+                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found4.championName}.png`
+                                            }
                                             alt='avatar'
                                             style={{ width: '3rem', borderRadius: '50%', border: '2px solid #c1962a' }}
                                         />}
