@@ -233,7 +233,7 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                             </div>
                                             <div>
                                                 {participants.item0 !== 0 && <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${participants.item0}.png`}
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${participants.item0}.png`}
                                                     alt="item"
                                                     className='img-items'
                                                     style={{
@@ -241,7 +241,7 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                     }}
                                                 />}
                                                 {participants.item1 !== 0 && <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${participants.item1}.png`}
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${participants.item1}.png`}
                                                     alt="item"
                                                     className='img-items'
                                                     style={{
@@ -249,7 +249,7 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                     }}
                                                 />}
                                                 {participants.item2 !== 0 && <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${participants.item2}.png`}
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${participants.item2}.png`}
                                                     alt="item"
                                                     className='img-items'
                                                     style={{
@@ -257,7 +257,7 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                     }}
                                                 />}
                                                 {participants.item3 !== 0 && <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${participants.item3}.png`}
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${participants.item3}.png`}
                                                     alt="item"
                                                     className='img-items'
                                                     style={{
@@ -265,7 +265,7 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                     }}
                                                 />}
                                                 {participants.item4 !== 0 && <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${participants.item4}.png`}
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${participants.item4}.png`}
                                                     alt="item"
                                                     className='img-items'
                                                     style={{
@@ -273,7 +273,7 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                     }}
                                                 />}
                                                 {participants.item5 !== 0 && <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${participants.item5}.png`}
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${participants.item5}.png`}
                                                     alt="item"
                                                     className='img-items'
                                                     style={{
