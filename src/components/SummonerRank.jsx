@@ -38,7 +38,7 @@ const SummonerRank = ({ data, summData, name, allLoad }) => {
                         style={{
                             width: "4rem",
                             margin: "auto",
-                            marginLeft: "20px",
+                            marginLeft: "5px",
                             borderRadius: "50%",
                         }}
                     />

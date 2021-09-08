@@ -10,12 +10,10 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 
 
-const StatsGraph = ({ name }) => {
+const StatsGraph = ({ name, getDataPlayer, setAllLoad }) => {
 
     const [history2, setHistory2] = useState();
     const { id } = useParams();
-
-
 
     const getDataPlayerMacth = async (matchId) => {
         const res = await axios.get(
@@ -187,19 +185,24 @@ const StatsGraph = ({ name }) => {
                                         style={{ display: 'inline-flex' }}
                                     >
                                         <div>
-                                            < img
-                                                src={champion ===
-                                                    "FiddleSticks"
-                                                    ? champUpperCase(
-                                                        index
-                                                    )
-                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${champion}.png`}
-                                                className={`champ-graph ${colorWinLose(index)}-graph`}
-                                                alt='champ'
-                                                data-tip={playerName[index]}
-                                                style={{ border: `${meBorder(index)}` }}
-                                            />
-                                            <ReactTooltip place="top" effect='solid' />
+                                            <Link to='/' onClick={() => {
+                                                getDataPlayer(playerName[index]);
+                                                setAllLoad(false)
+                                            }} >
+                                                < img
+                                                    src={champion ===
+                                                        "FiddleSticks"
+                                                        ? champUpperCase(
+                                                            index
+                                                        )
+                                                        : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${champion}.png`}
+                                                    className={`champ-graph ${colorWinLose(index)}-graph`}
+                                                    alt='champ'
+                                                    data-tip={playerName[index]}
+                                                    style={{ border: `${meBorder(index)}` }}
+                                                />
+                                                <ReactTooltip place="top" effect='solid' />
+                                            </Link>
                                             {/* <p style={{ fontSize: '12px' }}>{history2.participants[index].summonerName}</p> */}
                                         </div>
                                     </div>

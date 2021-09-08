@@ -119,6 +119,8 @@ const App = () => {
                 <div className="App">
                   <StatsGraph
                     name={name}
+                    getDataPlayer={getDataPlayer}
+                    setAllLoad={setAllLoad}
                   />
                 </div>} />
             <Route

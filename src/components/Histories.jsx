@@ -15,35 +15,55 @@ const Histories = ({ historyGames, summData, data }) => {
     const [gameFour, setGameFour] = useState();
     const [gameFive, setGameFive] = useState();
 
-    if (historyGames === "") window.location.href = "/";
+    // if (historyGames === "") window.location.href = "/";
 
     useEffect(async () => {
+        const res0 = await axios.get(
+            `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[0]}?api_key=${process.env.REACT_APP_API_RIOT}`
+        );
 
-        try {
-            const res0 = await axios.get(
-                `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[0]}?api_key=${process.env.REACT_APP_API_RIOT}`
-            );
-            const res1 = await axios.get(
-                `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[1]}?api_key=${process.env.REACT_APP_API_RIOT}`
-            );
-            const res2 = await axios.get(
-                `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[2]}?api_key=${process.env.REACT_APP_API_RIOT}`
-            );
-            const res3 = await axios.get(
-                `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[3]}?api_key=${process.env.REACT_APP_API_RIOT}`
-            );
-            const res4 = await axios.get(
-                `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[4]}?api_key=${process.env.REACT_APP_API_RIOT}`
-            );
-            setGameOne(res0.data.info)
-            setGameTwo(res1.data.info)
-            setGameThree(res2.data.info)
-            setGameFour(res3.data.info)
-            setGameFive(res4.data.info)
-        } catch (error) {
-            window.location.href = "/";
-        }
-    }, []);
+        setGameOne(res0.data.info);
+    }, [historyGames]);
+
+    useEffect(async () => {
+        const res1 = await axios.get(
+            `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[1]}?api_key=${process.env.REACT_APP_API_RIOT}`
+        );
+
+        setGameTwo(res1.data.info);
+    }, [historyGames]);
+
+    useEffect(async () => {
+        const res2 = await axios.get(
+            `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[2]}?api_key=${process.env.REACT_APP_API_RIOT}`
+        );
+
+        setGameThree(res2.data.info);
+    }, [historyGames]);
+
+    useEffect(async () => {
+        const res3 = await axios.get(
+            `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[3]}?api_key=${process.env.REACT_APP_API_RIOT}`
+        );
+
+        setGameFour(res3.data.info);
+    }, [historyGames]);
+
+    useEffect(async () => {
+        const res4 = await axios.get(
+            `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[4]}?api_key=${process.env.REACT_APP_API_RIOT}`
+        );
+
+        setGameFive(res4.data.info)
+    }, [historyGames]);
+
+    const allGamesArray = [];
+
+    gameOne != undefined && allGamesArray.push(gameOne);
+    gameTwo != undefined && allGamesArray.push(gameTwo);
+    gameThree != undefined && allGamesArray.push(gameThree);
+    gameFour != undefined && allGamesArray.push(gameFour);
+    gameFive != undefined && allGamesArray.push(gameFive);
 
     return (
         <>
@@ -77,7 +97,7 @@ const Histories = ({ historyGames, summData, data }) => {
                 {name}
 
             </h3>
-            <h6 style={{ marginTop: '.8rem' }}>Partidas Recientes (Últimas 5 jugadas)</h6>
+            <h6 style={{ marginTop: '.8rem' }}>Partidas Recientes (Últimas {allGamesArray.length} jugadas)</h6>
             <TableHistories
                 gameOne={gameOne}
                 gameTwo={gameTwo}

@@ -13,6 +13,8 @@ import { Link } from 'react-router-dom';
 
 const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name }) => {
 
+    const allGamesArray = [gameOne, gameTwo, gameThree, gameFour, gameFive];
+
     dayjs.updateLocale('en', {
         relativeTime: {
             future: "en %s",
@@ -102,590 +104,610 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
 
     return (
         <>
-            {gameFive ?
+            {allGamesArray ?
                 <div style={{ marginTop: '1rem' }}>
                     <table className="table table-dark table-striped" >
                         <tbody>
 
 
 
-                            <tr className={found0.win ? 'green' : 'red'} style={{ border: `1px solid ${found0.win ? 'green' : 'red'}` }}>
-                                <td style={{ borderLeft: `6px solid ${found0.win ? 'green' : 'red'}` }}>
-                                    <Link to={`/history/${gameOne && gameOne.gameId}`}>
-                                        {found0 && <img
-                                            src={
-                                                found0.championName ===
-                                                    "FiddleSticks"
-                                                    ? champUpperCase(found0)
-                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found0.championName}.png`
+                            {gameOne != undefined &&
+                                <>
+                                    <tr className={found0.win ? 'green' : 'red'} style={{ border: `1px solid ${found0.win ? 'green' : 'red'}` }}>
+                                        <td style={{ borderLeft: `6px solid ${found0.win ? 'green' : 'red'}` }}>
+                                            <Link to={`/history/${gameOne && gameOne.gameId}`}>
+                                                {found0 && <img
+                                                    src={
+                                                        found0.championName ===
+                                                            "FiddleSticks"
+                                                            ? champUpperCase(found0)
+                                                            : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found0.championName}.png`
+                                                    }
+                                                    alt='avatar'
+                                                    style={{ width: '3rem', borderRadius: '50%', border: '2px solid #c1962a' }}
+                                                />}
+                                            </Link>
+                                            {found0 &&
+                                                <div>
+                                                    <img
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[found0.summoner1Id]}.png`}
+                                                        alt="summ1"
+                                                        className='summ1'
+                                                        data-tip={summonerSpells[found0.summoner1Id]}
+                                                    />
+                                                    <ReactTooltip place="top" effect='solid' />
+                                                    <img
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[found0.summoner2Id]}.png`}
+                                                        alt="summ2"
+                                                        className='summ2'
+                                                        data-tip={summonerSpells[found0.summoner2Id]}
+                                                    />
+                                                    <ReactTooltip place="top" effect='solid' />
+                                                </div>
                                             }
-                                            alt='avatar'
-                                            style={{ width: '3rem', borderRadius: '50%', border: '2px solid #c1962a' }}
-                                        />}
-                                    </Link>
-                                    {found0 &&
-                                        <div>
-                                            <img
-                                                src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[found0.summoner1Id]}.png`}
-                                                alt="summ1"
-                                                className='summ1'
-                                                data-tip={summonerSpells[found0.summoner1Id]}
-                                            />
-                                            <ReactTooltip place="top" effect='solid' />
-                                            <img
-                                                src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[found0.summoner2Id]}.png`}
-                                                alt="summ2"
-                                                className='summ2'
-                                                data-tip={summonerSpells[found0.summoner2Id]}
-                                            />
-                                            <ReactTooltip place="top" effect='solid' />
-                                        </div>
-                                    }
-                                </td>
-                                <td>
-                                    <p className={found0.win ? 'winrate-green' : 'winrate-red'} style={{ margin: '0', fontSize: '12px' }}>{gameOne && found0.win ? 'VICTORIA' : 'DERROTA'}</p>
-                                    <p style={{ margin: '0', fontSize: '12px' }}>{gameOne && gameOne.gameMode}</p>
-                                    <p>
-                                        {found0.totalDamageDealtToChampions}
-                                        <img
-                                            src={damageDealt}
-                                            alt="damage"
-                                            style={{
-                                                width: ".8rem",
-                                                marginTop: '-2px'
-                                            }}
-                                        />
-                                    </p>
-                                </td>
-                                <td>
-                                    <div>
-                                        {found0.item0 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found0.item0}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found0.item1 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found0.item1}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found0.item2 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found0.item2}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found0.item3 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found0.item3}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found0.item4 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found0.item4}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found0.item5 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found0.item5}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                    </div>
-                                    <div className='kda-histories'>
-                                        <p style={{ margin: '0' }}>
-                                            {`${found0.kills} / ${found0.deaths} / ${found0.assists}`}
-                                        </p>
-                                    </div>
-                                    <p style={{ margin: '0' }}>
-                                        {found0.totalMinionsKilled + found0.neutralMinionsKilled}
-                                        <img
-                                            src={minions}
-                                            alt=""
-                                            style={{ width: '0.7rem' }}
-                                        />
-                                    </p>
-                                </td>
-                                <td>
-                                    <p style={{ fontSize: '16px', margin: '0' }}>{found0.goldEarned}<img
-                                        src={gold}
-                                        alt="gold"
-                                        style={{
-                                            width: ".8rem",
-                                            marginLeft: '2px',
-                                            marginBottom: '2px'
-                                        }}
-                                    /></p>
-                                    <p style={{ fontSize: '12px', margin: '0' }}>{timeString0}</p>
-                                    {/* <p style={{ fontSize: '12px', margin: '0' }}>{`${dayjs(gameOne.gameCreation).format("DD/MM/YYYY HH:mm")}`}</p> */}
-                                    {`${dayjs(gameOne.gameCreation).fromNow()}`}
-                                </td>
-                            </tr>
-                            <br />
-
-
-                            <tr className={found1.win ? 'green' : 'red'} style={{ border: `1px solid ${found1.win ? 'green' : 'red'}` }}>
-                                <td style={{ borderLeft: `6px solid ${found1.win ? 'green' : 'red'}` }}>
-                                    <Link to={`/history/${gameTwo && gameTwo.gameId}`}>
-                                        {found1 && <img
-                                            src={
-                                                found1.championName ===
-                                                    "FiddleSticks"
-                                                    ? champUpperCase(found1)
-                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found1.championName}.png`
-                                            }
-                                            alt='avatar'
-                                            style={{ width: '3rem', borderRadius: '50%', border: '2px solid #c1962a' }}
-                                        />}
-                                    </Link>
-                                    {found1 &&
-                                        <div>
-                                            <img
-                                                src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[found1.summoner1Id]}.png`}
-                                                alt="summ1"
-                                                className='summ1'
-                                                data-tip={summonerSpells[found1.summoner1Id]}
-                                            />
-                                            <ReactTooltip place="top" effect='solid' />
-                                            <img
-                                                src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[found1.summoner2Id]}.png`}
-                                                alt="summ2"
-                                                className='summ2'
-                                                data-tip={summonerSpells[found1.summoner2Id]}
-                                            />
-                                            <ReactTooltip place="top" effect='solid' />
-                                        </div>
-                                    }
-                                </td>
-                                <td>
-                                    <p
-                                        className={found1.win ? 'winrate-green' : 'winrate-red'}
-                                        style={{ margin: '0', fontSize: '12px' }}
-                                    >
-                                        {gameTwo && found1.win ? 'VICTORIA' : 'DERROTA'}
-                                    </p>
-                                    <p style={{ margin: '0', fontSize: '12px' }}>{gameTwo && gameTwo.gameMode}</p>
-                                    <p>
-                                        {found1.totalDamageDealtToChampions}
-                                        <img
-                                            src={damageDealt}
-                                            alt="damage"
-                                            style={{
-                                                width: ".8rem",
-                                                marginTop: '-2px'
-                                            }}
-                                        />
-                                    </p>
-                                </td>
-                                <td>
-                                    <div>
-                                        {found1.item0 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found1.item0}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found1.item1 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found1.item1}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found1.item2 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found1.item2}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found1.item3 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found1.item3}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found1.item4 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found1.item4}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found1.item5 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found1.item5}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                    </div>
-                                    <div>
-                                        <div className='kda-histories'>
-                                            <p style={{ margin: '0' }}>
-                                                {`${found1.kills} / ${found1.deaths} / ${found1.assists}`}
+                                        </td>
+                                        <td>
+                                            <p className={found0.win ? 'winrate-green' : 'winrate-red'} style={{ margin: '0', fontSize: '12px' }}>{gameOne && found0.win ? 'VICTORIA' : 'DERROTA'}</p>
+                                            <p style={{ margin: '0', fontSize: '12px' }}>{gameOne && gameOne.gameMode}</p>
+                                            <p>
+                                                {found0.totalDamageDealtToChampions}
+                                                <img
+                                                    src={damageDealt}
+                                                    alt="damage"
+                                                    style={{
+                                                        width: ".8rem",
+                                                        marginTop: '-2px'
+                                                    }}
+                                                />
                                             </p>
-                                        </div>
-                                        <p style={{ margin: '0' }}>
-                                            {found1.totalMinionsKilled + found1.neutralMinionsKilled}
-                                            <img
-                                                src={minions}
-                                                alt=""
-                                                style={{ width: '0.7rem' }}
-                                            />
-                                        </p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p style={{ fontSize: '16px', margin: '0' }}>{found1.goldEarned}<img
-                                        src={gold}
-                                        alt="gold"
-                                        style={{
-                                            width: ".8rem",
-                                            marginLeft: '2px',
-                                            marginBottom: '2px'
-                                        }}
-                                    /></p>
-                                    <p style={{ fontSize: '12px', margin: '0' }}>{timeString1}</p>
-                                    {/* <p style={{ fontSize: '12px', margin: '0' }}>{`${dayjs(gameTwo.gameCreation).format("DD/MM/YYYY HH:mm")}`}</p> */}
-                                    {`${dayjs(gameTwo.gameCreation).fromNow()}`}
-                                </td>
-                            </tr>
-                            <br />
-
-
-                            <tr className={found2.win ? 'green' : 'red'} style={{ border: `1px solid ${found2.win ? 'green' : 'red'}` }}>
-                                <td style={{ borderLeft: `6px solid ${found2.win ? 'green' : 'red'}` }}>
-                                    <Link to={`/history/${gameThree && gameThree.gameId}`}>
-                                        {found2 && <img
-                                            src={
-                                                found2.championName ===
-                                                    "FiddleSticks"
-                                                    ? champUpperCase(found2)
-                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found2.championName}.png`
-                                            }
-                                            alt='avatar'
-                                            style={{ width: '3rem', borderRadius: '50%', border: '2px solid #c1962a' }}
-                                        />}
-                                    </Link>
-                                    {found2 &&
-                                        <div>
-                                            <img
-                                                src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[found2.summoner1Id]}.png`}
-                                                alt="summ1"
-                                                className='summ1'
-                                                data-tip={summonerSpells[found2.summoner1Id]}
-                                            />
-                                            <ReactTooltip place="top" effect='solid' />
-                                            <img
-                                                src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[found2.summoner2Id]}.png`}
-                                                alt="summ2"
-                                                className='summ2'
-                                                data-tip={summonerSpells[found2.summoner2Id]}
-                                            />
-                                            <ReactTooltip place="top" effect='solid' />
-                                        </div>
-                                    }
-                                </td>
-                                <td>
-                                    <p className={found2.win ? 'winrate-green' : 'winrate-red'} style={{ margin: '0', fontSize: '12px' }}>{gameThree && found2.win ? 'VICTORIA' : 'DERROTA'}</p>
-                                    <p style={{ margin: '0', fontSize: '12px' }}>{gameThree && gameThree.gameMode}</p>
-                                    <p>
-                                        {found2.totalDamageDealtToChampions}
-                                        <img
-                                            src={damageDealt}
-                                            alt="damage"
-                                            style={{
-                                                width: ".8rem",
-                                                marginTop: '-2px'
-                                            }}
-                                        />
-                                    </p>
-                                </td>
-                                <td>
-                                    <div>
-                                        {found2.item0 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found2.item0}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found2.item1 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found2.item1}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found2.item2 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found2.item2}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found2.item3 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found2.item3}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found2.item4 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found2.item4}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found2.item5 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found2.item5}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                    </div>
-                                    <div>
-                                        <div className='kda-histories'>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                {found0.item0 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found0.item0}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found0.item1 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found0.item1}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found0.item2 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found0.item2}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found0.item3 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found0.item3}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found0.item4 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found0.item4}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found0.item5 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found0.item5}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                            </div>
+                                            <div className='kda-histories'>
+                                                <p style={{ margin: '0' }}>
+                                                    {`${found0.kills} / ${found0.deaths} / ${found0.assists}`}
+                                                </p>
+                                            </div>
                                             <p style={{ margin: '0' }}>
-                                                {`${found2.kills} / ${found2.deaths} / ${found2.assists}`}
+                                                {found0.totalMinionsKilled + found0.neutralMinionsKilled}
+                                                <img
+                                                    src={minions}
+                                                    alt=""
+                                                    style={{ width: '0.7rem' }}
+                                                />
                                             </p>
-                                        </div>
-                                        <p style={{ margin: '0' }}>
-                                            {found2.totalMinionsKilled + found2.neutralMinionsKilled}
-                                            <img
-                                                src={minions}
-                                                alt=""
-                                                style={{ width: '0.7rem' }}
-                                            />
-                                        </p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p style={{ fontSize: '16px', margin: '0' }}>{found2.goldEarned}<img
-                                        src={gold}
-                                        alt="gold"
-                                        style={{
-                                            width: ".8rem",
-                                            marginLeft: '2px',
-                                            marginBottom: '2px'
-                                        }}
-                                    /></p>
-                                    <p style={{ fontSize: '12px', margin: '0' }}>{timeString2}</p>
-                                    {/* <p style={{ fontSize: '12px', margin: '0' }}>{`${dayjs(gameThree.gameCreation).format("DD/MM/YYYY HH:mm")}`}</p> */}
-                                    {`${dayjs(gameThree.gameCreation).fromNow()}`}
-                                </td>
-                            </tr>
-                            <br />
+                                        </td>
+                                        <td>
+                                            <p style={{ fontSize: '16px', margin: '0' }}>{found0.goldEarned}<img
+                                                src={gold}
+                                                alt="gold"
+                                                style={{
+                                                    width: ".8rem",
+                                                    marginLeft: '2px',
+                                                    marginBottom: '2px'
+                                                }}
+                                            /></p>
+                                            <p style={{ fontSize: '12px', margin: '0' }}>{timeString0}</p>
+                                            {/* <p style={{ fontSize: '12px', margin: '0' }}>{`${dayjs(gameOne.gameCreation).format("DD/MM/YYYY HH:mm")}`}</p> */}
+                                            {`${dayjs(gameOne.gameCreation).fromNow()}`}
+                                        </td>
+                                    </tr>
+                                    <br />
+                                </>
+                            }
 
 
-                            <tr className={found3.win ? 'green' : 'red'} style={{ border: `1px solid ${found3.win ? 'green' : 'red'}` }}>
-                                <td style={{ borderLeft: `6px solid ${found3.win ? 'green' : 'red'}` }}>
-                                    <Link to={`/history/${gameFour && gameFour.gameId}`}>
-                                        {found3 && <img
-                                            src={
-                                                found3.championName ===
-                                                    "FiddleSticks"
-                                                    ? champUpperCase(found3)
-                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found3.championName}.png`
+                            {gameTwo != undefined &&
+                                <>
+                                    <tr className={found1.win ? 'green' : 'red'} style={{ border: `1px solid ${found1.win ? 'green' : 'red'}` }}>
+                                        <td style={{ borderLeft: `6px solid ${found1.win ? 'green' : 'red'}` }}>
+                                            <Link to={`/history/${gameTwo && gameTwo.gameId}`}>
+                                                {found1 && <img
+                                                    src={
+                                                        found1.championName ===
+                                                            "FiddleSticks"
+                                                            ? champUpperCase(found1)
+                                                            : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found1.championName}.png`
+                                                    }
+                                                    alt='avatar'
+                                                    style={{ width: '3rem', borderRadius: '50%', border: '2px solid #c1962a' }}
+                                                />}
+                                            </Link>
+                                            {found1 &&
+                                                <div>
+                                                    <img
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[found1.summoner1Id]}.png`}
+                                                        alt="summ1"
+                                                        className='summ1'
+                                                        data-tip={summonerSpells[found1.summoner1Id]}
+                                                    />
+                                                    <ReactTooltip place="top" effect='solid' />
+                                                    <img
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[found1.summoner2Id]}.png`}
+                                                        alt="summ2"
+                                                        className='summ2'
+                                                        data-tip={summonerSpells[found1.summoner2Id]}
+                                                    />
+                                                    <ReactTooltip place="top" effect='solid' />
+                                                </div>
                                             }
-                                            alt='avatar'
-                                            style={{ width: '3rem', borderRadius: '50%', border: '2px solid #c1962a' }}
-                                        />}
-                                    </Link>
-                                    {found3 &&
-                                        <div>
-                                            <img
-                                                src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[found3.summoner1Id]}.png`}
-                                                alt="summ1"
-                                                className='summ1'
-                                                data-tip={summonerSpells[found3.summoner1Id]}
-                                            />
-                                            <ReactTooltip place="top" effect='solid' />
-                                            <img
-                                                src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[found3.summoner2Id]}.png`}
-                                                alt="summ2"
-                                                className='summ2'
-                                                data-tip={summonerSpells[found3.summoner2Id]}
-                                            />
-                                            <ReactTooltip place="top" effect='solid' />
-                                        </div>
-                                    }
-                                </td>
-                                <td>
-                                    <p className={found3.win ? 'winrate-green' : 'winrate-red'} style={{ margin: '0', fontSize: '12px' }}>{gameFour && found3.win ? 'VICTORIA' : 'DERROTA'}</p>
-                                    <p style={{ margin: '0', fontSize: '12px' }}>{gameFour && gameFour.gameMode}</p>
-                                    <p>
-                                        {found3.totalDamageDealtToChampions}
-                                        <img
-                                            src={damageDealt}
-                                            alt="damage"
-                                            style={{
-                                                width: ".8rem",
-                                                marginTop: '-2px'
-                                            }}
-                                        />
-                                    </p>
-                                </td>
-                                <td>
-                                    <div>
-                                        {found3.item0 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found3.item0}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found3.item1 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found3.item1}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found3.item2 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found3.item2}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found3.item3 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found3.item3}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found3.item4 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found3.item4}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found3.item5 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found3.item5}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                    </div>
-                                    <div>
-                                        <div className='kda-histories'>
-                                            <p style={{ margin: '0' }}>
-                                                {`${found3.kills} / ${found3.deaths} / ${found3.assists}`}
+                                        </td>
+                                        <td>
+                                            <p
+                                                className={found1.win ? 'winrate-green' : 'winrate-red'}
+                                                style={{ margin: '0', fontSize: '12px' }}
+                                            >
+                                                {gameTwo && found1.win ? 'VICTORIA' : 'DERROTA'}
                                             </p>
-                                        </div>
-                                        <p style={{ margin: '0' }}>
-                                            {found3.totalMinionsKilled + found3.neutralMinionsKilled}
-                                            <img
-                                                src={minions}
-                                                alt=""
-                                                style={{ width: '0.7rem' }}
-                                            />
-                                        </p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p style={{ fontSize: '16px', margin: '0' }}>{found3.goldEarned}<img
-                                        src={gold}
-                                        alt="gold"
-                                        style={{
-                                            width: ".8rem",
-                                            marginLeft: '2px',
-                                            marginBottom: '2px'
-                                        }}
-                                    /></p>
-                                    <p style={{ fontSize: '12px', margin: '0' }}>{timeString3}</p>
-                                    {/* <p style={{ fontSize: '12px', margin: '0' }}>{`${dayjs(gameFour.gameCreation).format("DD/MM/YYYY HH:mm")}`}</p> */}
-                                    {`${dayjs(gameFour.gameCreation).fromNow()}`}
-                                </td>
-                            </tr>
-                            <br />
+                                            <p style={{ margin: '0', fontSize: '12px' }}>{gameTwo && gameTwo.gameMode}</p>
+                                            <p>
+                                                {found1.totalDamageDealtToChampions}
+                                                <img
+                                                    src={damageDealt}
+                                                    alt="damage"
+                                                    style={{
+                                                        width: ".8rem",
+                                                        marginTop: '-2px'
+                                                    }}
+                                                />
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                {found1.item0 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found1.item0}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found1.item1 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found1.item1}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found1.item2 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found1.item2}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found1.item3 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found1.item3}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found1.item4 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found1.item4}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found1.item5 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found1.item5}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                            </div>
+                                            <div>
+                                                <div className='kda-histories'>
+                                                    <p style={{ margin: '0' }}>
+                                                        {`${found1.kills} / ${found1.deaths} / ${found1.assists}`}
+                                                    </p>
+                                                </div>
+                                                <p style={{ margin: '0' }}>
+                                                    {found1.totalMinionsKilled + found1.neutralMinionsKilled}
+                                                    <img
+                                                        src={minions}
+                                                        alt=""
+                                                        style={{ width: '0.7rem' }}
+                                                    />
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p style={{ fontSize: '16px', margin: '0' }}>{found1.goldEarned}<img
+                                                src={gold}
+                                                alt="gold"
+                                                style={{
+                                                    width: ".8rem",
+                                                    marginLeft: '2px',
+                                                    marginBottom: '2px'
+                                                }}
+                                            /></p>
+                                            <p style={{ fontSize: '12px', margin: '0' }}>{timeString1}</p>
+                                            {/* <p style={{ fontSize: '12px', margin: '0' }}>{`${dayjs(gameTwo.gameCreation).format("DD/MM/YYYY HH:mm")}`}</p> */}
+                                            {`${dayjs(gameTwo.gameCreation).fromNow()}`}
+                                        </td>
+                                    </tr>
+                                    <br />
+                                </>
+                            }
 
 
-                            <tr className={found4.win ? 'green' : 'red'} style={{ border: `1px solid ${found4.win ? 'green' : 'red'}` }}>
-                                <td style={{ borderLeft: `6px solid ${found4.win ? 'green' : 'red'}` }}>
-                                    <Link to={`/history/${gameFive && gameFive.gameId}`}>
-                                        {found4 && <img
-                                            src={
-                                                found4.championName ===
-                                                    "FiddleSticks"
-                                                    ? champUpperCase(found4)
-                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found4.championName}.png`
+                            {gameThree != undefined &&
+                                <>
+                                    <tr className={found2.win ? 'green' : 'red'} style={{ border: `1px solid ${found2.win ? 'green' : 'red'}` }}>
+                                        <td style={{ borderLeft: `6px solid ${found2.win ? 'green' : 'red'}` }}>
+                                            <Link to={`/history/${gameThree && gameThree.gameId}`}>
+                                                {found2 && <img
+                                                    src={
+                                                        found2.championName ===
+                                                            "FiddleSticks"
+                                                            ? champUpperCase(found2)
+                                                            : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found2.championName}.png`
+                                                    }
+                                                    alt='avatar'
+                                                    style={{ width: '3rem', borderRadius: '50%', border: '2px solid #c1962a' }}
+                                                />}
+                                            </Link>
+                                            {found2 &&
+                                                <div>
+                                                    <img
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[found2.summoner1Id]}.png`}
+                                                        alt="summ1"
+                                                        className='summ1'
+                                                        data-tip={summonerSpells[found2.summoner1Id]}
+                                                    />
+                                                    <ReactTooltip place="top" effect='solid' />
+                                                    <img
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[found2.summoner2Id]}.png`}
+                                                        alt="summ2"
+                                                        className='summ2'
+                                                        data-tip={summonerSpells[found2.summoner2Id]}
+                                                    />
+                                                    <ReactTooltip place="top" effect='solid' />
+                                                </div>
                                             }
-                                            alt='avatar'
-                                            style={{ width: '3rem', borderRadius: '50%', border: '2px solid #c1962a' }}
-                                        />}
-                                    </Link>
-                                    {/* <p style={{ fontSize: '.8rem', marginBottom: '0' }}>{found4.championName}</p> */}
-                                    {found4 &&
-                                        <div>
-                                            <img
-                                                src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[found4.summoner1Id]}.png`}
-                                                alt="summ1"
-                                                className='summ1'
-                                                data-tip={summonerSpells[found4.summoner1Id]}
-                                            />
-                                            <ReactTooltip place="top" effect='solid' />
-                                            <img
-                                                src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[found4.summoner2Id]}.png`}
-                                                alt="summ2"
-                                                className='summ2'
-                                                data-tip={summonerSpells[found4.summoner2Id]}
-                                            />
-                                            <ReactTooltip place="top" effect='solid' />
-                                        </div>
-                                    }
-                                </td>
-                                <td>
-                                    <p className={found4.win ? 'winrate-green' : 'winrate-red'} style={{ margin: '0', fontSize: '12px' }}>{gameFive && found4.win ? 'VICTORIA' : 'DERROTA'}</p>
-                                    <p style={{ margin: '0', fontSize: '12px' }}>{gameFive && gameFive.gameMode}</p>
-                                    <p>
-                                        {found4.totalDamageDealtToChampions}
-                                        <img
-                                            src={damageDealt}
-                                            alt="damage"
-                                            style={{
-                                                width: ".8rem",
-                                                marginTop: '-2px'
-                                            }}
-                                        />
-                                    </p>
-                                </td>
-                                <td>
-                                    <div>
-                                        {found4.item0 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found4.item0}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found4.item1 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found4.item1}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found4.item2 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found4.item2}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found4.item3 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found4.item3}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found4.item4 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found4.item4}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                        {found4.item5 !== 0 && <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found4.item5}.png`}
-                                            alt="item"
-                                            className='img-items'
-                                        />}
-                                    </div>
-                                    <div>
-                                        <div className='kda-histories'>
-                                            <p style={{ margin: '0' }}>
-                                                {`${found4.kills} / ${found4.deaths} / ${found4.assists}`}
+                                        </td>
+                                        <td>
+                                            <p className={found2.win ? 'winrate-green' : 'winrate-red'} style={{ margin: '0', fontSize: '12px' }}>{gameThree && found2.win ? 'VICTORIA' : 'DERROTA'}</p>
+                                            <p style={{ margin: '0', fontSize: '12px' }}>{gameThree && gameThree.gameMode}</p>
+                                            <p>
+                                                {found2.totalDamageDealtToChampions}
+                                                <img
+                                                    src={damageDealt}
+                                                    alt="damage"
+                                                    style={{
+                                                        width: ".8rem",
+                                                        marginTop: '-2px'
+                                                    }}
+                                                />
                                             </p>
-                                        </div>
-                                        <p style={{ margin: '0' }}>
-                                            {found4.totalMinionsKilled + found4.neutralMinionsKilled}
-                                            <img
-                                                src={minions}
-                                                alt=""
-                                                style={{ width: '0.7rem' }}
-                                            />
-                                        </p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p style={{ fontSize: '16px', margin: '0' }}>{found4.goldEarned}<img
-                                        src={gold}
-                                        alt="gold"
-                                        style={{
-                                            width: ".8rem",
-                                            marginLeft: '2px',
-                                            marginBottom: '2px'
-                                        }}
-                                    /></p>
-                                    <p style={{ fontSize: '12px', margin: '0' }}>{timeString4}</p>
-                                    {/* <p style={{ fontSize: '12px', margin: '0' }}>{`${dayjs(gameFive.gameCreation).format("DD/MM/YYYY HH:mm")}`}</p> */}
-                                    {`${dayjs(gameFive.gameCreation).fromNow()}`}
-                                </td>
-                            </tr>
-                            <br />
+                                        </td>
+                                        <td>
+                                            <div>
+                                                {found2.item0 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found2.item0}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found2.item1 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found2.item1}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found2.item2 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found2.item2}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found2.item3 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found2.item3}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found2.item4 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found2.item4}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found2.item5 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found2.item5}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                            </div>
+                                            <div>
+                                                <div className='kda-histories'>
+                                                    <p style={{ margin: '0' }}>
+                                                        {`${found2.kills} / ${found2.deaths} / ${found2.assists}`}
+                                                    </p>
+                                                </div>
+                                                <p style={{ margin: '0' }}>
+                                                    {found2.totalMinionsKilled + found2.neutralMinionsKilled}
+                                                    <img
+                                                        src={minions}
+                                                        alt=""
+                                                        style={{ width: '0.7rem' }}
+                                                    />
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p style={{ fontSize: '16px', margin: '0' }}>{found2.goldEarned}<img
+                                                src={gold}
+                                                alt="gold"
+                                                style={{
+                                                    width: ".8rem",
+                                                    marginLeft: '2px',
+                                                    marginBottom: '2px'
+                                                }}
+                                            /></p>
+                                            <p style={{ fontSize: '12px', margin: '0' }}>{timeString2}</p>
+                                            {/* <p style={{ fontSize: '12px', margin: '0' }}>{`${dayjs(gameThree.gameCreation).format("DD/MM/YYYY HH:mm")}`}</p> */}
+                                            {`${dayjs(gameThree.gameCreation).fromNow()}`}
+                                        </td>
+                                    </tr>
+                                    <br />
+                                </>
+                            }
+
+
+                            {gameFour != undefined &&
+                                <>
+                                    <tr className={found3.win ? 'green' : 'red'} style={{ border: `1px solid ${found3.win ? 'green' : 'red'}` }}>
+                                        <td style={{ borderLeft: `6px solid ${found3.win ? 'green' : 'red'}` }}>
+                                            <Link to={`/history/${gameFour && gameFour.gameId}`}>
+                                                {found3 && <img
+                                                    src={
+                                                        found3.championName ===
+                                                            "FiddleSticks"
+                                                            ? champUpperCase(found3)
+                                                            : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found3.championName}.png`
+                                                    }
+                                                    alt='avatar'
+                                                    style={{ width: '3rem', borderRadius: '50%', border: '2px solid #c1962a' }}
+                                                />}
+                                            </Link>
+                                            {found3 &&
+                                                <div>
+                                                    <img
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[found3.summoner1Id]}.png`}
+                                                        alt="summ1"
+                                                        className='summ1'
+                                                        data-tip={summonerSpells[found3.summoner1Id]}
+                                                    />
+                                                    <ReactTooltip place="top" effect='solid' />
+                                                    <img
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[found3.summoner2Id]}.png`}
+                                                        alt="summ2"
+                                                        className='summ2'
+                                                        data-tip={summonerSpells[found3.summoner2Id]}
+                                                    />
+                                                    <ReactTooltip place="top" effect='solid' />
+                                                </div>
+                                            }
+                                        </td>
+                                        <td>
+                                            <p className={found3.win ? 'winrate-green' : 'winrate-red'} style={{ margin: '0', fontSize: '12px' }}>{gameFour && found3.win ? 'VICTORIA' : 'DERROTA'}</p>
+                                            <p style={{ margin: '0', fontSize: '12px' }}>{gameFour && gameFour.gameMode}</p>
+                                            <p>
+                                                {found3.totalDamageDealtToChampions}
+                                                <img
+                                                    src={damageDealt}
+                                                    alt="damage"
+                                                    style={{
+                                                        width: ".8rem",
+                                                        marginTop: '-2px'
+                                                    }}
+                                                />
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                {found3.item0 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found3.item0}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found3.item1 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found3.item1}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found3.item2 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found3.item2}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found3.item3 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found3.item3}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found3.item4 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found3.item4}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found3.item5 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found3.item5}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                            </div>
+                                            <div>
+                                                <div className='kda-histories'>
+                                                    <p style={{ margin: '0' }}>
+                                                        {`${found3.kills} / ${found3.deaths} / ${found3.assists}`}
+                                                    </p>
+                                                </div>
+                                                <p style={{ margin: '0' }}>
+                                                    {found3.totalMinionsKilled + found3.neutralMinionsKilled}
+                                                    <img
+                                                        src={minions}
+                                                        alt=""
+                                                        style={{ width: '0.7rem' }}
+                                                    />
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p style={{ fontSize: '16px', margin: '0' }}>{found3.goldEarned}<img
+                                                src={gold}
+                                                alt="gold"
+                                                style={{
+                                                    width: ".8rem",
+                                                    marginLeft: '2px',
+                                                    marginBottom: '2px'
+                                                }}
+                                            /></p>
+                                            <p style={{ fontSize: '12px', margin: '0' }}>{timeString3}</p>
+                                            {/* <p style={{ fontSize: '12px', margin: '0' }}>{`${dayjs(gameFour.gameCreation).format("DD/MM/YYYY HH:mm")}`}</p> */}
+                                            {`${dayjs(gameFour.gameCreation).fromNow()}`}
+                                        </td>
+                                    </tr>
+                                    <br />
+                                </>
+                            }
+
+
+                            {gameFive != undefined &&
+                                <>
+                                    <tr className={found4.win ? 'green' : 'red'} style={{ border: `1px solid ${found4.win ? 'green' : 'red'}` }}>
+                                        <td style={{ borderLeft: `6px solid ${found4.win ? 'green' : 'red'}` }}>
+                                            <Link to={`/history/${gameFive && gameFive.gameId}`}>
+                                                {found4 && <img
+                                                    src={
+                                                        found4.championName ===
+                                                            "FiddleSticks"
+                                                            ? champUpperCase(found4)
+                                                            : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found4.championName}.png`
+                                                    }
+                                                    alt='avatar'
+                                                    style={{ width: '3rem', borderRadius: '50%', border: '2px solid #c1962a' }}
+                                                />}
+                                            </Link>
+                                            {/* <p style={{ fontSize: '.8rem', marginBottom: '0' }}>{found4.championName}</p> */}
+                                            {found4 &&
+                                                <div>
+                                                    <img
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[found4.summoner1Id]}.png`}
+                                                        alt="summ1"
+                                                        className='summ1'
+                                                        data-tip={summonerSpells[found4.summoner1Id]}
+                                                    />
+                                                    <ReactTooltip place="top" effect='solid' />
+                                                    <img
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[found4.summoner2Id]}.png`}
+                                                        alt="summ2"
+                                                        className='summ2'
+                                                        data-tip={summonerSpells[found4.summoner2Id]}
+                                                    />
+                                                    <ReactTooltip place="top" effect='solid' />
+                                                </div>
+                                            }
+                                        </td>
+                                        <td>
+                                            <p className={found4.win ? 'winrate-green' : 'winrate-red'} style={{ margin: '0', fontSize: '12px' }}>{gameFive && found4.win ? 'VICTORIA' : 'DERROTA'}</p>
+                                            <p style={{ margin: '0', fontSize: '12px' }}>{gameFive && gameFive.gameMode}</p>
+                                            <p>
+                                                {found4.totalDamageDealtToChampions}
+                                                <img
+                                                    src={damageDealt}
+                                                    alt="damage"
+                                                    style={{
+                                                        width: ".8rem",
+                                                        marginTop: '-2px'
+                                                    }}
+                                                />
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                {found4.item0 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found4.item0}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found4.item1 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found4.item1}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found4.item2 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found4.item2}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found4.item3 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found4.item3}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found4.item4 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found4.item4}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                                {found4.item5 !== 0 && <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found4.item5}.png`}
+                                                    alt="item"
+                                                    className='img-items'
+                                                />}
+                                            </div>
+                                            <div>
+                                                <div className='kda-histories'>
+                                                    <p style={{ margin: '0' }}>
+                                                        {`${found4.kills} / ${found4.deaths} / ${found4.assists}`}
+                                                    </p>
+                                                </div>
+                                                <p style={{ margin: '0' }}>
+                                                    {found4.totalMinionsKilled + found4.neutralMinionsKilled}
+                                                    <img
+                                                        src={minions}
+                                                        alt=""
+                                                        style={{ width: '0.7rem' }}
+                                                    />
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p style={{ fontSize: '16px', margin: '0' }}>{found4.goldEarned}<img
+                                                src={gold}
+                                                alt="gold"
+                                                style={{
+                                                    width: ".8rem",
+                                                    marginLeft: '2px',
+                                                    marginBottom: '2px'
+                                                }}
+                                            /></p>
+                                            <p style={{ fontSize: '12px', margin: '0' }}>{timeString4}</p>
+                                            {/* <p style={{ fontSize: '12px', margin: '0' }}>{`${dayjs(gameFive.gameCreation).format("DD/MM/YYYY HH:mm")}`}</p> */}
+                                            {`${dayjs(gameFive.gameCreation).fromNow()}`}
+                                        </td>
+                                    </tr>
+                                    <br />
+                                </>
+                            }
 
 
                         </tbody>

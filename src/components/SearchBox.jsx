@@ -16,11 +16,11 @@ const SearchBox = ({ data, setName, getDataPlayer, name, summonerNameLS, summDat
     }
 
     const handleSetLS = (name) => {
-        if (summonerNameLS.length >= 3) summonerNameLS.shift()
         setSummonerNameLS([
             ...summonerNameLS,
             name
         ]);
+        if (summonerNameLS.length > 3) summonerNameLS.shift();
     }
 
     return (
