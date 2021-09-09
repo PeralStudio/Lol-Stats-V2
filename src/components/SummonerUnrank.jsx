@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import opgg from "../assets/img/opgg.png";
 import unranked from "../assets/img/Unranked.png"
+import { ImgSummUnrank } from "../UI/SummonerUnrankUI";
 
-const SummonerUnrank = ({ name, summData }) => {
+const SummonerUnrank = ({ name, summData, err }) => {
 
     return (
         <>
@@ -22,12 +23,18 @@ const SummonerUnrank = ({ name, summData }) => {
                     />
                 </h2>
             </div>
-            <img
+            <ImgSummUnrank
                 src={unranked}
                 className="card-img-top"
                 alt="rank"
-                style={{ width: "10rem", margin: "auto" }}
             />
+            {!err &&
+                <p
+                    style={{ backgroundColor: '#EE4142', width: 'fit-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold' }}
+                >
+                    En partida
+                </p>
+            }
             <div className="card-body">
                 <h4>UNRANKED</h4>
                 <h5 className="card-title">
@@ -38,11 +45,10 @@ const SummonerUnrank = ({ name, summData }) => {
                     target="_blank"
                     rel="noreferrer"
                 >
-                    <img
+                    <ImgSummUnrank
                         src={opgg}
                         className="card-img-top"
                         alt="..."
-                        style={{ width: "10rem", margin: "auto" }}
                     />
                 </a>
             </div>
