@@ -1,14 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 
 import ReactTooltip from 'react-tooltip';
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 import minions from '../assets/img/icon_minions.png';
 import gold from '../assets/img/icon_gold.png';
 import damageDealt from '../assets/img/kills.png';
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import Loader from "react-loader-spinner";
-import { Link } from 'react-router-dom';
+
+import {
+    ImgChampAvatar,
+    ImgDamage,
+    PGoldEarned,
+    PNoMargin,
+    PTable
+} from '../UI/TableHistoriesUi';
 // import { queueId } from '../queueId/queueid';
 
 const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name }) => {
@@ -116,16 +124,16 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                     <tr className={found0.win ? 'green' : 'red'} style={{ border: `1px solid ${found0.win ? 'green' : 'red'}` }}>
                                         <td style={{ borderLeft: `6px solid ${found0.win ? 'green' : 'red'}` }}>
                                             <Link to={`/history/${gameOne && gameOne.gameId}`}>
-                                                {found0 && <img
-                                                    src={
-                                                        found0.championName ===
-                                                            "FiddleSticks"
-                                                            ? champUpperCase(found0)
-                                                            : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found0.championName}.png`
-                                                    }
-                                                    alt='avatar'
-                                                    style={{ width: '3rem', borderRadius: '50%', border: '2px solid #c1962a' }}
-                                                />}
+                                                {found0 &&
+                                                    <ImgChampAvatar
+                                                        src={
+                                                            found0.championName ===
+                                                                "FiddleSticks"
+                                                                ? champUpperCase(found0)
+                                                                : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found0.championName}.png`
+                                                        }
+                                                        alt='avatar'
+                                                    />}
                                             </Link>
                                             {found0 &&
                                                 <div>
@@ -147,17 +155,13 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                             }
                                         </td>
                                         <td>
-                                            <p className={found0.win ? 'winrate-green' : 'winrate-red'} style={{ margin: '0', fontSize: '12px' }}>{gameOne && found0.win ? 'VICTORIA' : 'DERROTA'}</p>
-                                            <p style={{ margin: '0', fontSize: '12px' }}>{gameOne && gameOne.gameMode}</p>
+                                            <PTable className={found0.win ? 'winrate-green' : 'winrate-red'} >{gameOne && found0.win ? 'VICTORIA' : 'DERROTA'}</PTable>
+                                            <PTable>{gameOne && gameOne.gameMode}</PTable>
                                             <p>
                                                 {found0.totalDamageDealtToChampions}
-                                                <img
+                                                <ImgDamage
                                                     src={damageDealt}
                                                     alt="damage"
-                                                    style={{
-                                                        width: ".8rem",
-                                                        marginTop: '-2px'
-                                                    }}
                                                 />
                                             </p>
                                         </td>
@@ -195,21 +199,21 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                                 />}
                                             </div>
                                             <div className='kda-histories'>
-                                                <p style={{ margin: '0' }}>
+                                                <PNoMargin>
                                                     {`${found0.kills} / ${found0.deaths} / ${found0.assists}`}
-                                                </p>
+                                                </PNoMargin>
                                             </div>
-                                            <p style={{ margin: '0' }}>
+                                            <PNoMargin>
                                                 {found0.totalMinionsKilled + found0.neutralMinionsKilled}
                                                 <img
                                                     src={minions}
                                                     alt=""
                                                     style={{ width: '0.7rem' }}
                                                 />
-                                            </p>
+                                            </PNoMargin>
                                         </td>
                                         <td>
-                                            <p style={{ fontSize: '16px', margin: '0' }}>{found0.goldEarned}<img
+                                            <PGoldEarned>{found0.goldEarned}<img
                                                 src={gold}
                                                 alt="gold"
                                                 style={{
@@ -217,8 +221,9 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                                     marginLeft: '2px',
                                                     marginBottom: '2px'
                                                 }}
-                                            /></p>
-                                            <p style={{ fontSize: '12px', margin: '0' }}>{timeString0}</p>
+                                            />
+                                            </PGoldEarned>
+                                            <PTable>{timeString0}</PTable>
                                             {/* <p style={{ fontSize: '12px', margin: '0' }}>{`${dayjs(gameOne.gameCreation).format("DD/MM/YYYY HH:mm")}`}</p> */}
                                             {`${dayjs(gameOne.gameCreation).fromNow()}`}
                                         </td>
@@ -233,16 +238,16 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                     <tr className={found1.win ? 'green' : 'red'} style={{ border: `1px solid ${found1.win ? 'green' : 'red'}` }}>
                                         <td style={{ borderLeft: `6px solid ${found1.win ? 'green' : 'red'}` }}>
                                             <Link to={`/history/${gameTwo && gameTwo.gameId}`}>
-                                                {found1 && <img
-                                                    src={
-                                                        found1.championName ===
-                                                            "FiddleSticks"
-                                                            ? champUpperCase(found1)
-                                                            : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found1.championName}.png`
-                                                    }
-                                                    alt='avatar'
-                                                    style={{ width: '3rem', borderRadius: '50%', border: '2px solid #c1962a' }}
-                                                />}
+                                                {found1 &&
+                                                    <ImgChampAvatar
+                                                        src={
+                                                            found1.championName ===
+                                                                "FiddleSticks"
+                                                                ? champUpperCase(found1)
+                                                                : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found1.championName}.png`
+                                                        }
+                                                        alt='avatar'
+                                                    />}
                                             </Link>
                                             {found1 &&
                                                 <div>
@@ -264,22 +269,17 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                             }
                                         </td>
                                         <td>
-                                            <p
+                                            <PTable
                                                 className={found1.win ? 'winrate-green' : 'winrate-red'}
-                                                style={{ margin: '0', fontSize: '12px' }}
                                             >
                                                 {gameTwo && found1.win ? 'VICTORIA' : 'DERROTA'}
-                                            </p>
-                                            <p style={{ margin: '0', fontSize: '12px' }}>{gameTwo && gameTwo.gameMode}</p>
+                                            </PTable>
+                                            <PTable>{gameTwo && gameTwo.gameMode}</PTable>
                                             <p>
                                                 {found1.totalDamageDealtToChampions}
-                                                <img
+                                                <ImgDamage
                                                     src={damageDealt}
                                                     alt="damage"
-                                                    style={{
-                                                        width: ".8rem",
-                                                        marginTop: '-2px'
-                                                    }}
                                                 />
                                             </p>
                                         </td>
@@ -318,22 +318,22 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                             </div>
                                             <div>
                                                 <div className='kda-histories'>
-                                                    <p style={{ margin: '0' }}>
+                                                    <PNoMargin>
                                                         {`${found1.kills} / ${found1.deaths} / ${found1.assists}`}
-                                                    </p>
+                                                    </PNoMargin>
                                                 </div>
-                                                <p style={{ margin: '0' }}>
+                                                <PNoMargin>
                                                     {found1.totalMinionsKilled + found1.neutralMinionsKilled}
                                                     <img
                                                         src={minions}
                                                         alt=""
                                                         style={{ width: '0.7rem' }}
                                                     />
-                                                </p>
+                                                </PNoMargin>
                                             </div>
                                         </td>
                                         <td>
-                                            <p style={{ fontSize: '16px', margin: '0' }}>{found1.goldEarned}<img
+                                            <PGoldEarned>{found1.goldEarned}<img
                                                 src={gold}
                                                 alt="gold"
                                                 style={{
@@ -341,7 +341,8 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                                     marginLeft: '2px',
                                                     marginBottom: '2px'
                                                 }}
-                                            /></p>
+                                            />
+                                            </PGoldEarned>
                                             <p style={{ fontSize: '12px', margin: '0' }}>{timeString1}</p>
                                             {/* <p style={{ fontSize: '12px', margin: '0' }}>{`${dayjs(gameTwo.gameCreation).format("DD/MM/YYYY HH:mm")}`}</p> */}
                                             {`${dayjs(gameTwo.gameCreation).fromNow()}`}
@@ -357,16 +358,16 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                     <tr className={found2.win ? 'green' : 'red'} style={{ border: `1px solid ${found2.win ? 'green' : 'red'}` }}>
                                         <td style={{ borderLeft: `6px solid ${found2.win ? 'green' : 'red'}` }}>
                                             <Link to={`/history/${gameThree && gameThree.gameId}`}>
-                                                {found2 && <img
-                                                    src={
-                                                        found2.championName ===
-                                                            "FiddleSticks"
-                                                            ? champUpperCase(found2)
-                                                            : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found2.championName}.png`
-                                                    }
-                                                    alt='avatar'
-                                                    style={{ width: '3rem', borderRadius: '50%', border: '2px solid #c1962a' }}
-                                                />}
+                                                {found2 &&
+                                                    <ImgChampAvatar
+                                                        src={
+                                                            found2.championName ===
+                                                                "FiddleSticks"
+                                                                ? champUpperCase(found2)
+                                                                : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found2.championName}.png`
+                                                        }
+                                                        alt='avatar'
+                                                    />}
                                             </Link>
                                             {found2 &&
                                                 <div>
@@ -388,17 +389,13 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                             }
                                         </td>
                                         <td>
-                                            <p className={found2.win ? 'winrate-green' : 'winrate-red'} style={{ margin: '0', fontSize: '12px' }}>{gameThree && found2.win ? 'VICTORIA' : 'DERROTA'}</p>
-                                            <p style={{ margin: '0', fontSize: '12px' }}>{gameThree && gameThree.gameMode}</p>
+                                            <PTable className={found2.win ? 'winrate-green' : 'winrate-red'}>{gameThree && found2.win ? 'VICTORIA' : 'DERROTA'}</PTable>
+                                            <PTable>{gameThree && gameThree.gameMode}</PTable>
                                             <p>
                                                 {found2.totalDamageDealtToChampions}
-                                                <img
+                                                <ImgDamage
                                                     src={damageDealt}
                                                     alt="damage"
-                                                    style={{
-                                                        width: ".8rem",
-                                                        marginTop: '-2px'
-                                                    }}
                                                 />
                                             </p>
                                         </td>
@@ -437,22 +434,22 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                             </div>
                                             <div>
                                                 <div className='kda-histories'>
-                                                    <p style={{ margin: '0' }}>
+                                                    <PNoMargin>
                                                         {`${found2.kills} / ${found2.deaths} / ${found2.assists}`}
-                                                    </p>
+                                                    </PNoMargin>
                                                 </div>
-                                                <p style={{ margin: '0' }}>
+                                                <PNoMargin>
                                                     {found2.totalMinionsKilled + found2.neutralMinionsKilled}
                                                     <img
                                                         src={minions}
                                                         alt=""
                                                         style={{ width: '0.7rem' }}
                                                     />
-                                                </p>
+                                                </PNoMargin>
                                             </div>
                                         </td>
                                         <td>
-                                            <p style={{ fontSize: '16px', margin: '0' }}>{found2.goldEarned}<img
+                                            <PGoldEarned>{found2.goldEarned}<img
                                                 src={gold}
                                                 alt="gold"
                                                 style={{
@@ -460,7 +457,8 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                                     marginLeft: '2px',
                                                     marginBottom: '2px'
                                                 }}
-                                            /></p>
+                                            />
+                                            </PGoldEarned>
                                             <p style={{ fontSize: '12px', margin: '0' }}>{timeString2}</p>
                                             {/* <p style={{ fontSize: '12px', margin: '0' }}>{`${dayjs(gameThree.gameCreation).format("DD/MM/YYYY HH:mm")}`}</p> */}
                                             {`${dayjs(gameThree.gameCreation).fromNow()}`}
@@ -476,16 +474,16 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                     <tr className={found3.win ? 'green' : 'red'} style={{ border: `1px solid ${found3.win ? 'green' : 'red'}` }}>
                                         <td style={{ borderLeft: `6px solid ${found3.win ? 'green' : 'red'}` }}>
                                             <Link to={`/history/${gameFour && gameFour.gameId}`}>
-                                                {found3 && <img
-                                                    src={
-                                                        found3.championName ===
-                                                            "FiddleSticks"
-                                                            ? champUpperCase(found3)
-                                                            : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found3.championName}.png`
-                                                    }
-                                                    alt='avatar'
-                                                    style={{ width: '3rem', borderRadius: '50%', border: '2px solid #c1962a' }}
-                                                />}
+                                                {found3 &&
+                                                    <ImgChampAvatar
+                                                        src={
+                                                            found3.championName ===
+                                                                "FiddleSticks"
+                                                                ? champUpperCase(found3)
+                                                                : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found3.championName}.png`
+                                                        }
+                                                        alt='avatar'
+                                                    />}
                                             </Link>
                                             {found3 &&
                                                 <div>
@@ -507,17 +505,13 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                             }
                                         </td>
                                         <td>
-                                            <p className={found3.win ? 'winrate-green' : 'winrate-red'} style={{ margin: '0', fontSize: '12px' }}>{gameFour && found3.win ? 'VICTORIA' : 'DERROTA'}</p>
-                                            <p style={{ margin: '0', fontSize: '12px' }}>{gameFour && gameFour.gameMode}</p>
+                                            <PTable className={found3.win ? 'winrate-green' : 'winrate-red'}>{gameFour && found3.win ? 'VICTORIA' : 'DERROTA'}</PTable>
+                                            <PTable>{gameFour && gameFour.gameMode}</PTable>
                                             <p>
                                                 {found3.totalDamageDealtToChampions}
-                                                <img
+                                                <ImgDamage
                                                     src={damageDealt}
                                                     alt="damage"
-                                                    style={{
-                                                        width: ".8rem",
-                                                        marginTop: '-2px'
-                                                    }}
                                                 />
                                             </p>
                                         </td>
@@ -556,22 +550,22 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                             </div>
                                             <div>
                                                 <div className='kda-histories'>
-                                                    <p style={{ margin: '0' }}>
+                                                    <PNoMargin>
                                                         {`${found3.kills} / ${found3.deaths} / ${found3.assists}`}
-                                                    </p>
+                                                    </PNoMargin>
                                                 </div>
-                                                <p style={{ margin: '0' }}>
+                                                <PNoMargin>
                                                     {found3.totalMinionsKilled + found3.neutralMinionsKilled}
                                                     <img
                                                         src={minions}
                                                         alt=""
                                                         style={{ width: '0.7rem' }}
                                                     />
-                                                </p>
+                                                </PNoMargin>
                                             </div>
                                         </td>
                                         <td>
-                                            <p style={{ fontSize: '16px', margin: '0' }}>{found3.goldEarned}<img
+                                            <PGoldEarned>{found3.goldEarned}<img
                                                 src={gold}
                                                 alt="gold"
                                                 style={{
@@ -579,7 +573,8 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                                     marginLeft: '2px',
                                                     marginBottom: '2px'
                                                 }}
-                                            /></p>
+                                            />
+                                            </PGoldEarned>
                                             <p style={{ fontSize: '12px', margin: '0' }}>{timeString3}</p>
                                             {/* <p style={{ fontSize: '12px', margin: '0' }}>{`${dayjs(gameFour.gameCreation).format("DD/MM/YYYY HH:mm")}`}</p> */}
                                             {`${dayjs(gameFour.gameCreation).fromNow()}`}
@@ -595,16 +590,16 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                     <tr className={found4.win ? 'green' : 'red'} style={{ border: `1px solid ${found4.win ? 'green' : 'red'}` }}>
                                         <td style={{ borderLeft: `6px solid ${found4.win ? 'green' : 'red'}` }}>
                                             <Link to={`/history/${gameFive && gameFive.gameId}`}>
-                                                {found4 && <img
-                                                    src={
-                                                        found4.championName ===
-                                                            "FiddleSticks"
-                                                            ? champUpperCase(found4)
-                                                            : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found4.championName}.png`
-                                                    }
-                                                    alt='avatar'
-                                                    style={{ width: '3rem', borderRadius: '50%', border: '2px solid #c1962a' }}
-                                                />}
+                                                {found4 &&
+                                                    <ImgChampAvatar
+                                                        src={
+                                                            found4.championName ===
+                                                                "FiddleSticks"
+                                                                ? champUpperCase(found4)
+                                                                : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found4.championName}.png`
+                                                        }
+                                                        alt='avatar'
+                                                    />}
                                             </Link>
                                             {/* <p style={{ fontSize: '.8rem', marginBottom: '0' }}>{found4.championName}</p> */}
                                             {found4 &&
@@ -627,17 +622,13 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                             }
                                         </td>
                                         <td>
-                                            <p className={found4.win ? 'winrate-green' : 'winrate-red'} style={{ margin: '0', fontSize: '12px' }}>{gameFive && found4.win ? 'VICTORIA' : 'DERROTA'}</p>
-                                            <p style={{ margin: '0', fontSize: '12px' }}>{gameFive && gameFive.gameMode}</p>
+                                            <PTable className={found4.win ? 'winrate-green' : 'winrate-red'}>{gameFive && found4.win ? 'VICTORIA' : 'DERROTA'}</PTable>
+                                            <PTable>{gameFive && gameFive.gameMode}</PTable>
                                             <p>
                                                 {found4.totalDamageDealtToChampions}
-                                                <img
+                                                <ImgDamage
                                                     src={damageDealt}
                                                     alt="damage"
-                                                    style={{
-                                                        width: ".8rem",
-                                                        marginTop: '-2px'
-                                                    }}
                                                 />
                                             </p>
                                         </td>
@@ -676,22 +667,22 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                             </div>
                                             <div>
                                                 <div className='kda-histories'>
-                                                    <p style={{ margin: '0' }}>
+                                                    <PNoMargin>
                                                         {`${found4.kills} / ${found4.deaths} / ${found4.assists}`}
-                                                    </p>
+                                                    </PNoMargin>
                                                 </div>
-                                                <p style={{ margin: '0' }}>
+                                                <PNoMargin>
                                                     {found4.totalMinionsKilled + found4.neutralMinionsKilled}
                                                     <img
                                                         src={minions}
                                                         alt=""
                                                         style={{ width: '0.7rem' }}
                                                     />
-                                                </p>
+                                                </PNoMargin>
                                             </div>
                                         </td>
                                         <td>
-                                            <p style={{ fontSize: '16px', margin: '0' }}>{found4.goldEarned}<img
+                                            <PGoldEarned>{found4.goldEarned}<img
                                                 src={gold}
                                                 alt="gold"
                                                 style={{
@@ -699,7 +690,8 @@ const TableHistories = ({ gameOne, gameTwo, gameThree, gameFour, gameFive, name 
                                                     marginLeft: '2px',
                                                     marginBottom: '2px'
                                                 }}
-                                            /></p>
+                                            />
+                                            </PGoldEarned>
                                             <p style={{ fontSize: '12px', margin: '0' }}>{timeString4}</p>
                                             {/* <p style={{ fontSize: '12px', margin: '0' }}>{`${dayjs(gameFive.gameCreation).format("DD/MM/YYYY HH:mm")}`}</p> */}
                                             {`${dayjs(gameFive.gameCreation).fromNow()}`}
