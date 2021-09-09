@@ -19,6 +19,10 @@
     color: white;
 }
 
+.card-title {
+    margin-bottom: 0rem !important;
+}
+
 .circleDiv2 {
     border-radius: 50%;
     border: 2px solid rgb(146, 138, 23);
