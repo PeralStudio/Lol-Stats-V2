@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { validarElo2 } from '../functions/ValidarElo';
 
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
+
 import TableHistories from './TableHistories';
 
 const Histories = ({ historyGames, summData, data }) => {
@@ -78,34 +81,46 @@ const Histories = ({ historyGames, summData, data }) => {
                 </Link>
                 {/* <Link to={`/graphics`}><button style={{ marginLeft: '10px' }} type="button" className="btn btn-outline-info button-back">Gráfica</button></Link> */}
             </div>
-            <h2>Historial</h2>
-            <h3
-                style={{
-                    marginTop: '1rem',
-                    textTransform: 'capitalize'
-                }}>
-                <img
-                    src={`https://ddragon.leagueoflegends.com/cdn/11.17.1/img/profileicon/${summData.profileIconId}.png`}
-                    alt="Icon"
-                    className={data ? validarElo2(data.tier) : 'gold'}
-                    style={{
-                        width: "3rem",
-                        marginRight: '.4rem',
-                        borderRadius: "50%",
-                    }}
-                />
-                {name}
+            {gameFive ?
+                <>
+                    <h2>Historial</h2>
+                    <h3
+                        style={{
+                            marginTop: '1rem',
+                            textTransform: 'capitalize'
+                        }}>
+                        <img
+                            src={`https://ddragon.leagueoflegends.com/cdn/11.17.1/img/profileicon/${summData.profileIconId}.png`}
+                            alt="Icon"
+                            className={data ? validarElo2(data.tier) : 'gold'}
+                            style={{
+                                width: "3rem",
+                                marginRight: '.4rem',
+                                borderRadius: "50%",
+                            }}
+                        />
+                        {name}
 
-            </h3>
-            <h6 style={{ marginTop: '.8rem' }}>Partidas Recientes (Últimas {allGamesArray.length} jugadas)</h6>
-            <TableHistories
-                gameOne={gameOne}
-                gameTwo={gameTwo}
-                gameThree={gameThree}
-                gameFour={gameFour}
-                gameFive={gameFive}
-                name={name}
-            />
+                    </h3>
+                    <h6 style={{ marginTop: '.8rem' }}>Partidas Recientes (Últimas {allGamesArray.length} jugadas)</h6>
+                    <TableHistories
+                        gameOne={gameOne}
+                        gameTwo={gameTwo}
+                        gameThree={gameThree}
+                        gameFour={gameFour}
+                        gameFive={gameFive}
+                        name={name}
+                    />
+                </>
+                :
+                <Loader
+                    type="TailSpin"
+                    color="#00c0b1"
+                    height={100}
+                    width={100}
+                    style={{ marginTop: '100px' }}
+                />
+            }
         </>
     )
 }
