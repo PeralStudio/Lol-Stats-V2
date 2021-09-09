@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import { useLocalStorage } from './customHooks/localStorage';
 import "./App.css";
@@ -24,8 +24,10 @@ const App = () => {
   const [name, setName] = useState("");
   const [error, setError] = useState(false);
   const [historyGames, setHistoryGames] = useState('');
-
   const [allLoad, setAllLoad] = useState(false);
+
+  const [dataLive, setDataLive] = useState('');
+  const [err, setErr] = useState(false);
 
   const [summonerNameLS, setSummonerNameLS] = useLocalStorage('SummonerSearch', []);
 
@@ -67,6 +69,23 @@ const App = () => {
     }
   };
 
+  useEffect(() => {
+    const getDataLive = async (id) => {
+      try {
+        const res = await axios.get(
+          `https://euw1.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/${id}?api_key=${process.env.REACT_APP_API_RIOT}`
+        );
+        setDataLive(res.data);
+        setErr(false);
+      } catch (error) {
+        setErr(true);
+      }
+
+    }
+    getDataLive(summData.id);
+
+  }, [summData]);
+
   return (
     <>
       <Router>
@@ -77,6 +96,8 @@ const App = () => {
           setHistoryGames={setHistoryGames}
           setAllLoad={setAllLoad}
           setError={setError}
+          setDataLive={setDataLive}
+          setErr={setErr}
         />
         <AutoScrollToTop>
           <Switch>
@@ -100,6 +121,7 @@ const App = () => {
                       summData={summData}
                       name={name}
                       allLoad={allLoad}
+                      err={err}
                     />
                   </>
                 ) : (
@@ -108,6 +130,7 @@ const App = () => {
                     <SummonerUnrank
                       name={name}
                       summData={summData}
+                      err={err}
                     />
                   </>
                 )}
