@@ -24,6 +24,7 @@ const SearchBox = ({ data, setName, getDataPlayer, name, summonerNameLS, summDat
         if (summonerNameLS.length > 3) summonerNameLS.shift();
     }
 
+
     return (
         <>
             <div>
@@ -70,14 +71,14 @@ const SearchBox = ({ data, setName, getDataPlayer, name, summonerNameLS, summDat
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
                             {!data & savedValue.length > 0
                                 ?
-                                <IconDelete onClick={() => handleDeleteLS(summonerNameLS[0])}
+                                <IconDelete onClick={() => handleDeleteLS(savedValue[0])}
                                     className="far fa-trash-alt icon-delete"
                                 />
                                 :
                                 null}
                             {(!data & savedValue.length > 0) ?
                                 <p
-                                    onClick={(e) => getDataPlayer(summonerNameLS[0])}
+                                    onClick={(e) => getDataPlayer(savedValue[0])}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="btnnoborder"
@@ -88,14 +89,14 @@ const SearchBox = ({ data, setName, getDataPlayer, name, summonerNameLS, summDat
                             {!data & savedValue.length > 1
                                 ?
                                 <IconDelete
-                                    onClick={() => handleDeleteLS(summonerNameLS[1])}
+                                    onClick={() => handleDeleteLS(savedValue[1])}
                                     className="far fa-trash-alt icon-delete"
                                 />
                                 :
                                 null}
                             {(!data & savedValue.length > 1) ?
                                 <p
-                                    onClick={(e) => getDataPlayer(summonerNameLS[1])}
+                                    onClick={(e) => getDataPlayer(savedValue[1])}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="btnnoborder"
@@ -105,14 +106,14 @@ const SearchBox = ({ data, setName, getDataPlayer, name, summonerNameLS, summDat
                                 </p> : null}
                             {!data & savedValue.length > 2
                                 ?
-                                <IconDelete onClick={() => handleDeleteLS(summonerNameLS[2])}
+                                <IconDelete onClick={() => handleDeleteLS(savedValue[2])}
                                     className="far fa-trash-alt icon-delete"
                                 />
                                 :
                                 null}
                             {(!data & savedValue.length > 2) ?
                                 <p
-                                    onClick={(e) => getDataPlayer(summonerNameLS[2])}
+                                    onClick={(e) => getDataPlayer(savedValue[2])}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="btnnoborder"
