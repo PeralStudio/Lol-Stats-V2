@@ -1,6 +1,7 @@
 import React from 'react';
 
 import logoportada from "../assets/img/portada.png";
+import { IconDelete } from '../UI/SearchBoxUI';
 
 const SearchBox = ({ data, setName, getDataPlayer, name, summonerNameLS, summData, setSummonerNameLS }) => {
 
@@ -69,9 +70,8 @@ const SearchBox = ({ data, setName, getDataPlayer, name, summonerNameLS, summDat
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
                             {!data & savedValue.length > 0
                                 ?
-                                <i onClick={() => handleDeleteLS(summonerNameLS[0])}
+                                <IconDelete onClick={() => handleDeleteLS(summonerNameLS[0])}
                                     className="far fa-trash-alt icon-delete"
-                                    style={{ transform: 'scale(0.8,0.8)', marginBottom: '10px', marginRight: '.2rem', cursor: 'pointer' }}
                                 />
                                 :
                                 null}
@@ -87,10 +87,9 @@ const SearchBox = ({ data, setName, getDataPlayer, name, summonerNameLS, summDat
                                 </p> : null}
                             {!data & savedValue.length > 1
                                 ?
-                                <i
+                                <IconDelete
                                     onClick={() => handleDeleteLS(summonerNameLS[1])}
                                     className="far fa-trash-alt icon-delete"
-                                    style={{ transform: 'scale(0.8,0.8)', marginBottom: '10px', marginRight: '.2rem', cursor: 'pointer' }}
                                 />
                                 :
                                 null}
@@ -106,9 +105,8 @@ const SearchBox = ({ data, setName, getDataPlayer, name, summonerNameLS, summDat
                                 </p> : null}
                             {!data & savedValue.length > 2
                                 ?
-                                <i onClick={() => handleDeleteLS(summonerNameLS[2])}
+                                <IconDelete onClick={() => handleDeleteLS(summonerNameLS[2])}
                                     className="far fa-trash-alt icon-delete"
-                                    style={{ transform: 'scale(0.8,0.8)', marginBottom: '10px', marginRight: '.2rem', cursor: 'pointer' }}
                                 />
                                 :
                                 null}
