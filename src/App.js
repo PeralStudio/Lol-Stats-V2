@@ -122,6 +122,7 @@ const App = () => {
                       name={name}
                       allLoad={allLoad}
                       err={err}
+                      dataLive={dataLive}
                     />
                   </>
                 ) : (
@@ -131,6 +132,7 @@ const App = () => {
                       name={name}
                       summData={summData}
                       err={err}
+                      dataLive={dataLive}
                     />
                   </>
                 )}
