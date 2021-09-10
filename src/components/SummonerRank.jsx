@@ -5,7 +5,7 @@ import { validarElo, validarElo2 } from "../functions/ValidarElo";
 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
-import { queueId } from "../queueId/queueid";
+import { queueId } from "../dataDragon/queueid";
 
 const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
 
@@ -59,7 +59,7 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
                     <p
                         style={{ backgroundColor: '#EE4142', width: 'fit-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold' }}
                     >
-                        En partida ({found.description})
+                        En partida {found && found.description}
                     </p>
                 }
                 <div className="card-body">
