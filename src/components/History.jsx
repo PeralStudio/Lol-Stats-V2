@@ -39,8 +39,6 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
     const [history, setHistory] = useState('');
     const { id } = useParams();
 
-    const foundRankedSolo = data.find(element => element.queueType === 'RANKED_SOLO_5x5');
-
     useEffect(async () => {
         const res = await axios.get(
             `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${id}?api_key=${process.env.REACT_APP_API_RIOT}`
@@ -143,8 +141,8 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                 }} >
                                                     <img
                                                         className={
-                                                            foundRankedSolo &&
-                                                            foundRankedSolo.tier.toLowerCase()
+                                                            data &&
+                                                            data.tier.toLowerCase()
                                                         }
                                                         src={
                                                             participants.championName ===
