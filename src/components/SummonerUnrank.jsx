@@ -43,6 +43,11 @@ const SummonerUnrank = ({ name, summData, err, dataLive }) => {
                 <h5 className="card-title">
                     Nivel {summData.summonerLevel}
                 </h5>
+                <div
+                    style={{ margin: '20px' }}
+                >
+                    <Link to={`/histories/${name}`}><button style={{ marginBottom: '20px' }} type="button" className="btn btn-outline-info">Historial</button></Link>
+                </div>
                 <a
                     href={`https://euw.op.gg/summoner/userName=${name}`}
                     target="_blank"
@@ -51,11 +56,15 @@ const SummonerUnrank = ({ name, summData, err, dataLive }) => {
                     <ImgSummUnrank
                         src={opgg}
                         className="card-img-top"
-                        alt="..."
+                        alt="opgg"
+                        style={{
+                            width: "10rem",
+                            margin: "auto",
+                            marginBottom: '20px'
+                        }}
                     />
                 </a>
             </div>
-            <Link to={`/histories/${name}`}><button style={{ marginBottom: '20px' }} type="button" className="btn btn-outline-info">Historial</button></Link>
         </>
     )
 }
