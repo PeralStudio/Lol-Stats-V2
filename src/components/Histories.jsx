@@ -18,7 +18,7 @@ const Histories = ({ historyGames, summData, data }) => {
     const [gameFour, setGameFour] = useState();
     const [gameFive, setGameFive] = useState();
 
-    // if (historyGames === "") window.location.href = "/";
+    if (historyGames === "") window.location.href = "/";
 
     useEffect(async () => {
         const res0 = await axios.get(
@@ -96,11 +96,11 @@ const Histories = ({ historyGames, summData, data }) => {
                             style={{
                                 width: "3rem",
                                 marginRight: '.4rem',
+                                marginBottom: '.3rem',
                                 borderRadius: "50%",
                             }}
                         />
                         {name}
-
                     </h3>
                     <h6 style={{ marginTop: '.8rem' }}>Partidas Recientes (Últimas {allGamesArray.length} jugadas)</h6>
                     <TableHistories
