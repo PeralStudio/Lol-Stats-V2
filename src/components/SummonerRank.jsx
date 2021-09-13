@@ -6,6 +6,7 @@ import { validarElo, validarElo2 } from "../functions/ValidarElo";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import { queueId } from "../dataDragon/queueid";
+import { ImgSummUnrank } from "../UI/SummonerUnrankUI";
 
 const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
 
@@ -103,7 +104,7 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
                         target="_blank"
                         rel="noreferrer"
                     >
-                        <img
+                        <ImgSummUnrank
                             src={opgg}
                             className="card-img-top"
                             alt="opgg"
