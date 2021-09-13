@@ -51,7 +51,7 @@ const App = () => {
     const res = await axios.get(
       `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.REACT_APP_API_RIOT}`
     );
-    setData(res.data[0]);
+    setData(res.data);
   };
 
   let maxGames = [0, 1, 2, 3, 4, /* 5, 6, 7, 8, 9 */];
