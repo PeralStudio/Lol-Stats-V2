@@ -51,7 +51,8 @@ const App = () => {
     const res = await axios.get(
       `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.REACT_APP_API_RIOT}`
     );
-    setData(res.data);
+    const foundRankedSolo = res.data.find(element => element.queueType === 'RANKED_SOLO_5x5');
+    setData(foundRankedSolo);
   };
 
   let maxGames = [0, 1, 2, 3, 4, /* 5, 6, 7, 8, 9 */];
@@ -114,7 +115,7 @@ const App = () => {
                 />
                 {error ? (
                   <Error />
-                ) : data != '' ? (
+                ) : data ? (
                   <>
                     <SummonerRank
                       data={data}
