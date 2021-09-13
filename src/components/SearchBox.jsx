@@ -51,7 +51,7 @@ const SearchBox = ({ data, setName, getDataPlayer, name, summonerNameLS, summDat
                                 className="searchButton"
                                 onClick={() => {
                                     getDataPlayer(name);
-                                    handleSetLS(name)
+                                    handleSetLS(name);
                                 }}
                                 type="submit"
                             >
