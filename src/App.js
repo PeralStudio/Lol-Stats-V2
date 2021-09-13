@@ -114,7 +114,7 @@ const App = () => {
                 />
                 {error ? (
                   <Error />
-                ) : data ? (
+                ) : data != '' ? (
                   <>
                     <SummonerRank
                       data={data}
