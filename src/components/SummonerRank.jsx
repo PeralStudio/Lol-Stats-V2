@@ -11,12 +11,12 @@ import { ImgSummUnrank } from "../UI/SummonerUnrankUI";
 const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
 
     const found = queueId.find(element => element.queueId === dataLive.gameQueueConfigId);
-    const foundRankedSolo = data.find(element => element.queueType === 'RANKED_SOLO_5x5');
+    // const data = data.find(element => element.queueType === 'RANKED_SOLO_5x5');
     // const foundRankedFlex = data.find(element => element.queueType === 'RANKED_FLEX_SR');
 
     let winrateColor = "";
 
-    foundRankedSolo && ((foundRankedSolo.wins / (foundRankedSolo.wins + foundRankedSolo.losses)) * 100).toFixed(1) < 50
+    data && ((data.wins / (data.wins + data.losses)) * 100).toFixed(1) < 50
         ? (winrateColor = "winrate-red")
         : (winrateColor = "winrate-green");
 
@@ -24,7 +24,7 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
         labels: ["Perdidas", "Ganadas"],
         datasets: [
             {
-                data: [foundRankedSolo && foundRankedSolo.losses, foundRankedSolo && foundRankedSolo.wins],
+                data: [data && data.losses, data && data.wins],
                 backgroundColor: ["#EE5952", "#208ECE"],
                 hoverBackgroundColor: ["#EE5952", "#208ECE"],
                 borderColor: ["#EE5952", "#208ECE"],
@@ -39,10 +39,10 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
                 <div className="container-data">
                     <div>
                         <h2 className="card-title">
-                            {foundRankedSolo.summonerName}
+                            {data.summonerName}
                             <img
                                 src={`https://ddragon.leagueoflegends.com/cdn/11.17.1/img/profileicon/${summData.profileIconId}.png`}
-                                className={validarElo2(foundRankedSolo.tier)}
+                                className={validarElo2(data.tier)}
                                 alt="..."
                                 style={{
                                     width: "4rem",
@@ -54,7 +54,7 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
                         </h2>
                     </div>
                     <img
-                        src={validarElo(foundRankedSolo.tier)}
+                        src={validarElo(data.tier)}
                         className="card-img-top"
                         alt="rank"
                         style={{ width: "8rem", margin: "auto" }}
@@ -70,25 +70,25 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
                         <h5 className="card-title">
                             <span>
                                 Nivel {summData.summonerLevel} -
-                                <span className={`${validarElo2(foundRankedSolo.tier)}-font`}>
+                                <span className={`${validarElo2(data.tier)}-font`}>
                                     {" "}
-                                    {foundRankedSolo.tier} {foundRankedSolo.rank}
+                                    {data.tier} {data.rank}
                                 </span>
                             </span>
                         </h5>
-                        <p>LP: {foundRankedSolo.leaguePoints}</p>
+                        <p>LP: {data.leaguePoints}</p>
                         <div className="card-text">
                             {/* {data && <p style={{ marginBottom: '0' }}>Jugadas: {data.wins + data.losses}</p>} */}
                             {/* <p style={{ marginBottom: '0' }}>{data.wins}V {data.losses}L</p> */}
                             <span>Tasa de Victoria </span>
                             <span className={winrateColor}>
                                 {(
-                                    (foundRankedSolo.wins / (foundRankedSolo.wins + foundRankedSolo.losses)) *
+                                    (data.wins / (data.wins + data.losses)) *
                                     100
                                 ).toFixed(1)}
                                 %
                             </span>
-                            <p>Clasificatoria - {foundRankedSolo.queueType === 'RANKED_SOLO_5x5' ? 'SOLO/DÚO' : '5V5 FLEXIBLE'}</p>
+                            <p>Clasificatoria - {data.queueType === 'RANKED_SOLO_5x5' ? 'SOLO/DÚO' : '5V5 FLEXIBLE'}</p>
                         </div>
                         {/*********** ChartJs **************/}
 
