@@ -12,6 +12,7 @@ import ReactTooltip from "react-tooltip";
 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
+import { queueId } from "../dataDragon/queueid";
 
 dayjs.extend(relativeTime);
 dayjs.extend(updateLocale);
@@ -90,6 +91,8 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
     const timeString = `${minutes < 10 ? `0${minutes}` : minutes}m ${seconds < 10 ? `0${seconds}` : seconds}s`;
     const timeInt = minutes;
 
+    const foundQueueId = history && queueId.find(element => element.queueId === history.queueId);
+
     return (
         <>
             {history ? <div>
@@ -98,14 +101,14 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                         type="button"
                         className="btn btn-outline-info button-back"
                     >
-                        Volver
+                        Historial
                     </button>
                 </Link>
                 <Link to={`/graphics/${id}`}><button style={{ marginLeft: '10px' }} type="button" className="btn btn-outline-info button-back">Gráfica</button></Link>
                 <div>
                     <div>
                         <h1 className='h1-history'>
-                            {history.gameMode}
+                            {foundQueueId.description}
                         </h1>
                         <p style={{ fontSize: '12px' }}>id: {id}</p>
                     </div>

@@ -18,6 +18,12 @@ const Histories = ({ historyGames, summData, data }) => {
     const [gameFour, setGameFour] = useState();
     const [gameFive, setGameFive] = useState();
 
+    const [gameSix, setGameSix] = useState();
+    const [gameSeven, setGameSeven] = useState();
+    const [gameEight, setGameEight] = useState();
+    const [gameNine, setGameNine] = useState();
+    const [gameTen, setGameTen] = useState();
+
     if (historyGames === "") window.location.href = "/";
 
     useEffect(async () => {
@@ -60,6 +66,51 @@ const Histories = ({ historyGames, summData, data }) => {
         setGameFive(res4.data.info)
     }, [historyGames]);
 
+
+
+
+
+
+    useEffect(async () => {
+        const res5 = await axios.get(
+            `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[5]}?api_key=${process.env.REACT_APP_API_RIOT}`
+        );
+
+        setGameSix(res5.data.info)
+    }, [historyGames]);
+
+    useEffect(async () => {
+        const res6 = await axios.get(
+            `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[6]}?api_key=${process.env.REACT_APP_API_RIOT}`
+        );
+
+        setGameSeven(res6.data.info)
+    }, [historyGames]);
+
+    useEffect(async () => {
+        const res7 = await axios.get(
+            `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[7]}?api_key=${process.env.REACT_APP_API_RIOT}`
+        );
+
+        setGameEight(res7.data.info)
+    }, [historyGames]);
+
+    useEffect(async () => {
+        const res8 = await axios.get(
+            `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[8]}?api_key=${process.env.REACT_APP_API_RIOT}`
+        );
+
+        setGameNine(res8.data.info)
+    }, [historyGames]);
+
+    useEffect(async () => {
+        const res9 = await axios.get(
+            `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[9]}?api_key=${process.env.REACT_APP_API_RIOT}`
+        );
+
+        setGameTen(res9.data.info)
+    }, [historyGames]);
+
     const allGamesArray = [];
 
     gameOne != undefined && allGamesArray.push(gameOne);
@@ -67,6 +118,12 @@ const Histories = ({ historyGames, summData, data }) => {
     gameThree != undefined && allGamesArray.push(gameThree);
     gameFour != undefined && allGamesArray.push(gameFour);
     gameFive != undefined && allGamesArray.push(gameFive);
+
+    gameSix != undefined && allGamesArray.push(gameSix);
+    gameSeven != undefined && allGamesArray.push(gameSeven);
+    gameEight != undefined && allGamesArray.push(gameEight);
+    gameNine != undefined && allGamesArray.push(gameNine);
+    gameTen != undefined && allGamesArray.push(gameTen);
 
     return (
         <>
@@ -76,18 +133,18 @@ const Histories = ({ historyGames, summData, data }) => {
                         type="button"
                         className="btn btn-outline-info button-back"
                     >
-                        Volver
+                        Perfil
                     </button>
                 </Link>
                 {/* <Link to={`/graphics`}><button style={{ marginLeft: '10px' }} type="button" className="btn btn-outline-info button-back">Gráfica</button></Link> */}
             </div>
             {gameFive ?
                 <>
-                    <h2>Historial</h2>
+                    <h1 style={{ fontSize: '2.2rem' }}>Historial</h1>
                     <h3
                         style={{
                             marginTop: '1rem',
-                            textTransform: 'capitalize'
+                            textTransform: 'capitalize',
                         }}>
                         <img
                             src={`https://ddragon.leagueoflegends.com/cdn/11.17.1/img/profileicon/${summData.profileIconId}.png`}
@@ -109,6 +166,11 @@ const Histories = ({ historyGames, summData, data }) => {
                         gameThree={gameThree}
                         gameFour={gameFour}
                         gameFive={gameFive}
+                        gameSix={gameSix}
+                        gameSeven={gameSeven}
+                        gameEight={gameEight}
+                        gameNine={gameNine}
+                        gameTen={gameTen}
                         name={name}
                     />
                 </>
