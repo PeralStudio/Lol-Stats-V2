@@ -28,7 +28,7 @@ const Histories = ({ historyGames, summData, data }) => {
 
     useEffect(async () => {
         const res0 = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[0]}?api_key=${process.env.REACT_APP_API_RIOT}`
+            `https://europe.api.riotgames.com/lol/match/v5/matches/${historyGames[0]}?api_key=${process.env.REACT_APP_API_RIOT}`
         );
 
         setGameOne(res0.data.info);
@@ -36,7 +36,7 @@ const Histories = ({ historyGames, summData, data }) => {
 
     useEffect(async () => {
         const res1 = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[1]}?api_key=${process.env.REACT_APP_API_RIOT}`
+            `https://europe.api.riotgames.com/lol/match/v5/matches/${historyGames[1]}?api_key=${process.env.REACT_APP_API_RIOT}`
         );
 
         setGameTwo(res1.data.info);
@@ -44,7 +44,7 @@ const Histories = ({ historyGames, summData, data }) => {
 
     useEffect(async () => {
         const res2 = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[2]}?api_key=${process.env.REACT_APP_API_RIOT}`
+            `https://europe.api.riotgames.com/lol/match/v5/matches/${historyGames[2]}?api_key=${process.env.REACT_APP_API_RIOT}`
         );
 
         setGameThree(res2.data.info);
@@ -52,7 +52,7 @@ const Histories = ({ historyGames, summData, data }) => {
 
     useEffect(async () => {
         const res3 = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[3]}?api_key=${process.env.REACT_APP_API_RIOT}`
+            `https://europe.api.riotgames.com/lol/match/v5/matches/${historyGames[3]}?api_key=${process.env.REACT_APP_API_RIOT}`
         );
 
         setGameFour(res3.data.info);
@@ -60,7 +60,7 @@ const Histories = ({ historyGames, summData, data }) => {
 
     useEffect(async () => {
         const res4 = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[4]}?api_key=${process.env.REACT_APP_API_RIOT}`
+            `https://europe.api.riotgames.com/lol/match/v5/matches/${historyGames[4]}?api_key=${process.env.REACT_APP_API_RIOT}`
         );
 
         setGameFive(res4.data.info)
@@ -73,7 +73,7 @@ const Histories = ({ historyGames, summData, data }) => {
 
     useEffect(async () => {
         const res5 = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[5]}?api_key=${process.env.REACT_APP_API_RIOT}`
+            `https://europe.api.riotgames.com/lol/match/v5/matches/${historyGames[5]}?api_key=${process.env.REACT_APP_API_RIOT}`
         );
 
         setGameSix(res5.data.info)
@@ -81,7 +81,7 @@ const Histories = ({ historyGames, summData, data }) => {
 
     useEffect(async () => {
         const res6 = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[6]}?api_key=${process.env.REACT_APP_API_RIOT}`
+            `https://europe.api.riotgames.com/lol/match/v5/matches/${historyGames[6]}?api_key=${process.env.REACT_APP_API_RIOT}`
         );
 
         setGameSeven(res6.data.info)
@@ -89,7 +89,7 @@ const Histories = ({ historyGames, summData, data }) => {
 
     useEffect(async () => {
         const res7 = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[7]}?api_key=${process.env.REACT_APP_API_RIOT}`
+            `https://europe.api.riotgames.com/lol/match/v5/matches/${historyGames[7]}?api_key=${process.env.REACT_APP_API_RIOT}`
         );
 
         setGameEight(res7.data.info)
@@ -97,7 +97,7 @@ const Histories = ({ historyGames, summData, data }) => {
 
     useEffect(async () => {
         const res8 = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[8]}?api_key=${process.env.REACT_APP_API_RIOT}`
+            `https://europe.api.riotgames.com/lol/match/v5/matches/${historyGames[8]}?api_key=${process.env.REACT_APP_API_RIOT}`
         );
 
         setGameNine(res8.data.info)
@@ -105,7 +105,7 @@ const Histories = ({ historyGames, summData, data }) => {
 
     useEffect(async () => {
         const res9 = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/EUW1_${historyGames[9]}?api_key=${process.env.REACT_APP_API_RIOT}`
+            `https://europe.api.riotgames.com/lol/match/v5/matches/${historyGames[9]}?api_key=${process.env.REACT_APP_API_RIOT}`
         );
 
         setGameTen(res9.data.info)

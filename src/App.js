@@ -40,7 +40,7 @@ const App = () => {
       setSummData(res.data);
       getDataPlayer2(res.data.id);
       setError(false);
-      getDataPlayerMacthes(res.data.accountId);
+      getDataPlayerMacthes(res.data.puuid);
     } catch (error) {
       setError(true);
       setName('');
@@ -55,19 +55,12 @@ const App = () => {
     setData(foundRankedSolo);
   };
 
-  let maxGames = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  let allGames = []
-
-  const getDataPlayerMacthes = async (accountId) => {
+  const getDataPlayerMacthes = async (puuid) => {
     const res = await axios.get(
-      `https://euw1.api.riotgames.com/lol/match/v4/matchlists/by-account/${accountId}?api_key=${process.env.REACT_APP_API_RIOT}`
+      `https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=10&api_key=${process.env.REACT_APP_API_RIOT}`
     );
-    for (let games of maxGames) {
-      res.data.matches[games] && allGames.push(`${res.data.matches[games].gameId}`);
-      setHistoryGames(allGames);
-      setAllLoad(true)
-      // getDataPlayerMacth(res.data.matches[0].gameId);
-    }
+    setHistoryGames(res.data);
+    setAllLoad(true);
   };
 
   useEffect(() => {
