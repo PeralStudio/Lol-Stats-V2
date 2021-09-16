@@ -40,8 +40,16 @@
     background-color: #7219143f;
 }
 
+.red:hover {
+    background-color: #52120f3f;
+}
+
 .green {
     background-color: #09722e3a;
+}
+
+.green:hover {
+    background-color: #07411b3a;
 }
 
 .iron {
