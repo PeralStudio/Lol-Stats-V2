@@ -63,7 +63,7 @@ const App = () => {
       `https://euw1.api.riotgames.com/lol/match/v4/matchlists/by-account/${accountId}?api_key=${process.env.REACT_APP_API_RIOT}`
     );
     for (let games of maxGames) {
-      allGames.push(`${res.data.matches[games].gameId}`);
+      res.data.matches[games] && allGames.push(`${res.data.matches[games].gameId}`);
       setHistoryGames(allGames);
       setAllLoad(true)
       // getDataPlayerMacth(res.data.matches[0].gameId);
