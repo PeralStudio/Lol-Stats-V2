@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import dayjs from "dayjs";
 
 import ReactTooltip from "react-tooltip";
@@ -34,6 +34,8 @@ const TableHistories = ({
     gameTen
 }) => {
     const allGamesArray = [gameOne, gameTwo, gameThree, gameFour, gameFive, gameSix, gameSeven, gameEight, gameNine, gameTen];
+
+    const history = useHistory();
 
     dayjs.updateLocale("en", {
         relativeTime: {
@@ -147,7 +149,7 @@ const TableHistories = ({
     found8 != undefined && found8.win === true ? (wins += 1) : (losses += 1);
     found9 != undefined && found9.win === true ? (wins += 1) : (losses += 1);
 
-    found5 == undefined && (wins -= 0) & (losses += 1)
+    found5 == undefined && (wins -= 0) & (losses -= 1)
     found6 == undefined && (wins -= 0) & (losses -= 1)
     found7 == undefined && (wins -= 0) & (losses -= 1)
     found8 == undefined && (wins -= 0) & (losses -= 1)
@@ -433,12 +435,15 @@ const TableHistories = ({
                                 {gameOne != undefined && (
                                     <>
                                         <tr
+                                            onClick={() => history.push(`/history/${gameOne &&
+                                                gameOne.gameId
+                                                }`)}
                                             className={
                                                 found0.win ? "green" : "red"
                                             }
                                             style={{
-                                                border: `1px solid ${found0.win ? "green" : "red"
-                                                    }`,
+                                                border: `1px solid ${found0.win ? "green" : "red"}`,
+                                                cursor: 'pointer'
                                             }}>
                                             <td
                                                 style={{
@@ -447,24 +452,19 @@ const TableHistories = ({
                                                         : "red"
                                                         }`,
                                                 }}>
-                                                <Link
-                                                    to={`/history/${gameOne &&
-                                                        gameOne.gameId
-                                                        }`}>
-                                                    {found0 && (
-                                                        <ImgChampAvatar
-                                                            src={
-                                                                found0.championName ===
-                                                                    "FiddleSticks"
-                                                                    ? champUpperCase(
-                                                                        found0
-                                                                    )
-                                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found0.championName}.png`
-                                                            }
-                                                            alt="avatar"
-                                                        />
-                                                    )}
-                                                </Link>
+                                                {found0 && (
+                                                    <ImgChampAvatar
+                                                        src={
+                                                            found0.championName ===
+                                                                "FiddleSticks"
+                                                                ? champUpperCase(
+                                                                    found0
+                                                                )
+                                                                : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found0.championName}.png`
+                                                        }
+                                                        alt="avatar"
+                                                    />
+                                                )}
                                                 {found0 && (
                                                     <div>
                                                         <img
@@ -623,12 +623,15 @@ const TableHistories = ({
                                 {gameTwo != undefined && (
                                     <>
                                         <tr
+                                            onClick={() => history.push(`/history/${gameTwo &&
+                                                gameTwo.gameId
+                                                }`)}
                                             className={
                                                 found1.win ? "green" : "red"
                                             }
                                             style={{
-                                                border: `1px solid ${found1.win ? "green" : "red"
-                                                    }`,
+                                                border: `1px solid ${found1.win ? "green" : "red"}`,
+                                                cursor: 'pointer'
                                             }}>
                                             <td
                                                 style={{
@@ -637,24 +640,19 @@ const TableHistories = ({
                                                         : "red"
                                                         }`,
                                                 }}>
-                                                <Link
-                                                    to={`/history/${gameTwo &&
-                                                        gameTwo.gameId
-                                                        }`}>
-                                                    {found1 && (
-                                                        <ImgChampAvatar
-                                                            src={
-                                                                found1.championName ===
-                                                                    "FiddleSticks"
-                                                                    ? champUpperCase(
-                                                                        found1
-                                                                    )
-                                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found1.championName}.png`
-                                                            }
-                                                            alt="avatar"
-                                                        />
-                                                    )}
-                                                </Link>
+                                                {found1 && (
+                                                    <ImgChampAvatar
+                                                        src={
+                                                            found1.championName ===
+                                                                "FiddleSticks"
+                                                                ? champUpperCase(
+                                                                    found1
+                                                                )
+                                                                : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found1.championName}.png`
+                                                        }
+                                                        alt="avatar"
+                                                    />
+                                                )}
                                                 {found1 && (
                                                     <div>
                                                         <img
@@ -821,12 +819,15 @@ const TableHistories = ({
                                 {gameThree != undefined && (
                                     <>
                                         <tr
+                                            onClick={() => history.push(`/history/${gameThree &&
+                                                gameThree.gameId
+                                                }`)}
                                             className={
                                                 found2.win ? "green" : "red"
                                             }
                                             style={{
-                                                border: `1px solid ${found2.win ? "green" : "red"
-                                                    }`,
+                                                border: `1px solid ${found2.win ? "green" : "red"}`,
+                                                cursor: 'pointer'
                                             }}>
                                             <td
                                                 style={{
@@ -835,24 +836,19 @@ const TableHistories = ({
                                                         : "red"
                                                         }`,
                                                 }}>
-                                                <Link
-                                                    to={`/history/${gameThree &&
-                                                        gameThree.gameId
-                                                        }`}>
-                                                    {found2 && (
-                                                        <ImgChampAvatar
-                                                            src={
-                                                                found2.championName ===
-                                                                    "FiddleSticks"
-                                                                    ? champUpperCase(
-                                                                        found2
-                                                                    )
-                                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found2.championName}.png`
-                                                            }
-                                                            alt="avatar"
-                                                        />
-                                                    )}
-                                                </Link>
+                                                {found2 && (
+                                                    <ImgChampAvatar
+                                                        src={
+                                                            found2.championName ===
+                                                                "FiddleSticks"
+                                                                ? champUpperCase(
+                                                                    found2
+                                                                )
+                                                                : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found2.championName}.png`
+                                                        }
+                                                        alt="avatar"
+                                                    />
+                                                )}
                                                 {found2 && (
                                                     <div>
                                                         <img
@@ -1019,12 +1015,15 @@ const TableHistories = ({
                                 {gameFour != undefined && (
                                     <>
                                         <tr
+                                            onClick={() => history.push(`/history/${gameFour &&
+                                                gameFour.gameId
+                                                }`)}
                                             className={
                                                 found3.win ? "green" : "red"
                                             }
                                             style={{
-                                                border: `1px solid ${found3.win ? "green" : "red"
-                                                    }`,
+                                                border: `1px solid ${found3.win ? "green" : "red"}`,
+                                                cursor: 'pointer'
                                             }}>
                                             <td
                                                 style={{
@@ -1033,24 +1032,19 @@ const TableHistories = ({
                                                         : "red"
                                                         }`,
                                                 }}>
-                                                <Link
-                                                    to={`/history/${gameFour &&
-                                                        gameFour.gameId
-                                                        }`}>
-                                                    {found3 && (
-                                                        <ImgChampAvatar
-                                                            src={
-                                                                found3.championName ===
-                                                                    "FiddleSticks"
-                                                                    ? champUpperCase(
-                                                                        found3
-                                                                    )
-                                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found3.championName}.png`
-                                                            }
-                                                            alt="avatar"
-                                                        />
-                                                    )}
-                                                </Link>
+                                                {found3 && (
+                                                    <ImgChampAvatar
+                                                        src={
+                                                            found3.championName ===
+                                                                "FiddleSticks"
+                                                                ? champUpperCase(
+                                                                    found3
+                                                                )
+                                                                : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found3.championName}.png`
+                                                        }
+                                                        alt="avatar"
+                                                    />
+                                                )}
                                                 {found3 && (
                                                     <div>
                                                         <img
@@ -1217,12 +1211,15 @@ const TableHistories = ({
                                 {gameFive != undefined && (
                                     <>
                                         <tr
+                                            onClick={() => history.push(`/history/${gameFive &&
+                                                gameFive.gameId
+                                                }`)}
                                             className={
                                                 found4.win ? "green" : "red"
                                             }
                                             style={{
-                                                border: `1px solid ${found4.win ? "green" : "red"
-                                                    }`,
+                                                border: `1px solid ${found4.win ? "green" : "red"}`,
+                                                cursor: 'pointer'
                                             }}>
                                             <td
                                                 style={{
@@ -1231,24 +1228,19 @@ const TableHistories = ({
                                                         : "red"
                                                         }`,
                                                 }}>
-                                                <Link
-                                                    to={`/history/${gameFive &&
-                                                        gameFive.gameId
-                                                        }`}>
-                                                    {found4 && (
-                                                        <ImgChampAvatar
-                                                            src={
-                                                                found4.championName ===
-                                                                    "FiddleSticks"
-                                                                    ? champUpperCase(
-                                                                        found4
-                                                                    )
-                                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found4.championName}.png`
-                                                            }
-                                                            alt="avatar"
-                                                        />
-                                                    )}
-                                                </Link>
+                                                {found4 && (
+                                                    <ImgChampAvatar
+                                                        src={
+                                                            found4.championName ===
+                                                                "FiddleSticks"
+                                                                ? champUpperCase(
+                                                                    found4
+                                                                )
+                                                                : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found4.championName}.png`
+                                                        }
+                                                        alt="avatar"
+                                                    />
+                                                )}
                                                 {/* <p style={{ fontSize: '.8rem', marginBottom: '0' }}>{found4.championName}</p> */}
                                                 {found4 && (
                                                     <div>
@@ -1426,12 +1418,15 @@ const TableHistories = ({
                                 {gameSix != undefined && (
                                     <>
                                         <tr
+                                            onClick={() => history.push(`/history/${gameSix &&
+                                                gameSix.gameId
+                                                }`)}
                                             className={
                                                 found5.win ? "green" : "red"
                                             }
                                             style={{
-                                                border: `1px solid ${found5.win ? "green" : "red"
-                                                    }`,
+                                                border: `1px solid ${found5.win ? "green" : "red"}`,
+                                                cursor: 'pointer'
                                             }}>
                                             <td
                                                 style={{
@@ -1440,24 +1435,19 @@ const TableHistories = ({
                                                         : "red"
                                                         }`,
                                                 }}>
-                                                <Link
-                                                    to={`/history/${gameSix &&
-                                                        gameSix.gameId
-                                                        }`}>
-                                                    {found5 && (
-                                                        <ImgChampAvatar
-                                                            src={
-                                                                found5.championName ===
-                                                                    "FiddleSticks"
-                                                                    ? champUpperCase(
-                                                                        found5
-                                                                    )
-                                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found5.championName}.png`
-                                                            }
-                                                            alt="avatar"
-                                                        />
-                                                    )}
-                                                </Link>
+                                                {found5 && (
+                                                    <ImgChampAvatar
+                                                        src={
+                                                            found5.championName ===
+                                                                "FiddleSticks"
+                                                                ? champUpperCase(
+                                                                    found5
+                                                                )
+                                                                : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found5.championName}.png`
+                                                        }
+                                                        alt="avatar"
+                                                    />
+                                                )}
                                                 {/* <p style={{ fontSize: '.8rem', marginBottom: '0' }}>{found5.championName}</p> */}
                                                 {found5 && (
                                                     <div>
@@ -1627,12 +1617,15 @@ const TableHistories = ({
                                 {gameSeven != undefined && (
                                     <>
                                         <tr
+                                            onClick={() => history.push(`/history/${gameSeven &&
+                                                gameSeven.gameId
+                                                }`)}
                                             className={
                                                 found6.win ? "green" : "red"
                                             }
                                             style={{
-                                                border: `1px solid ${found6.win ? "green" : "red"
-                                                    }`,
+                                                border: `1px solid ${found6.win ? "green" : "red"}`,
+                                                cursor: 'pointer'
                                             }}>
                                             <td
                                                 style={{
@@ -1641,24 +1634,19 @@ const TableHistories = ({
                                                         : "red"
                                                         }`,
                                                 }}>
-                                                <Link
-                                                    to={`/history/${gameSeven &&
-                                                        gameSeven.gameId
-                                                        }`}>
-                                                    {found6 && (
-                                                        <ImgChampAvatar
-                                                            src={
-                                                                found6.championName ===
-                                                                    "FiddleSticks"
-                                                                    ? champUpperCase(
-                                                                        found6
-                                                                    )
-                                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found6.championName}.png`
-                                                            }
-                                                            alt="avatar"
-                                                        />
-                                                    )}
-                                                </Link>
+                                                {found6 && (
+                                                    <ImgChampAvatar
+                                                        src={
+                                                            found6.championName ===
+                                                                "FiddleSticks"
+                                                                ? champUpperCase(
+                                                                    found6
+                                                                )
+                                                                : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found6.championName}.png`
+                                                        }
+                                                        alt="avatar"
+                                                    />
+                                                )}
                                                 {/* <p style={{ fontSize: '.8rem', marginBottom: '0' }}>{found6.championName}</p> */}
                                                 {found6 && (
                                                     <div>
@@ -1828,12 +1816,15 @@ const TableHistories = ({
                                 {gameEight != undefined && (
                                     <>
                                         <tr
+                                            onClick={() => history.push(`/history/${gameEight &&
+                                                gameEight.gameId
+                                                }`)}
                                             className={
                                                 found7.win ? "green" : "red"
                                             }
                                             style={{
-                                                border: `1px solid ${found7.win ? "green" : "red"
-                                                    }`,
+                                                border: `1px solid ${found7.win ? "green" : "red"}`,
+                                                cursor: 'pointer'
                                             }}>
                                             <td
                                                 style={{
@@ -1842,24 +1833,19 @@ const TableHistories = ({
                                                         : "red"
                                                         }`,
                                                 }}>
-                                                <Link
-                                                    to={`/history/${gameSeven &&
-                                                        gameEight.gameId
-                                                        }`}>
-                                                    {found7 && (
-                                                        <ImgChampAvatar
-                                                            src={
-                                                                found7.championName ===
-                                                                    "FiddleSticks"
-                                                                    ? champUpperCase(
-                                                                        found7
-                                                                    )
-                                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found7.championName}.png`
-                                                            }
-                                                            alt="avatar"
-                                                        />
-                                                    )}
-                                                </Link>
+                                                {found7 && (
+                                                    <ImgChampAvatar
+                                                        src={
+                                                            found7.championName ===
+                                                                "FiddleSticks"
+                                                                ? champUpperCase(
+                                                                    found7
+                                                                )
+                                                                : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found7.championName}.png`
+                                                        }
+                                                        alt="avatar"
+                                                    />
+                                                )}
                                                 {/* <p style={{ fontSize: '.8rem', marginBottom: '0' }}>{found7.championName}</p> */}
                                                 {found7 && (
                                                     <div>
@@ -2028,12 +2014,15 @@ const TableHistories = ({
                                 {gameNine != undefined && (
                                     <>
                                         <tr
+                                            onClick={() => history.push(`/history/${gameNine &&
+                                                gameNine.gameId
+                                                }`)}
                                             className={
                                                 found8.win ? "green" : "red"
                                             }
                                             style={{
-                                                border: `1px solid ${found8.win ? "green" : "red"
-                                                    }`,
+                                                border: `1px solid ${found8.win ? "green" : "red"}`,
+                                                cursor: 'pointer'
                                             }}>
                                             <td
                                                 style={{
@@ -2042,24 +2031,19 @@ const TableHistories = ({
                                                         : "red"
                                                         }`,
                                                 }}>
-                                                <Link
-                                                    to={`/history/${gameNine &&
-                                                        gameNine.gameId
-                                                        }`}>
-                                                    {found8 && (
-                                                        <ImgChampAvatar
-                                                            src={
-                                                                found8.championName ===
-                                                                    "FiddleSticks"
-                                                                    ? champUpperCase(
-                                                                        found8
-                                                                    )
-                                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found8.championName}.png`
-                                                            }
-                                                            alt="avatar"
-                                                        />
-                                                    )}
-                                                </Link>
+                                                {found8 && (
+                                                    <ImgChampAvatar
+                                                        src={
+                                                            found8.championName ===
+                                                                "FiddleSticks"
+                                                                ? champUpperCase(
+                                                                    found8
+                                                                )
+                                                                : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found8.championName}.png`
+                                                        }
+                                                        alt="avatar"
+                                                    />
+                                                )}
                                                 {/* <p style={{ fontSize: '.8rem', marginBottom: '0' }}>{found8.championName}</p> */}
                                                 {found8 && (
                                                     <div>
@@ -2228,12 +2212,15 @@ const TableHistories = ({
                                 {gameTen != undefined && (
                                     <>
                                         <tr
+                                            onClick={() => history.push(`/history/${gameTen &&
+                                                gameTen.gameId
+                                                }`)}
                                             className={
                                                 found9.win ? "green" : "red"
                                             }
                                             style={{
-                                                border: `1px solid ${found9.win ? "green" : "red"
-                                                    }`,
+                                                border: `1px solid ${found9.win ? "green" : "red"}`,
+                                                cursor: 'pointer'
                                             }}>
                                             <td
                                                 style={{
@@ -2242,24 +2229,19 @@ const TableHistories = ({
                                                         : "red"
                                                         }`,
                                                 }}>
-                                                <Link
-                                                    to={`/history/${gameTen &&
-                                                        gameTen.gameId
-                                                        }`}>
-                                                    {found9 && (
-                                                        <ImgChampAvatar
-                                                            src={
-                                                                found9.championName ===
-                                                                    "FiddleSticks"
-                                                                    ? champUpperCase(
-                                                                        found9
-                                                                    )
-                                                                    : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found9.championName}.png`
-                                                            }
-                                                            alt="avatar"
-                                                        />
-                                                    )}
-                                                </Link>
+                                                {found9 && (
+                                                    <ImgChampAvatar
+                                                        src={
+                                                            found9.championName ===
+                                                                "FiddleSticks"
+                                                                ? champUpperCase(
+                                                                    found9
+                                                                )
+                                                                : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found9.championName}.png`
+                                                        }
+                                                        alt="avatar"
+                                                    />
+                                                )}
                                                 {/* <p style={{ fontSize: '.8rem', marginBottom: '0' }}>{found9.championName}</p> */}
                                                 {found9 && (
                                                     <div>
