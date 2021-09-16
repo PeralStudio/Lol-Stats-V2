@@ -3,7 +3,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import updateLocale from 'dayjs/plugin/updateLocale';
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 
 import minions from '../assets/img/icon_minions.png';
 import gold from '../assets/img/icon_gold.png';
@@ -39,6 +39,8 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
 
     const [history, setHistory] = useState('');
     const { id } = useParams();
+
+    const historyUrl = useHistory()
 
     useEffect(async () => {
         const res = await axios.get(
@@ -95,53 +97,60 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
 
     return (
         <>
-            {history ? <div>
-                <Link to={`/histories/${name}`}>
-                    <button
-                        type="button"
-                        className="btn btn-outline-info button-back"
-                    >
-                        Historial
-                    </button>
-                </Link>
-                <Link to={`/graphics/${id}`}><button style={{ marginLeft: '10px' }} type="button" className="btn btn-outline-info button-back">Gráfica</button></Link>
+            {history ?
                 <div>
+                    <Link to={`/histories/${name}`}>
+                        <button
+                            type="button"
+                            className="btn btn-outline-info button-back"
+                        >
+                            Historial
+                        </button>
+                    </Link>
+                    <Link to={`/graphics/${id}`}><button style={{ marginLeft: '10px' }} type="button" className="btn btn-outline-info button-back">Gráfica</button></Link>
                     <div>
-                        <h1 className='h1-history'>
-                            {foundQueueId.description}
-                        </h1>
-                        <p style={{ fontSize: '12px' }}>id: {id}</p>
+                        <div>
+                            <h1 className='h1-history'>
+                                {foundQueueId.description}
+                            </h1>
+                            <p style={{ fontSize: '12px' }}>id: {id}</p>
+                        </div>
+                        <div>
+                            <p style={{ margin: '0' }}>{timeString}</p>
+                            <span style={{ fontSize: '14px' }}>
+                                {`${dayjs(history.gameCreation).format("DD/MM/YYYY HH:mm")}`}
+                            </span>
+                            <p style={{ fontSize: '.9rem' }}>
+                                {`${dayjs(history.gameCreation).fromNow()}`}
+                            </p>
+                        </div>
                     </div>
-                    <div>
-                        <p style={{ margin: '0' }}>{timeString}</p>
-                        <span style={{ fontSize: '14px' }}>
-                            {`${dayjs(history.gameCreation).format("DD/MM/YYYY HH:mm")}`}
-                        </span>
-                        <p style={{ fontSize: '.9rem' }}>
-                            {`${dayjs(history.gameCreation).fromNow()}`}
-                        </p>
-                    </div>
-                </div>
-                <table className="table table-striped table-dark">
-                    <tbody>
-                        {history &&
-                            history.participants.map((participants, index) => (
-                                <>
-                                    <tr style={{ border: `1px solid ${colorWinLose(index)}` }}
-                                        className={
-                                            `${colorWinLose(index)}${yourStats(index)}`
-                                        }
-                                        key={index}
-                                    >
-                                        <td className='first-td' style={{ borderLeft: `6px solid ${colorWinLose(index)}` }}>
-                                            <div>
-                                                <div className={`Level ${colorWinLose(index)}-level`}>
-                                                    {participants.champLevel}
-                                                </div>
-                                                <Link to='/' onClick={() => {
-                                                    getDataPlayer(participants.summonerName);
-                                                    setAllLoad(false)
-                                                }} >
+                    <table className="table table-striped table-dark">
+                        <tbody>
+                            {history &&
+                                history.participants.map((participants, index) => (
+                                    <>
+                                        <tr
+                                            onClick={() => {
+                                                historyUrl.push(`/`);
+                                                getDataPlayer(participants.summonerName);
+                                                setAllLoad(false);
+                                            }}
+                                            style={{
+                                                border: `1px solid ${colorWinLose(index)}`,
+                                                cursor: 'pointer'
+                                            }}
+                                            className={
+                                                `${colorWinLose(index)}${yourStats(index)}`
+                                            }
+                                            data-tip={participants.summonerName}
+                                            key={index}
+                                        >
+                                            <td className='first-td' style={{ borderLeft: `6px solid ${colorWinLose(index)}` }}>
+                                                <div>
+                                                    <div className={`Level ${colorWinLose(index)}-level`}>
+                                                        {participants.champLevel}
+                                                    </div>
                                                     <img
                                                         className={
                                                             data &&
@@ -158,141 +167,142 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                         alt="Champ"
                                                         data-tip={participants.championName}
                                                     />
-                                                </Link>
-                                                <ReactTooltip place="top" effect='solid' />
-                                                <div style={{ display: 'inline-grid' }}>
-                                                    <img
-                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[participants.summoner1Id]}.png`} alt="summ1"
-                                                        className='summ1'
-                                                        data-tip={summonerSpells[participants.summoner1Id]}
-                                                    />
-                                                    <ReactTooltip place="top" effect='solid' />
-                                                    <img
-                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[participants.summoner2Id]}.png`} alt="summ2"
-                                                        className='summ2'
-                                                        data-tip={summonerSpells[participants.summoner2Id]}
-                                                    />
-                                                    <ReactTooltip place="top" effect='solid' />
+                                                    {/* <ReactTooltip place="top" effect='solid' /> */}
+                                                    <div style={{ display: 'inline-grid' }}>
+                                                        <img
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[participants.summoner1Id]}.png`} alt="summ1"
+                                                            className='summ1'
+                                                            data-tip={summonerSpells[participants.summoner1Id]}
+                                                        />
+                                                        {/* <ReactTooltip place="top" effect='solid' /> */}
+                                                        <img
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[participants.summoner2Id]}.png`} alt="summ2"
+                                                            className='summ2'
+                                                            data-tip={summonerSpells[participants.summoner2Id]}
+                                                        />
+                                                        {/* <ReactTooltip place="top" effect='solid' /> */}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <span>{participants.summonerName}</span>
-                                        </td>
-                                        <td className='common-td'>
-                                            {`${participants.kills}/${participants.deaths}/${participants.assists}`}
-                                            <p style={{
-                                                margin: '0',
-                                                fontSize: '.7rem',
-                                                fontWeight: '100'
-                                            }}>
-                                                {((participants.kills + participants.assists) / participants.deaths).toFixed(2)}:1
-                                            </p>
-                                        </td>
-                                        <td className='common-td'>
-                                            <div>
-                                                {participants.totalMinionsKilled +
-                                                    participants.neutralMinionsKilled}
+                                                <span>{participants.summonerName}</span>
+                                            </td>
+                                            <td className='common-td'>
+                                                {`${participants.kills}/${participants.deaths}/${participants.assists}`}
+                                                <p style={{
+                                                    margin: '0',
+                                                    fontSize: '.7rem',
+                                                    fontWeight: '100'
+                                                }}>
+                                                    {((participants.kills + participants.assists) / participants.deaths).toFixed(2)}:1
+                                                </p>
+                                            </td>
+                                            <td className='common-td'>
+                                                <div>
+                                                    {participants.totalMinionsKilled +
+                                                        participants.neutralMinionsKilled}
+                                                    <img
+                                                        src={minions}
+                                                        alt="Champ"
+                                                        style={{
+                                                            width: ".8rem",
+                                                            marginTop: '2px',
+                                                            marginLeft: '6px'
+                                                        }}
+                                                    />
+                                                </div>
+                                                <p style={{
+                                                    margin: '0',
+                                                    marginTop: '-5px',
+                                                    fontSize: '.7rem',
+                                                    textAlign: 'start',
+                                                    fontWeight: '100',
+                                                }}>
+                                                    ({((participants.totalMinionsKilled + participants.neutralMinionsKilled) / timeInt).toFixed(1)})
+                                                </p>
+                                            </td>
+                                            <td className='common-td'>
+                                                {participants.totalDamageDealtToChampions}
                                                 <img
-                                                    src={minions}
-                                                    alt="Champ"
-                                                    style={{
-                                                        width: ".8rem",
-                                                        marginTop: '2px',
-                                                        marginLeft: '6px'
-                                                    }}
-                                                />
-                                            </div>
-                                            <p style={{
-                                                margin: '0',
-                                                marginTop: '-5px',
-                                                fontSize: '.7rem',
-                                                textAlign: 'start',
-                                                fontWeight: '100',
-                                            }}>
-                                                ({((participants.totalMinionsKilled + participants.neutralMinionsKilled) / timeInt).toFixed(1)})
-                                            </p>
-                                        </td>
-                                        <td className='common-td'>
-                                            {participants.totalDamageDealtToChampions}
-                                            <img
-                                                src={damageDealt}
-                                                alt="damage"
-                                                style={{
-                                                    width: ".8rem",
-                                                    marginTop: '-2px'
-                                                }}
-                                            />
-                                        </td>
-                                        <td style={{ verticalAlign: "middle", textAlign: 'end' }}>
-                                            <div className='gold-earned'>
-                                                {participants.goldEarned}
-                                                <img
-                                                    src={gold}
-                                                    alt="gold"
+                                                    src={damageDealt}
+                                                    alt="damage"
                                                     style={{
                                                         width: ".8rem",
                                                         marginTop: '-2px'
                                                     }}
                                                 />
-                                            </div>
-                                            <div>
-                                                {participants.item0 !== 0 && <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${participants.item0}.png`}
-                                                    alt="item"
-                                                    className='img-items'
-                                                    style={{
-                                                        marginTop: '-2px'
-                                                    }}
-                                                />}
-                                                {participants.item1 !== 0 && <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${participants.item1}.png`}
-                                                    alt="item"
-                                                    className='img-items'
-                                                    style={{
-                                                        marginTop: '-2px'
-                                                    }}
-                                                />}
-                                                {participants.item2 !== 0 && <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${participants.item2}.png`}
-                                                    alt="item"
-                                                    className='img-items'
-                                                    style={{
-                                                        marginTop: '-2px'
-                                                    }}
-                                                />}
-                                                {participants.item3 !== 0 && <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${participants.item3}.png`}
-                                                    alt="item"
-                                                    className='img-items'
-                                                    style={{
-                                                        marginTop: '-2px'
-                                                    }}
-                                                />}
-                                                {participants.item4 !== 0 && <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${participants.item4}.png`}
-                                                    alt="item"
-                                                    className='img-items'
-                                                    style={{
-                                                        marginTop: '-2px'
-                                                    }}
-                                                />}
-                                                {participants.item5 !== 0 && <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${participants.item5}.png`}
-                                                    alt="item"
-                                                    className='img-items'
-                                                    style={{
-                                                        marginTop: '-2px'
-                                                    }}
-                                                />}
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    {index >= 4 & index <= 4 ? <br /> : null}
-                                    {index >= 9 && <br />}
-                                </>
-                            ))}
-                    </tbody>
-                </table >
-            </div >
+                                            </td>
+                                            <td style={{ verticalAlign: "middle", textAlign: 'end' }}>
+                                                <div className='gold-earned'>
+                                                    {participants.goldEarned}
+                                                    <img
+                                                        src={gold}
+                                                        alt="gold"
+                                                        style={{
+                                                            width: ".8rem",
+                                                            marginTop: '-2px'
+                                                        }}
+                                                    />
+                                                </div>
+                                                <div>
+                                                    {participants.item0 !== 0 && <img
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${participants.item0}.png`}
+                                                        alt="item"
+                                                        className='img-items'
+                                                        style={{
+                                                            marginTop: '-2px'
+                                                        }}
+                                                    />}
+                                                    {participants.item1 !== 0 && <img
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${participants.item1}.png`}
+                                                        alt="item"
+                                                        className='img-items'
+                                                        style={{
+                                                            marginTop: '-2px'
+                                                        }}
+                                                    />}
+                                                    {participants.item2 !== 0 && <img
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${participants.item2}.png`}
+                                                        alt="item"
+                                                        className='img-items'
+                                                        style={{
+                                                            marginTop: '-2px'
+                                                        }}
+                                                    />}
+                                                    {participants.item3 !== 0 && <img
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${participants.item3}.png`}
+                                                        alt="item"
+                                                        className='img-items'
+                                                        style={{
+                                                            marginTop: '-2px'
+                                                        }}
+                                                    />}
+                                                    {participants.item4 !== 0 && <img
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${participants.item4}.png`}
+                                                        alt="item"
+                                                        className='img-items'
+                                                        style={{
+                                                            marginTop: '-2px'
+                                                        }}
+                                                    />}
+                                                    {participants.item5 !== 0 && <img
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${participants.item5}.png`}
+                                                        alt="item"
+                                                        className='img-items'
+                                                        style={{
+                                                            marginTop: '-2px'
+                                                        }}
+                                                    />}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {index >= 4 & index <= 4 ? <br /> : null}
+                                        {index >= 9 && <br />}
+
+                                        <ReactTooltip />
+                                    </>
+                                ))}
+                        </tbody>
+                    </table >
+                </div >
                 :
                 <Loader
                     type="TailSpin"
