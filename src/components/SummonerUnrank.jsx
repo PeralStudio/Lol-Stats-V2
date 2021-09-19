@@ -33,7 +33,7 @@ const SummonerUnrank = ({ name, summData, err, dataLive }) => {
             />
             {!err &&
                 <p
-                    style={{ backgroundColor: '#EE4142', width: 'fit-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold' }}
+                    style={{ backgroundColor: '#EE4142', width: 'max-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold' }}
                 >
                     En partida - {found && found.description}
                 </p>

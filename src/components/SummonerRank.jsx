@@ -1,5 +1,5 @@
 import { Doughnut } from "react-chartjs-2";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import opgg from "../assets/img/opgg.png";
 import { validarElo, validarElo2 } from "../functions/ValidarElo";
 
@@ -9,6 +9,8 @@ import { queueId } from "../dataDragon/queueid";
 import { ImgSummUnrank } from "../UI/SummonerUnrankUI";
 
 const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
+
+    const historyUrl = useHistory();
 
     const found = queueId.find(element => element.queueId === dataLive.gameQueueConfigId);
     // const data = data.find(element => element.queueType === 'RANKED_SOLO_5x5');
@@ -60,8 +62,12 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
                         style={{ width: "8rem", margin: "auto" }}
                     />
                     {!err &&
+
                         <p
-                            style={{ backgroundColor: '#EE4142', width: 'fit-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold' }}
+                            // onClick={() => {
+                            //     historyUrl.push(`/livegame/${name}`);
+                            // }}
+                            style={{ backgroundColor: '#EE4142', width: 'max-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold', /* cursor: 'pointer' */ }}
                         >
                             En partida - {found.description}
                         </p>

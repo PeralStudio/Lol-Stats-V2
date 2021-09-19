@@ -40,7 +40,7 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
     const [history, setHistory] = useState('');
     const { id } = useParams();
 
-    const historyUrl = useHistory()
+    const historyUrl = useHistory();
 
     useEffect(async () => {
         const res = await axios.get(

@@ -7,123 +7,30 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 
 import TableHistories from './TableHistories';
+// import ArregloTableIntento from './TableHistories';
 
 const Histories = ({ historyGames, summData, data }) => {
 
     const { name } = useParams();
 
-    const [gameOne, setGameOne] = useState();
-    const [gameTwo, setGameTwo] = useState();
-    const [gameThree, setGameThree] = useState();
-    const [gameFour, setGameFour] = useState();
-    const [gameFive, setGameFive] = useState();
-
-    const [gameSix, setGameSix] = useState();
-    const [gameSeven, setGameSeven] = useState();
-    const [gameEight, setGameEight] = useState();
-    const [gameNine, setGameNine] = useState();
-    const [gameTen, setGameTen] = useState();
+    const [gamesArray, setGamesArray] = useState([]);
 
     if (historyGames === "") window.location.href = "/";
 
     useEffect(async () => {
-        const res0 = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/${historyGames[0]}?api_key=${process.env.REACT_APP_API_RIOT}`
-        );
 
-        setGameOne(res0.data.info);
-    }, [historyGames]);
+        let res = [];
+        let i = 0;
 
-    useEffect(async () => {
-        const res1 = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/${historyGames[1]}?api_key=${process.env.REACT_APP_API_RIOT}`
-        );
+        for (let gameId of historyGames) {
+            res[i] = await axios.get(
+                `https://europe.api.riotgames.com/lol/match/v5/matches/${gameId}?api_key=${process.env.REACT_APP_API_RIOT}`
+            );
+            setGamesArray(gamesArray => [...gamesArray, res[i].data.info]);
+            i++
+        }
+    }, []);
 
-        setGameTwo(res1.data.info);
-    }, [historyGames]);
-
-    useEffect(async () => {
-        const res2 = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/${historyGames[2]}?api_key=${process.env.REACT_APP_API_RIOT}`
-        );
-
-        setGameThree(res2.data.info);
-    }, [historyGames]);
-
-    useEffect(async () => {
-        const res3 = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/${historyGames[3]}?api_key=${process.env.REACT_APP_API_RIOT}`
-        );
-
-        setGameFour(res3.data.info);
-    }, [historyGames]);
-
-    useEffect(async () => {
-        const res4 = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/${historyGames[4]}?api_key=${process.env.REACT_APP_API_RIOT}`
-        );
-
-        setGameFive(res4.data.info)
-    }, [historyGames]);
-
-
-
-
-
-
-    useEffect(async () => {
-        const res5 = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/${historyGames[5]}?api_key=${process.env.REACT_APP_API_RIOT}`
-        );
-
-        setGameSix(res5.data.info)
-    }, [historyGames]);
-
-    useEffect(async () => {
-        const res6 = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/${historyGames[6]}?api_key=${process.env.REACT_APP_API_RIOT}`
-        );
-
-        setGameSeven(res6.data.info)
-    }, [historyGames]);
-
-    useEffect(async () => {
-        const res7 = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/${historyGames[7]}?api_key=${process.env.REACT_APP_API_RIOT}`
-        );
-
-        setGameEight(res7.data.info)
-    }, [historyGames]);
-
-    useEffect(async () => {
-        const res8 = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/${historyGames[8]}?api_key=${process.env.REACT_APP_API_RIOT}`
-        );
-
-        setGameNine(res8.data.info)
-    }, [historyGames]);
-
-    useEffect(async () => {
-        const res9 = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/${historyGames[9]}?api_key=${process.env.REACT_APP_API_RIOT}`
-        );
-
-        setGameTen(res9.data.info)
-    }, [historyGames]);
-
-    const allGamesArray = [];
-
-    gameOne != undefined && allGamesArray.push(gameOne);
-    gameTwo != undefined && allGamesArray.push(gameTwo);
-    gameThree != undefined && allGamesArray.push(gameThree);
-    gameFour != undefined && allGamesArray.push(gameFour);
-    gameFive != undefined && allGamesArray.push(gameFive);
-
-    gameSix != undefined && allGamesArray.push(gameSix);
-    gameSeven != undefined && allGamesArray.push(gameSeven);
-    gameEight != undefined && allGamesArray.push(gameEight);
-    gameNine != undefined && allGamesArray.push(gameNine);
-    gameTen != undefined && allGamesArray.push(gameTen);
 
     return (
         <>
@@ -136,9 +43,8 @@ const Histories = ({ historyGames, summData, data }) => {
                         Perfil
                     </button>
                 </Link>
-                {/* <Link to={`/graphics`}><button style={{ marginLeft: '10px' }} type="button" className="btn btn-outline-info button-back">Gráfica</button></Link> */}
             </div>
-            {gameFive ?
+            {gamesArray ?
                 <>
                     <h1 style={{ fontSize: '2.2rem' }}>Historial</h1>
                     <h3
@@ -159,8 +65,8 @@ const Histories = ({ historyGames, summData, data }) => {
                         />
                         {name}
                     </h3>
-                    <h6 style={{ marginTop: '.8rem' }}>Partidas Recientes (Últimas {allGamesArray.length} jugadas)</h6>
-                    <TableHistories
+                    {gamesArray.length >= 10 && <h6 style={{ marginTop: '.8rem' }}>Partidas Recientes (Últimas {gamesArray.length} jugadas)</h6>}
+                    {/* <TableHistories
                         gameOne={gameOne}
                         gameTwo={gameTwo}
                         gameThree={gameThree}
@@ -172,6 +78,10 @@ const Histories = ({ historyGames, summData, data }) => {
                         gameNine={gameNine}
                         gameTen={gameTen}
                         name={name}
+                    /> */}
+                    <TableHistories
+                        name={name}
+                        gamesArray={gamesArray}
                     />
                 </>
                 :
