@@ -89,6 +89,135 @@
     border: 2px solid #ac8740;
 }
 
+.iron-loading {
+    border: 3px solid #847575;
+    background-color: #84757531;
+}
+.bronze-loading {
+    border: 3px solid #8c4f37;
+    background-color: #8c4f3750;
+}
+.silver-loading {
+    border: 3px solid #626d74;
+    background-color: #626d743f;
+}
+.gold-loading {
+    border: 3px solid #c1962a;
+    background-color: #c1962a3a;
+}
+.platinum-loading {
+    border: 3px solid #4fa299;
+    background-color: #4fa2983a;
+}
+.diamond-loading {
+    border: 3px solid #8683dc;
+    background-color: #8683dc31;
+}
+.grandmaster-loading {
+    border: 3px solid #ae4036;
+    background-color: #ae403633;
+}
+.master-loading {
+    border: 3px solid #92468d;
+    background-color: #92468d38;
+}
+.challenger-loading {
+    border: 3px solid #ac8740;
+    background-color: #ac864038;
+}
+
+.unranked1 {
+    border: 3px solid #7219143f;
+    background-color: #7219142f;
+}
+
+.unranked2 {
+    border: 3px solid #09722e3a;
+    background-color: #09722e28;
+}
+
+/* .iron-loading {
+    border: 3px solid #847575;
+    -webkit-box-shadow: inset 0 0 20px #847575;
+    -moz-box-shadow: inset 0 0 20px #847575;
+    -ms-box-shadow: inset 0 0 20px #847575;
+    box-shadow: inset 0 0 20px #847575;
+}
+.bronze-loading {
+    border: 3px solid #8c4f37;
+    -webkit-box-shadow: inset 0 0 20px #8c4f37;
+    -moz-box-shadow: inset 0 0 20px #8c4f37;
+    -ms-box-shadow: inset 0 0 20px #8c4f37;
+    box-shadow: inset 0 0 20px #8c4f37;
+}
+.silver-loading {
+    border: 3px solid #626d74;
+    -webkit-box-shadow: inset 0 0 20px #626d74;
+    -moz-box-shadow: inset 0 0 20px #626d74;
+    -ms-box-shadow: inset 0 0 20px #626d74;
+    box-shadow: inset 0 0 20px #626d74;
+}
+.gold-loading {
+    border: 3px solid #c1962a;
+    -webkit-box-shadow: inset 0 0 20px #c1962a;
+    -moz-box-shadow: inset 0 0 20px #c1962a;
+    -ms-box-shadow: inset 0 0 20px #c1962a;
+    box-shadow: inset 0 0 20px #c1962a;
+}
+.platinum-loading {
+    border: 3px solid #4fa299;
+    -webkit-box-shadow: inset 0 0 20px #4fa299;
+    -moz-box-shadow: inset 0 0 20px #4fa299;
+    -ms-box-shadow: inset 0 0 20px #4fa299;
+    box-shadow: inset 0 0 20px #4fa299;
+}
+.diamond-loading {
+    border: 3px solid #8683dc;
+    -webkit-box-shadow: inset 0 0 20px #8683dc;
+    -moz-box-shadow: inset 0 0 20px #8683dc;
+    -ms-box-shadow: inset 0 0 20px #8683dc;
+    box-shadow: inset 0 0 20px #8683dc;
+}
+.grandmaster-loading {
+    border: 3px solid #ae4036;
+    -webkit-box-shadow: inset 0 0 20px #ae4036;
+    -moz-box-shadow: inset 0 0 20px #ae4036;
+    -ms-box-shadow: inset 0 0 20px #ae4036;
+    box-shadow: inset 0 0 20px #ae4036;
+}
+.master-loading {
+    border: 3px solid #92468d;
+    -webkit-box-shadow: inset 0 0 20px #92468d;
+    -moz-box-shadow: inset 0 0 20px #92468d;
+    -ms-box-shadow: inset 0 0 20px #92468d;
+    box-shadow: inset 0 0 20px #92468dd3;
+}
+.challenger-loading {
+    border: 3px solid #ac8740;
+    -webkit-box-shadow: inset 0 0 20px #ac8740;
+    -moz-box-shadow: inset 0 0 20px #ac8740;
+    -ms-box-shadow: inset 0 0 20px #ac8740;
+    box-shadow: inset 0 0 20px #ac8740;
+}
+
+.unranked1 {
+    border: 3px solid #7219143f;
+    background-color: #7219142f; 
+    border: 3px solid rgba(122, 12, 12, 0.527);
+    -webkit-box-shadow: inset 0 0 30px rgba(122, 12, 12, 0.678);
+    -moz-box-shadow: inset 0 0 30px rgba(122, 12, 12, 0.678);
+    -ms-box-shadow: inset 0 0 30px rgba(122, 12, 12, 0.678);
+    box-shadow: inset 0 0 30px rgba(122, 12, 12, 0.678);
+}
+
+.unranked2 {
+    border: 3px solid #09722e6b;
+    -webkit-box-shadow: inset 0 0 30px #09722e6b;
+    -moz-box-shadow: inset 0 0 30px #09722e6b;
+    -ms-box-shadow: inset 0 0 30px #09722e6b;
+    box-shadow: inset 0 0 30px #09722e6b;
+} */
+
 .iron-font {
     color: #847575;
 }

@@ -1,15 +1,48 @@
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+import Loader from 'react-loader-spinner';
+import { Link, useHistory, useParams } from "react-router-dom";
+
 import { champsId } from '../dataDragon/champsId';
+import { queueId } from '../dataDragon/queueid';
+
 import { ImgChampAvatar, PNoMargin } from '../UI/TableHistoriesUi';
+import vsImage from "../assets/img/vs.png";
+import bgLoading from "../assets/img/bg-loading-screen.jpg";
+import { validarElo, validarElo2 } from '../functions/ValidarElo';
+import dayjs from 'dayjs';
 
-const LiveGame = ({ dataLive }) => {
+const LiveGame = ({ dataLive, getDataPlayer }) => {
 
-    console.log(dataLive);
+    const [dataRankSummoners, setDataRankSummoners] = useState([]);
+    const [dataUnrankSummoners, setDataUnrankSummoners] = useState([]);
 
+    const historyUrl = useHistory();
+    const { name } = useParams();
+
+    if (dataLive === "") window.location.href = "/";
+
+    dayjs.updateLocale("en", {
+        relativeTime: {
+            future: " %s",
+            past: "%s",
+            s: "hace unos segundos",
+            m: "un minuto",
+            mm: "hace %d minutos",
+            h: "hace una hora",
+            hh: "hace %d horas",
+            d: "hace un día",
+            dd: "hace %d días",
+            M: "un mes",
+            MM: "hace %d meses",
+            y: "un año",
+            yy: "hace %d años",
+        },
+    });
 
     let summonerIds = [];
     let dataSumm = [];
-    let dataRankSummoners = [];
+    // let dataRankSummoners = [];
     let dataSummoners = [];
     let foundChampId = [];
 
@@ -36,39 +69,48 @@ const LiveGame = ({ dataLive }) => {
         dataSumm.push(participant)
     }
 
+    const summLevel = dataUnrankSummoners.map((element) => element.summonerLevel);
+    const found = queueId.find(element => element.queueId === dataLive.gameQueueConfigId);
+    const gameStart = dayjs(dataLive.gameStartTime).toNow();
+    console.log(dataLive);
 
-    // console.log(summonerIds);
 
-    const getDataSummoner = async () => {
+    useEffect(async () => {
+
+        let res = [];
+        let res2 = [];
+        let i = 0;
+
         for (let summid of summonerIds) {
-            const res = await axios.get(
+
+            res[i] = await axios.get(
                 `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/${summid}?api_key=${process.env.REACT_APP_API_RIOT}`
             );
-            dataRankSummoners.push(res.data);
+            const foundRankedSolo = res[i].data.find(element => element.queueType === 'RANKED_SOLO_5x5');
+            setDataRankSummoners(dataRankSummoners => [...dataRankSummoners, foundRankedSolo]);
+            i++
 
-            // const res2 = await axios.get(
-            //     `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/${a}?api_key=${process.env.REACT_APP_API_RIOT}`
-            // );
-            // dataSummoners.push(res2.data);
+
+            res2[i] = await axios.get(
+                `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/${summid}?api_key=${process.env.REACT_APP_API_RIOT}`
+            );
+            setDataUnrankSummoners(dataUnrankSummoners => [...dataUnrankSummoners, res2[i].data]);
+            i++
         }
-    }
 
-
-    getDataSummoner();
-    // getDataSummonerRank();
+    }, []);
 
 
     // console.log('a', summonerIds);
-    console.log('b', dataRankSummoners);
-    // console.log('c', dataSummoners);
+    // console.log('b', dataRankSummoners);
+    // console.log('c', dataLive);
     // console.log('d', dataSumm);
-
 
     dataSumm.map((data, index) => foundChampId.push(champsId.find(element => element.champId === data.championId)));
 
     return (
         <>
-            <div style={{ marginTop: "1rem" }}>
+            {/* <div style={{ marginTop: "1rem" }}>
                 <table className="table table-dark table-striped">
                     <tbody>
                         {
@@ -86,7 +128,7 @@ const LiveGame = ({ dataLive }) => {
                                         }}>
                                         <td>
                                             <ImgChampAvatar
-                                                src={foundChampId[index].name != undefined ?
+                                                src={foundChampId[index].name && foundChampId[index].name != undefined ?
                                                     `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${foundChampId[index].name}.png` :
                                                     `https://ddragon.leagueoflegends.com/cdn/11.18.1/img/profileicon/588.png`
                                                 }
@@ -116,8 +158,147 @@ const LiveGame = ({ dataLive }) => {
                     </tbody>
                 </table>
             </div >
-        </>
-    )
+            <div>
+                <h2>{foundQueue.description}- {foundQueue.map}</h2>
+            </div> */}
+
+            {dataRankSummoners.length >= 10 ?
+                <div style={{ paddingBottom: ".5rem" }}>
+                    <Link to={`/`}>
+                        <button
+                            type="button"
+                            className="btn btn-outline-info button-back"
+                        >
+                            Volver
+                        </button>
+                    </Link>
+
+                    <h3>{found.description}</h3>
+                    <p>Empezó {gameStart}</p>
+                    <div style={{ marginTop: ".5rem", display: 'flex', justifyContent: 'center' }}>
+                        {dataSumm.map((data, index) =>
+                            <>
+                                {index <= 4 &&
+                                    <div
+                                        key={`${index}a`}
+                                        onClick={() => {
+                                            historyUrl.push(`/`);
+                                            getDataPlayer(data.summonerName);
+                                        }}
+                                        style={{ margin: '5px', cursor: 'pointer' }}
+                                        className={dataRankSummoners[index] && dataRankSummoners != undefined ? validarElo2(dataRankSummoners[index].tier) + '-loading' : 'unranked1'}
+                                    >
+                                        <img
+                                            src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${foundChampId[index].name}_0.jpg`}
+                                            style={{ width: '8rem' }}
+                                        />
+                                        <div>
+                                            <img
+                                                src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/profileicon/${data.profileIconId}.png`}
+                                                style={{
+                                                    width: "3.5rem",
+                                                    borderRadius: "50%",
+                                                    marginTop: '-105px'
+                                                }}
+                                                className='gold'
+                                            />
+                                        </div>
+                                        <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '-15px' }}>
+                                            <div>
+                                                <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[data.spell1Id]}.png`}
+                                                    alt="summ1"
+                                                    // className="summ1"
+                                                    style={{ marginRight: '5px', width: '1.5rem' }}
+                                                />
+                                                <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[data.spell2Id]}.png`}
+                                                    alt="summ1"
+                                                    // className="summ1"
+                                                    style={{ width: '1.5rem' }}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div style={{ marginBottom: '10px', marginTop: '10px' }}>
+                                            <span>{data.summonerName}</span>
+                                            <PNoMargin style={{ fontSize: '.7rem' }}>
+                                                {dataRankSummoners[index] == undefined ? `Nivel ${summLevel[index]}` : `${dataRankSummoners[index].tier} - ${dataRankSummoners[index].rank} (${dataRankSummoners[index].leaguePoints} LP)`}
+                                            </PNoMargin>
+                                        </div>
+                                    </div>}
+                            </>
+                        )}
+                    </div>
+                    <div>
+                        <img src={vsImage} style={{ width: '4rem' }} />
+                    </div>
+                    <div style={{ marginTop: ".2rem", display: 'flex', justifyContent: 'center' }}>
+                        {dataSumm.map((data, index) =>
+                            <>
+                                {index >= 5 &&
+                                    <div
+                                        key={`${index}b`}
+                                        onClick={() => {
+                                            historyUrl.push(`/`);
+                                            getDataPlayer(data.summonerName);
+                                        }}
+                                        style={{ margin: '5px', cursor: 'pointer' }}
+                                        className={dataRankSummoners[index] && dataRankSummoners != undefined ? validarElo2(dataRankSummoners[index].tier) + '-loading' : 'unranked2'}
+                                    >
+                                        <img
+                                            src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${foundChampId[index].name}_0.jpg`}
+                                            style={{ width: '8rem' }}
+                                        />
+                                        <div>
+                                            <img
+                                                src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/profileicon/${data.profileIconId}.png`}
+                                                style={{
+                                                    width: "3.5rem",
+                                                    borderRadius: "50%",
+                                                    marginTop: '-105px'
+                                                }}
+                                                className='gold'
+                                            />
+                                        </div>
+                                        <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '-15px' }}>
+                                            <div>
+                                                <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[data.spell1Id]}.png`}
+                                                    alt="summ1"
+                                                    // className="summ1"
+                                                    style={{ marginRight: '5px', width: '1.5rem' }}
+                                                />
+                                                <img
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[data.spell2Id]}.png`}
+                                                    alt="summ1"
+                                                    // className="summ1"
+                                                    style={{ width: '1.5rem' }}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div style={{ marginBottom: '10px', marginTop: '10px' }}>
+                                            <span>{data.summonerName}</span>
+                                            <PNoMargin style={{ fontSize: '.7rem' }}>
+                                                {dataRankSummoners[index] == undefined ? `Nivel ${summLevel[index]}` : `${dataRankSummoners[index].tier} - ${dataRankSummoners[index].rank} (${dataRankSummoners[index].leaguePoints} LP)`}
+                                            </PNoMargin>
+                                        </div>
+                                    </div>}
+                            </>
+                        )}
+                    </div>
+                </div>
+                :
+                <>
+                    <Loader
+                        type="TailSpin"
+                        color="#00c0b1"
+                        height={100}
+                        width={100}
+                        style={{ marginTop: '100px' }}
+                    />
+                </>
+            }
+        </>)
 }
 
 export default LiveGame

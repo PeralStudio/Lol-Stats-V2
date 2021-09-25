@@ -68,19 +68,19 @@ export const queueId = [
     {
         "queueId": 31,
         "map": "Grieta del invocador",
-        "description": "Co-op vs AI Intro Bot",
+        "description": "Co-op vs IA",
         "notes": "Deprecated in patch 7.19 in favor of queueId 830"
     },
     {
         "queueId": 32,
         "map": "Grieta del invocador",
-        "description": "Co-op vs AI Beginner Bot",
+        "description": "Co-op vs IA",
         "notes": "Deprecated in patch 7.19 in favor of queueId 840"
     },
     {
         "queueId": 33,
         "map": "Grieta del invocador",
-        "description": "Co-op vs AI Intermediate Bot",
+        "description": "Co-op vs IA",
         "notes": "Deprecated in patch 7.19 in favor of queueId 850"
     },
     {
@@ -158,7 +158,7 @@ export const queueId = [
     {
         "queueId": 83,
         "map": "Grieta del invocador",
-        "description": "Co-op vs AI Ultra Rapid Fire",
+        "description": "Co-op vs IA",
         "notes": null
     },
     {
@@ -320,25 +320,25 @@ export const queueId = [
     {
         "queueId": 820,
         "map": "Twisted Treeline",
-        "description": "Co-op vs. AI Beginner Bot",
+        "description": "Co-op vs IA",
         "notes": null
     },
     {
         "queueId": 830,
         "map": "Grieta del invocador",
-        "description": "Co-op vs. AI Intro Bot",
+        "description": "Co-op vs IA.",
         "notes": null
     },
     {
         "queueId": 840,
         "map": "Grieta del invocador",
-        "description": "Co-op vs. AI Beginner Bot",
+        "description": "Co-op vs IA",
         "notes": null
     },
     {
         "queueId": 850,
         "map": "Grieta del invocador",
-        "description": "Co-op vs. AI Intermediate Bot",
+        "description": "Co-op vs IA",
         "notes": null
     },
     {

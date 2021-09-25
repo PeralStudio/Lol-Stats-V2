@@ -32,7 +32,7 @@ const StatsGraph = ({ name, getDataPlayer, setAllLoad }) => {
 
     const champUpperCase = (index) => {
         let champLowerCase = history2.participants[index].championName.toLowerCase();
-        return `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${champLowerCase[0].toUpperCase()}${champLowerCase.slice(1)}.png`;
+        return `https://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${champLowerCase[0].toUpperCase()}${champLowerCase.slice(1)}.png`;
     };
 
     let totalDamageDealtToChampions = [];
@@ -195,7 +195,7 @@ const StatsGraph = ({ name, getDataPlayer, setAllLoad }) => {
                                                         ? champUpperCase(
                                                             index
                                                         )
-                                                        : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${champion}.png`}
+                                                        : `https://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${champion}.png`}
                                                     className={`champ-graph ${colorWinLose(index)}-graph`}
                                                     alt='champ'
                                                     data-tip={playerName[index]}

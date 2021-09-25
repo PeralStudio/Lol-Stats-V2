@@ -7,12 +7,15 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import { queueId } from "../dataDragon/queueid";
 import { ImgSummUnrank } from "../UI/SummonerUnrankUI";
+import { useEffect } from "react";
 
 const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
 
     const historyUrl = useHistory();
 
     const found = queueId.find(element => element.queueId === dataLive.gameQueueConfigId);
+    const found2 = dataLive.gameType == "CUSTOM_GAME" && 'Personalizada';
+
     // const data = data.find(element => element.queueType === 'RANKED_SOLO_5x5');
     // const foundRankedFlex = data.find(element => element.queueType === 'RANKED_FLEX_SR');
 
@@ -43,7 +46,7 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
                         <h2 className="card-title">
                             {data.summonerName}
                             <img
-                                src={`https://ddragon.leagueoflegends.com/cdn/11.17.1/img/profileicon/${summData.profileIconId}.png`}
+                                src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/profileicon/${summData.profileIconId}.png`}
                                 className={validarElo2(data.tier)}
                                 alt="..."
                                 style={{
@@ -62,14 +65,13 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
                         style={{ width: "8rem", margin: "auto" }}
                     />
                     {!err &&
-
                         <p
-                            // onClick={() => {
-                            //     historyUrl.push(`/livegame/${name}`);
-                            // }}
-                            style={{ backgroundColor: '#EE4142', width: 'max-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold', /* cursor: 'pointer' */ }}
+                            onClick={() => {
+                                historyUrl.push(`/livegame/${name}`);
+                            }}
+                            style={{ backgroundColor: '#EE4142', width: 'max-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold', cursor: 'pointer' }}
                         >
-                            En partida - {found.description}
+                            En partida - {found && found.description}
                         </p>
                     }
                     <div className="card-body">

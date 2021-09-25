@@ -53,7 +53,7 @@ const Histories = ({ historyGames, summData, data }) => {
                             textTransform: 'capitalize',
                         }}>
                         <img
-                            src={`https://ddragon.leagueoflegends.com/cdn/11.17.1/img/profileicon/${summData.profileIconId}.png`}
+                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/profileicon/${summData.profileIconId}.png`}
                             alt="Icon"
                             className={data ? validarElo2(data.tier) : 'gold'}
                             style={{

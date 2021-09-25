@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import opgg from "../assets/img/opgg.png";
 import unranked from "../assets/img/Unranked.png";
 import { queueId } from "../dataDragon/queueid";
 import { ImgSummUnrank } from "../UI/SummonerUnrankUI";
 
 const SummonerUnrank = ({ name, summData, err, dataLive }) => {
+
+    const historyUrl = useHistory();
 
     const found = queueId.find(element => element.queueId === dataLive.gameQueueConfigId);
 
@@ -14,7 +16,7 @@ const SummonerUnrank = ({ name, summData, err, dataLive }) => {
                 <h2 className="card-title">
                     {summData.name}
                     <img
-                        src={`https://ddragon.leagueoflegends.com/cdn/11.17.1/img/profileicon/${summData.profileIconId}.png`}
+                        src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/profileicon/${summData.profileIconId}.png`}
                         className="card-img-top circleDiv2"
                         alt="..."
                         style={{
@@ -31,9 +33,12 @@ const SummonerUnrank = ({ name, summData, err, dataLive }) => {
                 className="card-img-top"
                 alt="rank"
             />
-            {!err &&
+            {found &&
                 <p
-                    style={{ backgroundColor: '#EE4142', width: 'max-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold' }}
+                    onClick={() => {
+                        historyUrl.push(`/livegame/${name}`);
+                    }}
+                    style={{ backgroundColor: '#EE4142', width: 'max-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold', cursor: 'pointer' }}
                 >
                     En partida - {found && found.description}
                 </p>

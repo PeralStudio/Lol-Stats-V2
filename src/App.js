@@ -15,7 +15,7 @@ import History from "./components/History";
 import Histories from './components/Histories';
 import StatsGraph from "./components/StatsGraph";
 import Error404 from "./components/Error404";
-// import LiveGame from "./components/LiveGame";
+import LiveGame from "./components/LiveGame";
 
 require('dotenv').config();
 
@@ -77,7 +77,7 @@ const App = () => {
       }
 
     }
-    getDataLive(summData.id);
+    summData && getDataLive(summData.id);
 
   }, [summData]);
 
@@ -166,7 +166,7 @@ const App = () => {
                   />
                 </div>}
             />
-            {/* <Route
+            <Route
               exact path='/livegame/:name'
               component={() =>
                 <div className="App">
@@ -176,7 +176,7 @@ const App = () => {
                     setAllLoad={setAllLoad}
                   />
                 </div>}
-            /> */}
+            />
             <Route exact path="/histories/">
               <Redirect to="/" />
             </Route>

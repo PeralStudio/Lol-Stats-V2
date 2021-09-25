@@ -236,7 +236,7 @@ const TableHistories = ({
     // console.log(foundId0);
     const champUpperCase = (found) => {
         let champLowerCase = found.championName.toLowerCase();
-        return `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${champLowerCase[0].toUpperCase()}${champLowerCase.slice(
+        return `https://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${champLowerCase[0].toUpperCase()}${champLowerCase.slice(
             1
         )}.png`;
     };
@@ -460,7 +460,7 @@ const TableHistories = ({
                                                                 ? champUpperCase(
                                                                     found0
                                                                 )
-                                                                : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found0.championName}.png`
+                                                                : `https://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${found0.championName}.png`
                                                         }
                                                         alt="avatar"
                                                     />
@@ -468,7 +468,7 @@ const TableHistories = ({
                                                 {found0 && (
                                                     <div>
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[
                                                                 found0
                                                                     .summoner1Id
                                                             ]
@@ -487,7 +487,7 @@ const TableHistories = ({
                                                             effect="solid"
                                                         />
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[
                                                                 found0
                                                                     .summoner2Id
                                                             ]
@@ -537,42 +537,42 @@ const TableHistories = ({
                                                 <div>
                                                     {found0.item0 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found0.item0}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found0.item0}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found0.item1 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found0.item1}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found0.item1}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found0.item2 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found0.item2}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found0.item2}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found0.item3 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found0.item3}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found0.item3}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found0.item4 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found0.item4}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found0.item4}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found0.item5 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found0.item5}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found0.item5}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
@@ -648,7 +648,7 @@ const TableHistories = ({
                                                                 ? champUpperCase(
                                                                     found1
                                                                 )
-                                                                : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found1.championName}.png`
+                                                                : `https://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${found1.championName}.png`
                                                         }
                                                         alt="avatar"
                                                     />
@@ -656,7 +656,7 @@ const TableHistories = ({
                                                 {found1 && (
                                                     <div>
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[
                                                                 found1
                                                                     .summoner1Id
                                                             ]
@@ -675,7 +675,7 @@ const TableHistories = ({
                                                             effect="solid"
                                                         />
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[
                                                                 found1
                                                                     .summoner2Id
                                                             ]
@@ -725,42 +725,42 @@ const TableHistories = ({
                                                 <div>
                                                     {found1.item0 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found1.item0}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found1.item0}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found1.item1 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found1.item1}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found1.item1}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found1.item2 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found1.item2}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found1.item2}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found1.item3 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found1.item3}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found1.item3}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found1.item4 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found1.item4}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found1.item4}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found1.item5 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found1.item5}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found1.item5}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
@@ -844,7 +844,7 @@ const TableHistories = ({
                                                                 ? champUpperCase(
                                                                     found2
                                                                 )
-                                                                : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found2.championName}.png`
+                                                                : `https://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${found2.championName}.png`
                                                         }
                                                         alt="avatar"
                                                     />
@@ -852,7 +852,7 @@ const TableHistories = ({
                                                 {found2 && (
                                                     <div>
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[
                                                                 found2
                                                                     .summoner1Id
                                                             ]
@@ -871,7 +871,7 @@ const TableHistories = ({
                                                             effect="solid"
                                                         />
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[
                                                                 found2
                                                                     .summoner2Id
                                                             ]
@@ -921,42 +921,42 @@ const TableHistories = ({
                                                 <div>
                                                     {found2.item0 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found2.item0}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found2.item0}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found2.item1 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found2.item1}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found2.item1}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found2.item2 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found2.item2}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found2.item2}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found2.item3 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found2.item3}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found2.item3}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found2.item4 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found2.item4}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found2.item4}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found2.item5 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found2.item5}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found2.item5}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
@@ -1040,7 +1040,7 @@ const TableHistories = ({
                                                                 ? champUpperCase(
                                                                     found3
                                                                 )
-                                                                : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found3.championName}.png`
+                                                                : `https://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${found3.championName}.png`
                                                         }
                                                         alt="avatar"
                                                     />
@@ -1048,7 +1048,7 @@ const TableHistories = ({
                                                 {found3 && (
                                                     <div>
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[
                                                                 found3
                                                                     .summoner1Id
                                                             ]
@@ -1067,7 +1067,7 @@ const TableHistories = ({
                                                             effect="solid"
                                                         />
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[
                                                                 found3
                                                                     .summoner2Id
                                                             ]
@@ -1117,42 +1117,42 @@ const TableHistories = ({
                                                 <div>
                                                     {found3.item0 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found3.item0}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found3.item0}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found3.item1 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found3.item1}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found3.item1}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found3.item2 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found3.item2}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found3.item2}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found3.item3 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found3.item3}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found3.item3}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found3.item4 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found3.item4}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found3.item4}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found3.item5 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found3.item5}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found3.item5}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
@@ -1236,7 +1236,7 @@ const TableHistories = ({
                                                                 ? champUpperCase(
                                                                     found4
                                                                 )
-                                                                : `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${found4.championName}.png`
+                                                                : `https://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${found4.championName}.png`
                                                         }
                                                         alt="avatar"
                                                     />
@@ -1245,7 +1245,7 @@ const TableHistories = ({
                                                 {found4 && (
                                                     <div>
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[
                                                                 found4
                                                                     .summoner1Id
                                                             ]
@@ -1264,7 +1264,7 @@ const TableHistories = ({
                                                             effect="solid"
                                                         />
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[
                                                                 found4
                                                                     .summoner2Id
                                                             ]
@@ -1314,42 +1314,42 @@ const TableHistories = ({
                                                 <div>
                                                     {found4.item0 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found4.item0}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found4.item0}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found4.item1 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found4.item1}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found4.item1}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found4.item2 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found4.item2}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found4.item2}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found4.item3 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found4.item3}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found4.item3}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found4.item4 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found4.item4}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found4.item4}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found4.item5 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found4.item5}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found4.item5}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
@@ -1521,42 +1521,42 @@ const TableHistories = ({
                                                 <div>
                                                     {found5.item0 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found5.item0}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found5.item0}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found5.item1 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found5.item1}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found5.item1}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found5.item2 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found5.item2}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found5.item2}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found5.item3 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found5.item3}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found5.item3}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found5.item4 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found5.item4}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found5.item4}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found5.item5 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found5.item5}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found5.item5}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
@@ -1720,42 +1720,42 @@ const TableHistories = ({
                                                 <div>
                                                     {found6.item0 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found6.item0}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found6.item0}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found6.item1 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found6.item1}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found6.item1}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found6.item2 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found6.item2}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found6.item2}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found6.item3 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found6.item3}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found6.item3}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found6.item4 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found6.item4}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found6.item4}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found6.item5 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found6.item5}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found6.item5}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
@@ -1919,42 +1919,42 @@ const TableHistories = ({
                                                 <div>
                                                     {found7.item0 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found7.item0}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found7.item0}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found7.item1 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found7.item1}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found7.item1}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found7.item2 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found7.item2}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found7.item2}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found7.item3 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found7.item3}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found7.item3}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found7.item4 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found7.item4}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found7.item4}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found7.item5 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found7.item5}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found7.item5}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
@@ -2117,42 +2117,42 @@ const TableHistories = ({
                                                 <div>
                                                     {found8.item0 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found8.item0}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found8.item0}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found8.item1 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found8.item1}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found8.item1}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found8.item2 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found8.item2}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found8.item2}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found8.item3 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found8.item3}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found8.item3}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found8.item4 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found8.item4}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found8.item4}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found8.item5 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found8.item5}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found8.item5}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
@@ -2315,42 +2315,42 @@ const TableHistories = ({
                                                 <div>
                                                     {found9.item0 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found9.item0}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found9.item0}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found9.item1 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found9.item1}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found9.item1}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found9.item2 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found9.item2}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found9.item2}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found9.item3 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found9.item3}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found9.item3}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found9.item4 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found9.item4}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found9.item4}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
                                                     )}
                                                     {found9.item5 !== 0 && (
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${found9.item5}.png`}
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found9.item5}.png`}
                                                             alt="item"
                                                             className="img-items"
                                                         />
