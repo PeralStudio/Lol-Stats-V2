@@ -119,7 +119,7 @@ const TableHistories = ({ name, gamesArray }) => {
         }
     }
 
-    const kda = ((nKills + nAssists) / nDeaths).toFixed(2);
+    const kda = ((nKills + nAssists) / (nDeaths < 1 ? 1 : nDeaths)).toFixed(2);
 
     let posOrNeg = kda >= 3 ? "green" : "#ee5952";
 

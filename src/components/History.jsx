@@ -192,7 +192,7 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                     fontSize: '.7rem',
                                                     fontWeight: '100'
                                                 }}>
-                                                    {((participants.kills + participants.assists) / participants.deaths).toFixed(2)}:1
+                                                    {((participants.kills + participants.assists) / (participants.deaths < 1 ? 1 : participants.deaths)).toFixed(2)}:1
                                                 </p>
                                             </td>
                                             <td className='common-td'>

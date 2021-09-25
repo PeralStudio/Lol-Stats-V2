@@ -72,7 +72,6 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
     const summLevel = dataUnrankSummoners.map((element) => element.summonerLevel);
     const found = queueId.find(element => element.queueId === dataLive.gameQueueConfigId);
     const gameStart = dayjs(dataLive.gameStartTime).toNow();
-    console.log(dataLive);
 
 
     useEffect(async () => {
@@ -99,6 +98,8 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
         }
 
     }, []);
+
+    const yourStats = (index) => (name === dataLive.participants[index].summonerName.toLowerCase()) ? " me-loading" : "";
 
 
     // console.log('a', summonerIds);
@@ -186,7 +187,7 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                             getDataPlayer(data.summonerName);
                                         }}
                                         style={{ margin: '5px', cursor: 'pointer' }}
-                                        className={dataRankSummoners[index] && dataRankSummoners != undefined ? validarElo2(dataRankSummoners[index].tier) + '-loading' : 'unranked1'}
+                                        className={dataRankSummoners[index] && dataRankSummoners != undefined ? validarElo2(dataRankSummoners[index].tier) + '-loading' + yourStats(index) : 'unranked1' + yourStats(index)}
                                     >
                                         <img
                                             src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${foundChampId[index].name}_0.jpg`}
@@ -243,7 +244,7 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                             getDataPlayer(data.summonerName);
                                         }}
                                         style={{ margin: '5px', cursor: 'pointer' }}
-                                        className={dataRankSummoners[index] && dataRankSummoners != undefined ? validarElo2(dataRankSummoners[index].tier) + '-loading' : 'unranked2'}
+                                        className={dataRankSummoners[index] && dataRankSummoners != undefined ? validarElo2(dataRankSummoners[index].tier) + '-loading' + yourStats(index) : 'unranked2' + yourStats(index)}
                                     >
                                         <img
                                             src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${foundChampId[index].name}_0.jpg`}

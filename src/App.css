@@ -89,6 +89,10 @@
     border: 2px solid #ac8740;
 }
 
+.me-loading {
+    border: 2px dotted !important;
+}
+
 .iron-loading {
     border: 3px solid #847575;
     background-color: #84757531;
