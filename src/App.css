@@ -93,6 +93,42 @@
     border: 2px dotted !important;
 }
 
+.iron-me-loading {
+    border: 2px dotted #847575 !important;
+}
+
+.bronze-me-loading {
+    border: 2px dotted #8c4f37 !important;
+}
+
+.silver-me-loading {
+    border: 2px dotted #626d74 !important;
+}
+
+.gold-me-loading {
+    border: 2px dotted #c1962a !important;
+}
+
+.platinum-me-loading {
+    border: 2px dotted #4fa299 !important;
+}
+
+.diamond-me-loading {
+    border: 2px dotted #8683dc !important;
+}
+
+.grandmaster-me-loading {
+    border: 2px dotted #ae4036 !important;
+}
+
+.master-me-loading {
+    border: 2px dotted #92468d !important;
+}
+
+.challenger-me-loading {
+    border: 2px dotted #ac8740 !important;
+}
+
 .iron-loading {
     border: 3px solid #847575;
     background-color: #84757531;
