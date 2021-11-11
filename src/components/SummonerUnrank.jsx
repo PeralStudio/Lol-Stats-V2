@@ -1,14 +1,35 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import opgg from "../assets/img/opgg.png";
 import unranked from "../assets/img/Unranked.png";
+import { champsId } from "../dataDragon/champsId";
 import { queueId } from "../dataDragon/queueid";
 import { ImgSummUnrank } from "../UI/SummonerUnrankUI";
 
 const SummonerUnrank = ({ name, summData, err, dataLive }) => {
 
+    const [version, setVersion] = useState('');
     const historyUrl = useHistory();
 
     const found = queueId.find(element => element.queueId === dataLive.gameQueueConfigId);
+
+    const foundSummId = dataLive && dataLive.participants.find(element => element.summonerId === summData.id);
+    const foundChampName = foundSummId && champsId.find(element => element.champId === foundSummId.championId);
+
+    useEffect(() => {
+        const versionDataDdragon = async () => {
+            try {
+                const res = await axios.get(
+                    `https://ddragon.leagueoflegends.com/api/versions.json`
+                );
+                setVersion(res.data[0]);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        versionDataDdragon();
+    }, []);
 
     return (
         <>
@@ -16,7 +37,7 @@ const SummonerUnrank = ({ name, summData, err, dataLive }) => {
                 <h2 className="card-title">
                     {summData.name}
                     <img
-                        src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/profileicon/${summData.profileIconId}.png`}
+                        src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${summData.profileIconId}.png`}
                         className="card-img-top circleDiv2"
                         alt="..."
                         style={{
@@ -40,7 +61,12 @@ const SummonerUnrank = ({ name, summData, err, dataLive }) => {
                     }}
                     style={{ backgroundColor: '#EE4142', width: 'max-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold', cursor: 'pointer' }}
                 >
-                    En partida - {found && found.description}
+                    En partida - ({found && found.description}) - {foundChampName && foundChampName.name}
+                    <img
+                        src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${foundChampName && foundChampName.name}.png`}
+                        alt=""
+                        style={{ width: '1.5rem', borderRadius: '50%', margin: '1px 2px' }}
+                    />
                 </p>
             }
             <div className="card-body">

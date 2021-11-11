@@ -39,8 +39,24 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
 
     const [history, setHistory] = useState('');
     const { id } = useParams();
+    const [version, setVersion] = useState('');
 
     const historyUrl = useHistory();
+
+
+    useEffect(() => {
+        const versionDataDdragon = async () => {
+            try {
+                const res = await axios.get(
+                    `https://ddragon.leagueoflegends.com/api/versions.json`
+                );
+                setVersion(res.data[0]);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        versionDataDdragon();
+    }, []);
 
     useEffect(async () => {
         const res = await axios.get(
@@ -81,17 +97,10 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
 
     const champUpperCase = (index) => {
         let champLowerCase = history.participants[index].championName.toLowerCase();
-        return `https://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${champLowerCase[0].toUpperCase()}${champLowerCase.slice(1)}.png`;
+        return `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${champLowerCase[0].toUpperCase()}${champLowerCase.slice(1)}.png`;
     };
 
-    // Game Duration & Date play
-    //
-    const dateObject = new Date(history.gameDuration);
-    // const hours = dateObject.getHours();
-    const minutes = dateObject.getMinutes();
-    const seconds = dateObject.getSeconds();
-    const timeString = `${minutes < 10 ? `0${minutes}` : minutes}m ${seconds < 10 ? `0${seconds}` : seconds}s`;
-    const timeInt = minutes;
+    const timeString2 = dayjs.unix(history.gameDuration).format('mm:ss');
 
     const foundQueueId = history && queueId.find(element => element.queueId === history.queueId);
 
@@ -116,7 +125,7 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                             <p style={{ fontSize: '12px' }}>id: {id}</p>
                         </div>
                         <div>
-                            <p style={{ margin: '0' }}>{timeString}</p>
+                            <p style={{ margin: '0' }}>{timeString2}</p>
                             <span style={{ fontSize: '14px' }}>
                                 {`${dayjs(history.gameCreation).format("DD/MM/YYYY HH:mm")}`}
                             </span>
@@ -162,7 +171,7 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                                 ? champUpperCase(
                                                                     index
                                                                 )
-                                                                : `https://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${participants.championName}.png`
+                                                                : `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${participants.championName}.png`
                                                         }
                                                         alt="Champ"
                                                         data-tip={participants.championName}
@@ -170,13 +179,13 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                     {/* <ReactTooltip place="top" effect='solid' /> */}
                                                     <div style={{ display: 'inline-grid' }}>
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[participants.summoner1Id]}.png`} alt="summ1"
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${summonerSpells[participants.summoner1Id]}.png`} alt="summ1"
                                                             className='summ1'
                                                             data-tip={summonerSpells[participants.summoner1Id]}
                                                         />
                                                         {/* <ReactTooltip place="top" effect='solid' /> */}
                                                         <img
-                                                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[participants.summoner2Id]}.png`} alt="summ2"
+                                                            src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${summonerSpells[participants.summoner2Id]}.png`} alt="summ2"
                                                             className='summ2'
                                                             data-tip={summonerSpells[participants.summoner2Id]}
                                                         />
@@ -204,7 +213,7 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                         alt="Champ"
                                                         style={{
                                                             width: ".8rem",
-                                                            marginTop: '2px',
+                                                            marginTop: '0px',
                                                             marginLeft: '6px'
                                                         }}
                                                     />
@@ -216,7 +225,7 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                     textAlign: 'start',
                                                     fontWeight: '100',
                                                 }}>
-                                                    ({((participants.totalMinionsKilled + participants.neutralMinionsKilled) / timeInt).toFixed(1)})
+                                                    ({((participants.totalMinionsKilled + participants.neutralMinionsKilled) / dayjs.unix(history.gameDuration).format('mm')).toFixed(1)})
                                                 </p>
                                             </td>
                                             <td className='common-td'>
@@ -244,7 +253,7 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                 </div>
                                                 <div>
                                                     {participants.item0 !== 0 && <img
-                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${participants.item0}.png`}
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${participants.item0}.png`}
                                                         alt="item"
                                                         className='img-items'
                                                         style={{
@@ -252,7 +261,7 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                         }}
                                                     />}
                                                     {participants.item1 !== 0 && <img
-                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${participants.item1}.png`}
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${participants.item1}.png`}
                                                         alt="item"
                                                         className='img-items'
                                                         style={{
@@ -260,7 +269,7 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                         }}
                                                     />}
                                                     {participants.item2 !== 0 && <img
-                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${participants.item2}.png`}
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${participants.item2}.png`}
                                                         alt="item"
                                                         className='img-items'
                                                         style={{
@@ -268,7 +277,7 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                         }}
                                                     />}
                                                     {participants.item3 !== 0 && <img
-                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${participants.item3}.png`}
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${participants.item3}.png`}
                                                         alt="item"
                                                         className='img-items'
                                                         style={{
@@ -276,7 +285,7 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                         }}
                                                     />}
                                                     {participants.item4 !== 0 && <img
-                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${participants.item4}.png`}
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${participants.item4}.png`}
                                                         alt="item"
                                                         className='img-items'
                                                         style={{
@@ -284,7 +293,7 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                         }}
                                                     />}
                                                     {participants.item5 !== 0 && <img
-                                                        src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${participants.item5}.png`}
+                                                        src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${participants.item5}.png`}
                                                         alt="item"
                                                         className='img-items'
                                                         style={{

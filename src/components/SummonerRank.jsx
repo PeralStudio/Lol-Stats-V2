@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Doughnut } from "react-chartjs-2";
 import { Link, useHistory } from "react-router-dom";
 import opgg from "../assets/img/opgg.png";
@@ -6,11 +8,12 @@ import { validarElo, validarElo2 } from "../functions/ValidarElo";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import { queueId } from "../dataDragon/queueid";
+import { champsId } from "../dataDragon/champsId"
 import { ImgSummUnrank } from "../UI/SummonerUnrankUI";
-import { useEffect } from "react";
 
 const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
 
+    const [version, setVersion] = useState('');
     const historyUrl = useHistory();
 
     const found = queueId.find(element => element.queueId === dataLive.gameQueueConfigId);
@@ -19,7 +22,24 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
     // const data = data.find(element => element.queueType === 'RANKED_SOLO_5x5');
     // const foundRankedFlex = data.find(element => element.queueType === 'RANKED_FLEX_SR');
 
+    const foundSummId = dataLive && dataLive.participants.find(element => element.summonerId === data.summonerId);
+    const foundChampName = foundSummId && champsId.find(element => element.champId === foundSummId.championId);
+
     let winrateColor = "";
+
+    useEffect(() => {
+        const versionDataDdragon = async () => {
+            try {
+                const res = await axios.get(
+                    `https://ddragon.leagueoflegends.com/api/versions.json`
+                );
+                setVersion(res.data[0]);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        versionDataDdragon();
+    }, []);
 
     data && ((data.wins / (data.wins + data.losses)) * 100).toFixed(1) < 50
         ? (winrateColor = "winrate-red")
@@ -46,7 +66,7 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
                         <h2 className="card-title">
                             {data.summonerName}
                             <img
-                                src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/profileicon/${summData.profileIconId}.png`}
+                                src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${summData.profileIconId}.png`}
                                 className={validarElo2(data.tier)}
                                 alt="..."
                                 style={{
@@ -64,15 +84,29 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
                         alt="rank"
                         style={{ width: "8rem", margin: "auto" }}
                     />
-                    {!err &&
+                    {!err & !found2 ?
                         <p
                             onClick={() => {
                                 historyUrl.push(`/livegame/${name}`);
                             }}
                             style={{ backgroundColor: '#EE4142', width: 'max-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold', cursor: 'pointer' }}
                         >
-                            En partida - {found && found.description}
+                            En partida - ({found && found.description}) - {foundChampName && foundChampName.name}
+                            <img
+                                src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${foundChampName && foundChampName.name}.png`}
+                                alt=""
+                                style={{ width: '1.5rem', borderRadius: '50%', margin: '1px 2px' }}
+                            />
                         </p>
+                        :
+                        !err & !found ?
+                            <p
+                                style={{ backgroundColor: '#EE4142', width: 'max-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold' }}
+                            >
+                                En partida - {found2}
+                            </p>
+                            :
+                            null
                     }
                     <div className="card-body">
                         <h5 className="card-title">

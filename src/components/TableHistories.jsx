@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { useHistory } from "react-router-dom";
 import dayjs from "dayjs";
 
@@ -21,22 +23,37 @@ import { queueId } from "../dataDragon/queueid";
 
 const TableHistories = ({ name, gamesArray }) => {
 
+    const [version, setVersion] = useState('');
     const history = useHistory();
+
+    useEffect(() => {
+        const versionDataDdragon = async () => {
+            try {
+                const res = await axios.get(
+                    `https://ddragon.leagueoflegends.com/api/versions.json`
+                );
+                setVersion(res.data[0]);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        versionDataDdragon();
+    }, []);
 
     dayjs.updateLocale("en", {
         relativeTime: {
-            future: "en %s",
+            future: "%s",
             past: "%s",
             s: "hace unos segundos",
-            m: "un minuto",
+            m: "hace un minuto",
             mm: "hace %d minutos",
             h: "hace una hora",
             hh: "hace %d horas",
             d: "hace un día",
             dd: "hace %d días",
-            M: "un mes",
+            M: "hace un mes",
             MM: "hace %d meses",
-            y: "un año",
+            y: "hace un año",
             yy: "hace %d años",
         },
     });
@@ -72,10 +89,13 @@ const TableHistories = ({ name, gamesArray }) => {
     let minutes;
     let seconds;
     let timeString = [];
+    let timeString2 = [];
     let foundQueueId = [];
 
 
     allGamesArrayObject.map((games, index) => {
+
+        timeString2.push(dayjs.unix(games.gameDuration).format('mm:ss'));
 
         found.push(
             games &&
@@ -88,21 +108,13 @@ const TableHistories = ({ name, gamesArray }) => {
 
         found[index] == undefined && (wins -= 0) & (losses -= 1);
 
-        // Game Duration & Date play
-        //
-        dateObject = new Date(allGamesArrayObject[index] && allGamesArrayObject[index].gameDuration);
-        // const hours = dateObject.getHours();
-        minutes = dateObject.getMinutes();
-        seconds = dateObject.getSeconds();
-        timeString.push(`${minutes < 10 ? `0${minutes}` : minutes}m ${seconds < 10 ? `0${seconds}` : seconds}s`);
-
         foundQueueId.push(games &&
             queueId.find((element) => element.queueId === games.queueId));
     });
 
     const champUpperCase = (found) => {
         let champLowerCase = found.championName.toLowerCase();
-        return `https://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${champLowerCase[0].toUpperCase()}${champLowerCase.slice(
+        return `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${champLowerCase[0].toUpperCase()}${champLowerCase.slice(
             1
         )}.png`;
     };
@@ -183,7 +195,7 @@ const TableHistories = ({ name, gamesArray }) => {
                                                                     ? champUpperCase(
                                                                         found[index]
                                                                     )
-                                                                    : `https://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${found[index].championName}.png`
+                                                                    : `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${found[index].championName}.png`
                                                             }
                                                             alt="avatar"
                                                         />
@@ -192,7 +204,7 @@ const TableHistories = ({ name, gamesArray }) => {
                                                         found && (
                                                             <div>
                                                                 <img
-                                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[
+                                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${summonerSpells[
                                                                         found[index]
                                                                             .summoner1Id
                                                                     ]
@@ -207,7 +219,7 @@ const TableHistories = ({ name, gamesArray }) => {
                                                                     }
                                                                 />
                                                                 <img
-                                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[
+                                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${summonerSpells[
                                                                         found[index]
                                                                             .summoner2Id
                                                                     ]
@@ -255,7 +267,7 @@ const TableHistories = ({ name, gamesArray }) => {
                                                         {found && found[index].item0 !== 0 && (
                                                             <>
                                                                 <img
-                                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found && found[index].item0}.png`}
+                                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${found && found[index].item0}.png`}
                                                                     alt="item"
                                                                     className="img-items"
                                                                     data-tip={
@@ -266,35 +278,35 @@ const TableHistories = ({ name, gamesArray }) => {
                                                         )}
                                                         {found && found[index].item1 !== 0 && (
                                                             <img
-                                                                src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found && found[index].item1}.png`}
+                                                                src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${found && found[index].item1}.png`}
                                                                 alt="item"
                                                                 className="img-items"
                                                             />
                                                         )}
                                                         {found && found[index].item2 !== 0 && (
                                                             <img
-                                                                src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found && found[index].item2}.png`}
+                                                                src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${found && found[index].item2}.png`}
                                                                 alt="item"
                                                                 className="img-items"
                                                             />
                                                         )}
                                                         {found && found[index].item3 !== 0 && (
                                                             <img
-                                                                src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found && found[index].item3}.png`}
+                                                                src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${found && found[index].item3}.png`}
                                                                 alt="item"
                                                                 className="img-items"
                                                             />
                                                         )}
                                                         {found && found[index].item4 !== 0 && (
                                                             <img
-                                                                src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found && found[index].item4}.png`}
+                                                                src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${found && found[index].item4}.png`}
                                                                 alt="item"
                                                                 className="img-items"
                                                             />
                                                         )}
                                                         {found && found[index].item5 !== 0 && (
                                                             <img
-                                                                src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/item/${found && found[index].item5}.png`}
+                                                                src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${found && found[index].item5}.png`}
                                                                 alt="item"
                                                                 className="img-items"
                                                             />
@@ -330,7 +342,7 @@ const TableHistories = ({ name, gamesArray }) => {
                                                             }}
                                                         />
                                                     </PGoldEarned>
-                                                    <PTable>{timeString[index]}</PTable>
+                                                    <p style={{ margin: '0' }}>{timeString2[index]}</p>
                                                     <PNoMargin>{`${dayjs(allGamesArrayObject[index].gameCreation).fromNow()}`}</PNoMargin>
                                                 </td>
                                             </tr >

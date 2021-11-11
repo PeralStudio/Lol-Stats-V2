@@ -13,6 +13,7 @@ import Loader from "react-loader-spinner";
 const StatsGraph = ({ name, getDataPlayer, setAllLoad }) => {
 
     const [history2, setHistory2] = useState();
+    const [version, setVersion] = useState('');
     const { id } = useParams();
 
     const getDataPlayerMacth = async (matchId) => {
@@ -21,6 +22,20 @@ const StatsGraph = ({ name, getDataPlayer, setAllLoad }) => {
         );
         setHistory2(res.data.info);
     };
+
+    useEffect(() => {
+        const versionDataDdragon = async () => {
+            try {
+                const res = await axios.get(
+                    `https://ddragon.leagueoflegends.com/api/versions.json`
+                );
+                setVersion(res.data[0]);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        versionDataDdragon();
+    }, []);
 
     useEffect(() => getDataPlayerMacth(id), []);
 
@@ -32,7 +47,7 @@ const StatsGraph = ({ name, getDataPlayer, setAllLoad }) => {
 
     const champUpperCase = (index) => {
         let champLowerCase = history2.participants[index].championName.toLowerCase();
-        return `https://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${champLowerCase[0].toUpperCase()}${champLowerCase.slice(1)}.png`;
+        return `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${champLowerCase[0].toUpperCase()}${champLowerCase.slice(1)}.png`;
     };
 
     let totalDamageDealtToChampions = [];
@@ -195,7 +210,7 @@ const StatsGraph = ({ name, getDataPlayer, setAllLoad }) => {
                                                         ? champUpperCase(
                                                             index
                                                         )
-                                                        : `https://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${champion}.png`}
+                                                        : `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${champion}.png`}
                                                     className={`champ-graph ${colorWinLose(index)}-graph`}
                                                     alt='champ'
                                                     data-tip={playerName[index]}

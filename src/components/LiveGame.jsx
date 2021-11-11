@@ -16,26 +16,41 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
 
     const [dataRankSummoners, setDataRankSummoners] = useState([]);
     const [dataUnrankSummoners, setDataUnrankSummoners] = useState([]);
+    const [version, setVersion] = useState('');
 
     const historyUrl = useHistory();
     const { name } = useParams();
 
     if (dataLive === "") window.location.href = "/";
 
+    useEffect(() => {
+        const versionDataDdragon = async () => {
+            try {
+                const res = await axios.get(
+                    `https://ddragon.leagueoflegends.com/api/versions.json`
+                );
+                setVersion(res.data[0]);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        versionDataDdragon();
+    }, []);
+
     dayjs.updateLocale("en", {
         relativeTime: {
             future: " %s",
             past: "%s",
             s: "hace unos segundos",
-            m: "un minuto",
+            m: "hace un minuto",
             mm: "hace %d minutos",
             h: "hace una hora",
             hh: "hace %d horas",
             d: "hace un día",
             dd: "hace %d días",
-            M: "un mes",
+            M: "hace un mes",
             MM: "hace %d meses",
-            y: "un año",
+            y: "hace un año",
             yy: "hace %d años",
         },
     });
@@ -71,7 +86,8 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
 
     const summLevel = dataUnrankSummoners.map((element) => element.summonerLevel);
     const found = queueId.find(element => element.queueId === dataLive.gameQueueConfigId);
-    const gameStart = dayjs(dataLive.gameStartTime).toNow();
+    const found2 = dataLive.gameType === 'CUSTOM_GAME' ? 'Personalizada' : '';
+    const gameStart = dayjs(dataLive.gameStartTime).fromNow() == 'hace 52 años' ? 'hace 0 minutos' : dayjs(dataLive.gameStartTime).fromNow();
 
 
     useEffect(async () => {
@@ -111,59 +127,7 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
 
     return (
         <>
-            {/* <div style={{ marginTop: "1rem" }}>
-                <table className="table table-dark table-striped">
-                    <tbody>
-                        {
-                            dataSumm.map((data, index) =>
-                                <>
-                                    <tr
-                                        onClick={() => {
-                                            historyUrl.push(`/`);
-                                            getDataPlayer(participants.summonerName);
-                                            setAllLoad(false);
-                                        }}
-                                        style={{
-                                            border: `1px solid ${index >= 0 & index <= 4 ? 'red' : 'green'}`,
-                                            backgroundColor: `${index >= 0 & index <= 4 ? '#7219143f' : '#09722e3a'}`
-                                        }}>
-                                        <td>
-                                            <ImgChampAvatar
-                                                src={foundChampId[index].name && foundChampId[index].name != undefined ?
-                                                    `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${foundChampId[index].name}.png` :
-                                                    `https://ddragon.leagueoflegends.com/cdn/11.18.1/img/profileicon/588.png`
-                                                }
-                                                alt="avatar"
-                                            />
-                                            <div style={{ display: 'inline-grid' }}>
-                                                <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[data.spell1Id]}.png`}
-                                                    alt="summ1"
-                                                    className="summ1"
-                                                />
-                                                <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/Summoner${summonerSpells[data.spell2Id]}.png`}
-                                                    alt="summ1"
-                                                    className="summ1"
-                                                />
-                                            </div>
-                                            <PNoMargin>{data.summonerName}</PNoMargin>
-                                        </td>
-                                    </tr>
-                                    {index >= 4 & index <= 4 ? <br /> : null}
-                                    {index >= 9 && <br />}
-                                </>
-                            )
-
-                        }
-                    </tbody>
-                </table>
-            </div >
-            <div>
-                <h2>{foundQueue.description}- {foundQueue.map}</h2>
-            </div> */}
-
-            {dataRankSummoners.length >= 10 ?
+            {dataRankSummoners.length > 9 ?
                 <div style={{ paddingBottom: ".5rem" }}>
                     <Link to={`/`}>
                         <button
@@ -173,8 +137,7 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                             Volver
                         </button>
                     </Link>
-
-                    <h3>{found.description}</h3>
+                    <h3>{found ? found.description : found2}</h3>
                     <p>Empezó {gameStart}</p>
                     <div style={{ marginTop: ".5rem", display: 'flex', justifyContent: 'center' }}>
                         {dataSumm.map((data, index) =>
@@ -195,7 +158,7 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                         />
                                         <div>
                                             <img
-                                                src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/profileicon/${data.profileIconId}.png`}
+                                                src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${data.profileIconId}.png`}
                                                 style={{
                                                     width: "3.5rem",
                                                     borderRadius: "50%",
@@ -207,13 +170,13 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                         <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '-15px' }}>
                                             <div>
                                                 <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[data.spell1Id]}.png`}
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${summonerSpells[data.spell1Id]}.png`}
                                                     alt="summ1"
                                                     // className="summ1"
                                                     style={{ marginRight: '5px', width: '1.5rem' }}
                                                 />
                                                 <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[data.spell2Id]}.png`}
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${summonerSpells[data.spell2Id]}.png`}
                                                     alt="summ1"
                                                     // className="summ1"
                                                     style={{ width: '1.5rem' }}
@@ -252,7 +215,7 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                         />
                                         <div>
                                             <img
-                                                src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/profileicon/${data.profileIconId}.png`}
+                                                src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${data.profileIconId}.png`}
                                                 style={{
                                                     width: "3.5rem",
                                                     borderRadius: "50%",
@@ -264,13 +227,13 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                         <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '-15px' }}>
                                             <div>
                                                 <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[data.spell1Id]}.png`}
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${summonerSpells[data.spell1Id]}.png`}
                                                     alt="summ1"
                                                     // className="summ1"
                                                     style={{ marginRight: '5px', width: '1.5rem' }}
                                                 />
                                                 <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/spell/Summoner${summonerSpells[data.spell2Id]}.png`}
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${summonerSpells[data.spell2Id]}.png`}
                                                     alt="summ1"
                                                     // className="summ1"
                                                     style={{ width: '1.5rem' }}

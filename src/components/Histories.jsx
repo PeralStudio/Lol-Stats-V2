@@ -12,10 +12,25 @@ import TableHistories from './TableHistories';
 const Histories = ({ historyGames, summData, data }) => {
 
     const { name } = useParams();
-
     const [gamesArray, setGamesArray] = useState([]);
+    const [version, setVersion] = useState('');
 
     if (historyGames === "") window.location.href = "/";
+
+    useEffect(() => {
+        const versionDataDdragon = async () => {
+            try {
+                const res = await axios.get(
+                    `https://ddragon.leagueoflegends.com/api/versions.json`
+                );
+                setVersion(res.data[0]);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        versionDataDdragon();
+    }, []);
+
 
     useEffect(async () => {
 
@@ -53,7 +68,7 @@ const Histories = ({ historyGames, summData, data }) => {
                             textTransform: 'capitalize',
                         }}>
                         <img
-                            src={`https://ddragon.leagueoflegends.com/cdn/11.19.1/img/profileicon/${summData.profileIconId}.png`}
+                            src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${summData.profileIconId}.png`}
                             alt="Icon"
                             className={data ? validarElo2(data.tier) : 'gold'}
                             style={{
