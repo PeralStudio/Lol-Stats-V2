@@ -100,12 +100,6 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
 
     const yourStats = (index) => (name === dataLive.participants[index].summonerName.toLowerCase()) ? " me-loading" : "";
 
-
-    // console.log('a', summonerIds);
-    // console.log('b', dataRankSummoners);
-    // console.log('c', dataLive);
-    // console.log('d', dataSumm);
-
     dataSumm.map((data, index) => foundChampId.push(champsId.find(element => element.champId === data.championId)));
 
     return (
