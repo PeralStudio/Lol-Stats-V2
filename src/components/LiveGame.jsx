@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Loader from 'react-loader-spinner';
 import { Link, useHistory, useParams } from "react-router-dom";
+import dayjs from 'dayjs';
 
 import { champsId } from '../dataDragon/champsId';
 import { queueId } from '../dataDragon/queueid';
@@ -10,7 +11,7 @@ import { ImgChampAvatar, PNoMargin } from '../UI/TableHistoriesUi';
 import vsImage from "../assets/img/vs.png";
 import bgLoading from "../assets/img/bg-loading-screen.jpg";
 import { validarElo, validarElo2 } from '../functions/ValidarElo';
-import dayjs from 'dayjs';
+import { summonerSpells } from '../dataDragon/generalData';
 
 const LiveGame = ({ dataLive, getDataPlayer }) => {
 
@@ -60,24 +61,6 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
     // let dataRankSummoners = [];
     let dataSummoners = [];
     let foundChampId = [];
-
-    const summonerSpells = {
-        21: "Barrier",
-        1: "Boost",
-        14: "Dot",
-        3: "Exhaust",
-        4: "Flash",
-        6: "Haste",
-        7: "Heal",
-        13: "Mana",
-        30: "To the King!",
-        31: "Poro Toss",
-        32: "Snowball",
-        11: "Smite",
-        39: "Mark",
-        12: "Teleport",
-        54: "Placeholder",
-    };
 
     for (let participant of dataLive.participants) {
         summonerIds.push(participant.summonerId)

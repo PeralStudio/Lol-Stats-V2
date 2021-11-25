@@ -13,6 +13,7 @@ import ReactTooltip from "react-tooltip";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import { queueId } from "../dataDragon/queueid";
+import { summonerSpells } from "../dataDragon/generalData";
 
 dayjs.extend(relativeTime);
 dayjs.extend(updateLocale);
@@ -64,26 +65,6 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
         );
         setHistory(res.data.info);
     }, []);
-
-    const summonerSpells = {
-        21: 'Barrier',
-        1: 'Boost',
-        14: 'Dot',
-        3: 'Exhaust',
-        4: 'Flash',
-        6: 'Haste',
-        7: 'Heal',
-        13: 'Mana',
-        30: 'To the King!',
-        31: 'Poro Toss',
-        32: 'Snowball',
-        11: 'Smite',
-        39: 'Mark',
-        12: 'Teleport',
-        54: "_UltBookPlaceholder",
-        55: "_UltBookSmitePlaceholder",
-
-    }
 
     const colorWinLose = (index) => history.participants[index].win === true ? "green" : "red";
 

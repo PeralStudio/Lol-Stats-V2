@@ -20,6 +20,7 @@ import {
 } from "../UI/TableHistoriesUi";
 import { queueId } from "../dataDragon/queueid";
 // import { queueId } from '../queueId/queueid';
+import { summonerSpells } from "../dataDragon/generalData";
 
 const TableHistories = ({ name, gamesArray }) => {
 
@@ -58,24 +59,7 @@ const TableHistories = ({ name, gamesArray }) => {
         },
     });
 
-    const summonerSpells = {
-        21: "Barrier",
-        1: "Boost",
-        14: "Dot",
-        3: "Exhaust",
-        4: "Flash",
-        6: "Haste",
-        7: "Heal",
-        13: "Mana",
-        30: "To the King!",
-        31: "Poro Toss",
-        32: "Snowball",
-        11: "Smite",
-        39: "Mark",
-        12: "Teleport",
-        54: "_UltBookPlaceholder",
-        55: "_UltBookSmitePlaceholder",
-    };
+
 
     let allGamesArrayObject = [];
 
