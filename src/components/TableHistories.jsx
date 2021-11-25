@@ -73,7 +73,8 @@ const TableHistories = ({ name, gamesArray }) => {
         11: "Smite",
         39: "Mark",
         12: "Teleport",
-        54: "Placeholder",
+        54: "_UltBookPlaceholder",
+        55: "_UltBookSmitePlaceholder",
     };
 
     let allGamesArrayObject = [];
@@ -204,11 +205,14 @@ const TableHistories = ({ name, gamesArray }) => {
                                                         found && (
                                                             <div>
                                                                 <img
-                                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${summonerSpells[
+                                                                    src={summonerSpells[
                                                                         found[index]
                                                                             .summoner1Id
+                                                                    ] !== undefined ? `https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${summonerSpells[
+                                                                    found[index]
+                                                                        .summoner1Id
                                                                     ]
-                                                                        }.png`}
+                                                                    }.png` : 'https://img1.freepng.es/20180420/qzw/kisspng-emoji-question-mark-social-media-information-text-hollow-question-mark-5ad9839b06f3e7.9014074215242044430285.jpg'}
                                                                     alt="summ1"
                                                                     className="summ1"
                                                                     data-tip={
@@ -219,11 +223,14 @@ const TableHistories = ({ name, gamesArray }) => {
                                                                     }
                                                                 />
                                                                 <img
-                                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${summonerSpells[
+                                                                    src={summonerSpells[
                                                                         found[index]
-                                                                            .summoner2Id
+                                                                            .summoner1Id
+                                                                    ] !== undefined ? `https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${summonerSpells[
+                                                                    found[index]
+                                                                        .summoner2Id
                                                                     ]
-                                                                        }.png`}
+                                                                    }.png` : 'https://img1.freepng.es/20180420/qzw/kisspng-emoji-question-mark-social-media-information-text-hollow-question-mark-5ad9839b06f3e7.9014074215242044430285.jpg'}
                                                                     alt="summ2"
                                                                     className="summ2"
                                                                     data-tip={

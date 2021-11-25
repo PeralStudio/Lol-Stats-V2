@@ -80,7 +80,9 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
         11: 'Smite',
         39: 'Mark',
         12: 'Teleport',
-        54: 'Placeholder'
+        54: "_UltBookPlaceholder",
+        55: "_UltBookSmitePlaceholder",
+
     }
 
     const colorWinLose = (index) => history.participants[index].win === true ? "green" : "red";
