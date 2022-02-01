@@ -205,8 +205,9 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                     margin: '0',
                                                     marginTop: '-5px',
                                                     fontSize: '.7rem',
-                                                    textAlign: 'start',
+                                                    textAlign: 'center',
                                                     fontWeight: '100',
+                                                    marginTop: '-2px',
                                                 }}>
                                                     ({((participants.totalMinionsKilled + participants.neutralMinionsKilled) / dayjs.unix(history.gameDuration).format('mm')).toFixed(1)})
                                                 </p>
