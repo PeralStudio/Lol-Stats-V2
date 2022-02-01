@@ -122,7 +122,7 @@ const TableHistories = ({ name, gamesArray }) => {
         if (kda < 3) {
             return "#879292";
         } else if (kda >= 3 && kda < 4) {
-            return 'green';
+            return '#2DAF7F';
         } else if (kda >= 4 && kda < 5) {
             return "#1D8ED3";
         } else if (kda >= 5) {
@@ -135,7 +135,7 @@ const TableHistories = ({ name, gamesArray }) => {
             {gamesArray.length >= 10 ? (
                 <>
                     <div>
-                        <span style={{ color: "green" }}>V {wins} </span>-
+                        <span style={{ color: "#2DAF7F" }}>V {wins} </span>-
                         <span style={{ color: "#ee5952" }}> L {losses}</span>
                     </div>
 
