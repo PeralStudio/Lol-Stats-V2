@@ -118,7 +118,17 @@ const TableHistories = ({ name, gamesArray }) => {
 
     const kda = ((nKills + nAssists) / (nDeaths < 1 ? 1 : nDeaths)).toFixed(2);
 
-    let posOrNeg = kda >= 3 ? "green" : "#ee5952";
+    const kdaColor = (kda) => {
+        if (kda < 3) {
+            return "#879292";
+        } else if (kda >= 3 && kda < 4) {
+            return 'green';
+        } else if (kda >= 4 && kda < 5) {
+            return "#1D8ED3";
+        } else if (kda >= 5) {
+            return "#f9c851";
+        }
+    }
 
     return (
         <>
@@ -139,9 +149,9 @@ const TableHistories = ({ name, gamesArray }) => {
                         <span>
                             {" "}/{" "}{(nAssists / gamesArray.length).toFixed(1)})
                         </span>
-                        <p style={{ color: posOrNeg }}>
+                        <p style={{ color: kdaColor(kda) }}>
                             {kda}
-                            :1
+                            :1 KDA
                         </p>
                     </div>
 
