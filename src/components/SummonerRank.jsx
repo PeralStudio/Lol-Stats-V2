@@ -11,6 +11,8 @@ import { queueId } from "../dataDragon/queueid";
 import { champsId } from "../dataDragon/champsId"
 import { ImgSummUnrank } from "../UI/SummonerUnrankUI";
 
+import { checkLvl } from "../functions/checkLevelBorder";
+
 const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
 
     const [version, setVersion] = useState('');
@@ -63,17 +65,30 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
             {allLoad ?
                 <div className="container-data">
                     <div>
-                        <h2 className="card-title">
+                        <h2 className="card-title" style={{ marginTop: '30px' }}>
                             {data.summonerName}
+                            <img
+                                src={checkLvl(summData.summonerLevel)}
+                                alt="borderLvl"
+                                className="opgg"
+                                style={{
+                                    position: 'absolute',
+                                    width: "4.8rem",
+                                    height: "4.8rem",
+                                    margin: "auto",
+                                    marginTop: "-16px",
+                                    zIndex: 1,
+                                }} />
                             <img
                                 src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${summData.profileIconId}.png`}
                                 className={validarElo2(data.tier)}
                                 alt="..."
                                 style={{
                                     width: "4rem",
+                                    zoom: "0.7",
                                     margin: "auto",
-                                    marginLeft: "5px",
                                     borderRadius: "50%",
+                                    marginLeft: "22px",
                                 }}
                             />
                         </h2>
@@ -82,7 +97,7 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
                         src={validarElo(data.tier)}
                         className="card-img-top"
                         alt="rank"
-                        style={{ width: "8rem", margin: "auto" }}
+                        style={{ width: "10rem", margin: "auto", marginTop: "10px" }}
                     />
                     {!err & !found2 ?
                         <p
@@ -108,7 +123,7 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
                             :
                             null
                     }
-                    <div className="card-body">
+                    <div className="card-body" style={{ marginTop: '-10px' }}>
                         <h5 className="card-title">
                             <span>
                                 Nivel {summData.summonerLevel} -

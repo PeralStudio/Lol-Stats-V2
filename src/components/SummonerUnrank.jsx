@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
-import opgg from "../assets/img/opgg.png";
 import unranked from "../assets/img/Unranked.png";
 import { champsId } from "../dataDragon/champsId";
 import { queueId } from "../dataDragon/queueid";
 import { ImgSummUnrank } from "../UI/SummonerUnrankUI";
+
+import opgg from "../assets/img/opgg.png";
+import { checkLvl } from "../functions/checkLevelBorder";
 
 const SummonerUnrank = ({ name, summData, err, dataLive }) => {
 
@@ -34,20 +36,34 @@ const SummonerUnrank = ({ name, summData, err, dataLive }) => {
     return (
         <>
             <div className='container-data'>
-                <h2 className="card-title">
+                <h2 className="card-title" style={{ marginTop: '30px' }}>
                     {summData.name}
                     <img
+                        src={checkLvl(summData.summonerLevel)}
+                        alt="borderLvl"
+                        className="opgg"
+                        style={{
+                            position: 'absolute',
+                            width: "4.8rem",
+                            height: "4.8rem",
+                            margin: "auto",
+                            marginTop: "-12px",
+                            zIndex: 1,
+                        }} />
+                    <img
                         src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${summData.profileIconId}.png`}
-                        className="card-img-top circleDiv2"
+                        className="card-img-top"
                         alt="..."
                         style={{
                             width: "4rem",
+                            zoom: "0.8",
                             margin: "auto",
-                            marginLeft: "20px",
                             borderRadius: "50%",
+                            marginLeft: "16px",
                         }}
                     />
                 </h2>
+
             </div>
             <ImgSummUnrank
                 src={unranked}

@@ -1,12 +1,12 @@
-import challenger from "../assets/img/Emblem_Challenger.png";
-import grandmaster from "../assets/img/Emblem_Grandmaster.png";
-import master from "../assets/img/Emblem_Master.png";
-import diamond from "../assets/img/Emblem_Diamond.png";
-import platinum from "../assets/img/Emblem_Platinum.png";
-import gold from "../assets/img/Emblem_Gold.png";
-import silver from "../assets/img/Emblem_Silver.png";
-import bronze from "../assets/img/Emblem_Bronze.png";
-import iron from "../assets/img/Emblem_Iron.png";
+import challenger from "../assets/Emblems/Challenger.png";
+import grandmaster from "../assets/Emblems/Grandmaster.png";
+import master from "../assets/Emblems/Master.png";
+import diamond from "../assets/Emblems/Diamond.png";
+import platinum from "../assets/Emblems/Platinum.png";
+import gold from "../assets/Emblems/Gold.png";
+import silver from "../assets/Emblems/Silver.png";
+import bronze from "../assets/Emblems/Bronze.png";
+import iron from "../assets/Emblems/Iron.png";
 
 export const validarElo = (elo) => {
     switch (elo) {
