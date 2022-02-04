@@ -36,8 +36,16 @@
     color: #64af7e;
 }
 
+.winrate-grey {
+    color: #a3a1a1;
+}
+
 .red {
     background-color: #7219143f;
+}
+
+.grey {
+    background-color: #53535371;
 }
 
 .red:hover {
