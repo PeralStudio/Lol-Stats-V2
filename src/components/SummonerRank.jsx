@@ -60,11 +60,25 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
         ],
     };
 
+    const marginOfTier = () => {
+        if (data && data.tier === "CHALLENGER") {
+            return '80px';
+        } else if (data && data.tier === "GRANDMASTER") {
+            return '70px';
+        } else if (data && data.tier === "MASTER") {
+            return '50px';
+        } else if (data && data.tier === "DIAMOND") {
+            return '30px';
+        } else {
+            return '0px';
+        }
+    }
+
     return (
         <>
             {allLoad ?
                 <div className="container-data">
-                    <div>
+                    <div style={{ marginBottom: marginOfTier() }}>
                         <h2 className="card-title" style={{ marginTop: '30px' }}>
                             {data.summonerName}
                             <img
@@ -93,12 +107,32 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
                             />
                         </h2>
                     </div>
-                    <img
-                        src={validarElo(data.tier)}
-                        className="card-img-top"
-                        alt="rank"
-                        style={{ width: "10rem", margin: "auto", marginTop: "10px" }}
-                    />
+                    <div className="container-data-rank" style={{ margin: 'auto' }}>
+                        <img
+                            src={validarElo(data.tier)}
+                            className="card-img-top"
+                            alt="rank"
+                            style={{
+                                width: "16rem",
+                                marginTop: '-120px',
+                                marginBottom: '-50px',
+                            }}
+                        />
+                        <img
+                            src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${summData.profileIconId}.png`}
+                            className={validarElo2(data.tier)}
+                            alt="..."
+                            style={{
+                                position: 'absolute',
+                                width: "6.5rem",
+                                zoom: "0.83",
+                                margin: "auto",
+                                borderRadius: "50%",
+                                marginTop: "42px",
+                                marginLeft: "-205px",
+                            }}
+                        />
+                    </div>
                     {!err & !found2 ?
                         <p
                             onClick={() => {
@@ -161,7 +195,7 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
                         target="_blank"
                         rel="noreferrer"
                     >
-                        <ImgSummUnrank
+                        {/* <ImgSummUnrank
                             src={opgg}
                             className="card-img-top"
                             alt="opgg"
@@ -170,7 +204,7 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
                                 margin: "auto",
                                 marginBottom: '20px'
                             }}
-                        />
+                        /> */}
                     </a>
                 </div >
                 :
