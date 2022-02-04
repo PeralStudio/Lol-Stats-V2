@@ -160,24 +160,23 @@ const TableHistories = ({ name, gamesArray }) => {
                         <table className="table table-dark table-striped">
                             <tbody>
                                 {allGamesArrayObject.map((games, index) =>
-
                                     games != undefined && (
                                         <>
                                             <tr
                                                 key={index++}
                                                 onClick={() => history.push(`/history/${games && games.gameId}`)}
                                                 className={
-                                                    found && found[index].win ? "green" : "red"
+                                                    found && games.gameDuration < 300 ? 'grey' : found[index].win ? "green" : "red"
                                                 }
                                                 style={{
-                                                    border: `1px solid ${found && found[index].win ? "green" : "red"} `,
+                                                    border: `1px solid ${found && games.gameDuration < 300 ? '#a3a1a1' : found[index].win ? "green" : "red"} `,
                                                     cursor: 'pointer'
                                                 }}
                                             >
 
                                                 <td
                                                     style={{
-                                                        borderLeft: `6px solid ${found && found[index].win
+                                                        borderLeft: `6px solid ${found && games.gameDuration < 300 ? '#a3a1a1' : found[index].win
                                                             ? "green"
                                                             : "red"
                                                             } `,
@@ -241,11 +240,11 @@ const TableHistories = ({ name, gamesArray }) => {
                                                 <td>
                                                     <PTable
                                                         className={
-                                                            found && found[index].win
+                                                            found && games.gameDuration < 300 ? 'winrate-grey' : found[index].win
                                                                 ? "winrate-green"
                                                                 : "winrate-red"
                                                         }>
-                                                        {found && found[index].win
+                                                        {found && games.gameDuration < 300 ? 'REHECHA' : found[index].win
                                                             ? "VICTORIA"
                                                             : "DERROTA"}
                                                     </PTable>
