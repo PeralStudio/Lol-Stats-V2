@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
-import unranked from "../assets/img/Unranked.png";
+import unranked from "../assets/img/border-unranked.png";
 import { champsId } from "../dataDragon/champsId";
 import { queueId } from "../dataDragon/queueid";
 import { ImgSummUnrank } from "../UI/SummonerUnrankUI";
@@ -63,54 +63,53 @@ const SummonerUnrank = ({ name, summData, err, dataLive }) => {
                         }}
                     />
                 </h2>
-
-            </div>
-            <ImgSummUnrank
-                src={unranked}
-                className="card-img-top"
-                alt="rank"
-            />
-            {found &&
-                <p
-                    onClick={() => {
-                        historyUrl.push(`/livegame/${name}`);
-                    }}
-                    style={{ backgroundColor: '#EE4142', width: 'max-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold', cursor: 'pointer' }}
-                >
-                    En partida - ({found && found.description}) - {foundChampName && foundChampName.name}
-                    <img
-                        src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${foundChampName && foundChampName.name}.png`}
-                        alt=""
-                        style={{ width: '1.5rem', borderRadius: '50%', margin: '1px 2px' }}
-                    />
-                </p>
-            }
-            <div className="card-body">
-                <h4>UNRANKED</h4>
-                <h5 className="card-title">
-                    Nivel {summData.summonerLevel}
-                </h5>
-                <div
-                    style={{ margin: '20px' }}
-                >
-                    <Link to={`/histories/${name}`}><button style={{ marginBottom: '20px' }} type="button" className="btn btn-outline-info">Historial</button></Link>
-                </div>
-                <a
-                    href={`https://euw.op.gg/summoner/userName=${name}`}
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    <ImgSummUnrank
-                        src={opgg}
-                        className="card-img-top"
-                        alt="opgg"
-                        style={{
-                            width: "10rem",
-                            margin: "auto",
-                            marginBottom: '20px'
+                <ImgSummUnrank
+                    src={unranked}
+                    className="card-img-top"
+                    alt="rank"
+                />
+                {found &&
+                    <p
+                        onClick={() => {
+                            historyUrl.push(`/livegame/${name}`);
                         }}
-                    />
-                </a>
+                        style={{ backgroundColor: '#EE4142', width: 'max-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold', cursor: 'pointer' }}
+                    >
+                        En partida - ({found && found.description}) - {foundChampName && foundChampName.name}
+                        <img
+                            src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${foundChampName && foundChampName.name}.png`}
+                            alt=""
+                            style={{ width: '1.5rem', borderRadius: '50%', margin: '1px 2px' }}
+                        />
+                    </p>
+                }
+                <div className="card-body">
+                    <h4>UNRANKED</h4>
+                    <h5 className="card-title">
+                        Nivel {summData.summonerLevel}
+                    </h5>
+                    <div
+                        style={{ margin: '20px' }}
+                    >
+                        <Link to={`/histories/${name}`}><button style={{ marginBottom: '20px' }} type="button" className="btn btn-outline-info">Historial</button></Link>
+                    </div>
+                    <a
+                        href={`https://euw.op.gg/summoner/userName=${name}`}
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        {/* <ImgSummUnrank
+                            src={opgg}
+                            className="card-img-top"
+                            alt="opgg"
+                            style={{
+                                width: "10rem",
+                                margin: "auto",
+                                marginBottom: '20px'
+                            }}
+                        /> */}
+                    </a>
+                </div>
             </div>
         </>
     )
