@@ -11,7 +11,7 @@ import { queueId } from "../dataDragon/queueid";
 import { champsId } from "../dataDragon/champsId"
 import { ImgSummUnrank } from "../UI/SummonerUnrankUI";
 
-import { checkLvl } from "../functions/checkLevelBorder";
+import { checkLvl, checkMiniCrest } from "../functions/checkLevelBorder";
 
 const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
 
@@ -81,7 +81,7 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
                     <div style={{ marginBottom: marginOfTier() }}>
                         <h2 className="card-title" style={{ marginTop: '30px' }}>
                             {data.summonerName}
-                            <img
+                            {/* <img
                                 src={checkLvl(summData.summonerLevel)}
                                 alt="borderLvl"
                                 className="opgg"
@@ -104,7 +104,7 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
                                     borderRadius: "50%",
                                     marginLeft: "22px",
                                 }}
-                            />
+                            /> */}
                         </h2>
                     </div>
                     <div className="container-data-rank" style={{ margin: 'auto' }}>
@@ -164,13 +164,19 @@ const SummonerRank = ({ data, summData, name, allLoad, err, dataLive }) => {
                                 <span className={`${validarElo2(data.tier)}-font`}>
                                     {" "}
                                     {data.tier} {data.rank}
+                                    <img
+                                        src={checkMiniCrest(data.tier)}
+                                        alt="rank"
+                                        style={{ width: '1.8rem', paddingBottom: '2px', marginLeft: '5px' }}
+                                    />
                                 </span>
                             </span>
                         </h5>
-                        <p>LP: {data.leaguePoints}</p>
+                        <p style={{ fontSize: '18px', marginBottom: '10px' }}>{data.leaguePoints} LP</p>
                         <div className="card-text">
                             {/* {data && <p style={{ marginBottom: '0' }}>Jugadas: {data.wins + data.losses}</p>} */}
                             {/* <p style={{ marginBottom: '0' }}>{data.wins}V {data.losses}L</p> */}
+                            <span style={{ marginBottom: '0', color: "#2DAF7F" }}>{data.wins}V </span>-<span style={{ marginBottom: '0', color: "#ee5952" }}> {data.losses}L</span><br></br>
                             <span>Tasa de Victoria </span>
                             <span className={winrateColor}>
                                 {(
