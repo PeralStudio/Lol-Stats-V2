@@ -19,6 +19,17 @@ import lvl450 from "../assets/borderLevels/Level_450.png";
 import lvl475 from "../assets/borderLevels/Level_475.png";
 import lvl500 from "../assets/borderLevels/Level_500.png";
 
+import crestUnranked from "../assets/ranked-mini-crest/unranked.png";
+import crestIron from "../assets/ranked-mini-crest/iron.png";
+import crestBronze from "../assets/ranked-mini-crest/bronze.png";
+import crestSilver from "../assets/ranked-mini-crest/silver.png";
+import crestGold from "../assets/ranked-mini-crest/gold.png";
+import crestPlatinum from "../assets/ranked-mini-crest/platinum.png";
+import crestDiamond from "../assets/ranked-mini-crest/diamond.png";
+import crestMaster from "../assets/ranked-mini-crest/master.png";
+import crestGrandmaster from "../assets/ranked-mini-crest/grandmaster.png";
+import crestChallenger from "../assets/ranked-mini-crest/challenger.png";
+
 export const checkLvl = (summonerLevel) => {
     if (summonerLevel >= 1 && summonerLevel < 50) {
         return lvl1;
@@ -60,5 +71,30 @@ export const checkLvl = (summonerLevel) => {
         return lvl475;
     } else if (summonerLevel >= 500) {
         return lvl500;
+    }
+};
+
+export const checkMiniCrest = (tier) => {
+    switch (tier) {
+        case "IRON":
+            return crestIron;
+        case "BRONZE":
+            return crestBronze;
+        case "SILVER":
+            return crestSilver;
+        case "GOLD":
+            return crestGold;
+        case "PLATINUM":
+            return crestPlatinum;
+        case "DIAMOND":
+            return crestDiamond;
+        case "MASTER":
+            return crestMaster;
+        case "GRANDMASTER":
+            return crestGrandmaster;
+        case "CHALLENGER":
+            return crestChallenger;
+        default:
+            return crestUnranked;
     }
 };
