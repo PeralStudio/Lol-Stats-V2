@@ -12,6 +12,7 @@ import vsImage from "../assets/img/vs.png";
 import bgLoading from "../assets/img/bg-loading-screen.jpg";
 import { validarElo, validarElo2 } from '../functions/ValidarElo';
 import { summonerSpells } from '../dataDragon/generalData';
+import { checkMiniCrest } from "../functions/checkLevelBorder";
 
 const LiveGame = ({ dataLive, getDataPlayer }) => {
 
@@ -165,6 +166,11 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                             <PNoMargin style={{ fontSize: '.7rem' }}>
                                                 {dataRankSummoners[index] == undefined ? `Nivel ${summLevel[index]}` : `${dataRankSummoners[index].tier} - ${dataRankSummoners[index].rank} (${dataRankSummoners[index].leaguePoints} LP)`}
                                             </PNoMargin>
+                                            {dataRankSummoners[index] !== undefined && <img
+                                                src={checkMiniCrest(dataRankSummoners[index].tier)}
+                                                alt="rank"
+                                                style={{ width: '2.5rem', marginBottom: '-10px' }}
+                                            />}
                                         </div>
                                     </div>}
                             </>
@@ -222,6 +228,11 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                             <PNoMargin style={{ fontSize: '.7rem' }}>
                                                 {dataRankSummoners[index] == undefined ? `Nivel ${summLevel[index]}` : `${dataRankSummoners[index].tier} - ${dataRankSummoners[index].rank} (${dataRankSummoners[index].leaguePoints} LP)`}
                                             </PNoMargin>
+                                            {dataRankSummoners[index] !== undefined && <img
+                                                src={checkMiniCrest(dataRankSummoners[index].tier)}
+                                                alt="rank"
+                                                style={{ width: '2.5rem', marginBottom: '-10px' }}
+                                            />}
                                         </div>
                                     </div>}
                             </>
