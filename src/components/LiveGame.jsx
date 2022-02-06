@@ -166,10 +166,14 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                             <PNoMargin style={{ fontSize: '.7rem' }}>
                                                 {dataRankSummoners[index] == undefined ? `Nivel ${summLevel[index]}` : `${dataRankSummoners[index].tier} - ${dataRankSummoners[index].rank} (${dataRankSummoners[index].leaguePoints} LP)`}
                                             </PNoMargin>
-                                            {dataRankSummoners[index] !== undefined && <img
+                                            {dataRankSummoners[index] !== undefined ? <img
                                                 src={checkMiniCrest(dataRankSummoners[index].tier)}
                                                 alt="rank"
                                                 style={{ width: '2.5rem', marginBottom: '-10px' }}
+                                            /> : <img
+                                                src={checkMiniCrest()}
+                                                alt="rank"
+                                                style={{ width: '2rem', marginBottom: '-10px' }}
                                             />}
                                         </div>
                                     </div>}
@@ -228,11 +232,17 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                             <PNoMargin style={{ fontSize: '.7rem' }}>
                                                 {dataRankSummoners[index] == undefined ? `Nivel ${summLevel[index]}` : `${dataRankSummoners[index].tier} - ${dataRankSummoners[index].rank} (${dataRankSummoners[index].leaguePoints} LP)`}
                                             </PNoMargin>
-                                            {dataRankSummoners[index] !== undefined && <img
+                                            {dataRankSummoners[index] !== undefined ? <img
                                                 src={checkMiniCrest(dataRankSummoners[index].tier)}
                                                 alt="rank"
                                                 style={{ width: '2.5rem', marginBottom: '-10px' }}
-                                            />}
+                                            /> :
+                                                <img
+                                                    src={checkMiniCrest()}
+                                                    alt="rank"
+                                                    style={{ width: '2rem', marginBottom: '-10px' }}
+                                                />
+                                            }
                                         </div>
                                     </div>}
                             </>
