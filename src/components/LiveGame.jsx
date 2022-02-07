@@ -7,10 +7,9 @@ import dayjs from 'dayjs';
 import { champsId } from '../dataDragon/champsId';
 import { queueId } from '../dataDragon/queueid';
 
-import { ImgChampAvatar, PNoMargin } from '../UI/TableHistoriesUi';
+import { PNoMargin } from '../UI/TableHistoriesUi';
 import vsImage from "../assets/img/vs.png";
-import bgLoading from "../assets/img/bg-loading-screen.jpg";
-import { validarElo, validarElo2 } from '../functions/ValidarElo';
+import { validarElo2 } from '../functions/ValidarElo';
 import { summonerSpells } from '../dataDragon/generalData';
 import { checkMiniCrest } from "../functions/checkLevelBorder";
 
