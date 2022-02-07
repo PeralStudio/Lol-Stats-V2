@@ -9,9 +9,11 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import { queueId } from "../dataDragon/queueid";
 import { champsId } from "../dataDragon/champsId"
-import { ImgSummUnrank } from "../UI/SummonerUnrankUI";
 
-import { checkLvl, checkMiniCrest } from "../functions/checkLevelBorder";
+import { checkMiniCrest } from "../functions/checkLevelBorder";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHistory } from '@fortawesome/free-solid-svg-icons'
 
 const SummonerRank = ({ data, dataFlex, summData, name, allLoad, err, dataLive }) => {
 
@@ -24,7 +26,7 @@ const SummonerRank = ({ data, dataFlex, summData, name, allLoad, err, dataLive }
     // const data = data.find(element => element.queueType === 'RANKED_SOLO_5x5');
     // const foundRankedFlex = data.find(element => element.queueType === 'RANKED_FLEX_SR');
 
-    const foundSummId = dataLive && dataLive.participants.find(element => element.summonerId === data ? data.summonerId : dataFlex.summonerId);
+    const foundSummId = dataLive && dataLive.participants.find(element => element.summonerId === data.summonerId);
     const foundChampName = foundSummId && champsId.find(element => element.champId === foundSummId.championId);
 
     let winrateColor = "";
@@ -150,35 +152,39 @@ const SummonerRank = ({ data, dataFlex, summData, name, allLoad, err, dataLive }
                                     }}
                                 />
                             </div>
-                            <Link to={`/histories/${name}`}><button style={{ margin: '20px' }} type="button" className="btn btn-outline-info">Historial</button></Link>
+                            {!err & !found2 ?
+                                <p
+                                    onClick={() => {
+                                        historyUrl.push(`/livegame/${name}`);
+                                    }}
+                                    style={{ backgroundColor: '#EE4142', width: 'max-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold', cursor: 'pointer' }}
+                                >
+                                    En partida - ({found && found.description}) - {foundChampName && foundChampName.name}{' '}
+                                    <img
+                                        src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${foundChampName && foundChampName.name}.png`}
+                                        alt=""
+                                        style={{ width: '1.5rem', borderRadius: '50%', margin: '1px 2px' }}
+                                    />
+                                </p>
+                                :
+                                !err & !found ?
+                                    <p
+                                        style={{ backgroundColor: '#EE4142', width: 'max-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold' }}
+                                    >
+                                        En partida - {found2}
+                                    </p>
+                                    :
+                                    null
+                            }
+                            <Link to={`/histories/${name}`}>
+                                <button style={{ margin: '20px' }} type="button" className="btn btn-outline-info">
+
+                                    Historial {' '}
+                                    <FontAwesomeIcon icon={faHistory} />
+                                </button>
+                            </Link>
                         </>
                     }
-
-                    {!err & !found2 ?
-                        <p
-                            onClick={() => {
-                                historyUrl.push(`/livegame/${name}`);
-                            }}
-                            style={{ backgroundColor: '#EE4142', width: 'max-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold', cursor: 'pointer' }}
-                        >
-                            En partida - ({found && found.description}) - {foundChampName && foundChampName.name}{' '}
-                            <img
-                                src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${foundChampName && foundChampName.name}.png`}
-                                alt=""
-                                style={{ width: '1.5rem', borderRadius: '50%', margin: '1px 2px' }}
-                            />
-                        </p>
-                        :
-                        !err & !found ?
-                            <p
-                                style={{ backgroundColor: '#EE4142', width: 'max-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold' }}
-                            >
-                                En partida - {found2}
-                            </p>
-                            :
-                            null
-                    }
-
 
                     {data &&
                         <>

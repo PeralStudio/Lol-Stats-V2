@@ -13,6 +13,9 @@ import { validarElo2 } from '../functions/ValidarElo';
 import { summonerSpells } from '../dataDragon/generalData';
 import { checkMiniCrest } from "../functions/checkLevelBorder";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+
 const LiveGame = ({ dataLive, getDataPlayer }) => {
 
     const [dataRankSummoners, setDataRankSummoners] = useState([]);
@@ -111,7 +114,8 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                             type="button"
                             className="btn btn-outline-info button-back"
                         >
-                            Volver
+                            <FontAwesomeIcon icon={faChevronLeft} />
+                            {' '}Volver
                         </button>
                     </Link>
                     <h3>{found ? found.description : found2}</h3>

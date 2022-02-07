@@ -9,6 +9,10 @@ import Loader from "react-loader-spinner";
 import TableHistories from './TableHistories';
 // import ArregloTableIntento from './TableHistories';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { checkLvl } from '../functions/checkLevelBorder';
+
 const Histories = ({ historyGames, summData, data }) => {
 
     const { name } = useParams();
@@ -55,27 +59,42 @@ const Histories = ({ historyGames, summData, data }) => {
                         type="button"
                         className="btn btn-outline-info button-back"
                     >
-                        Perfil
+                        <FontAwesomeIcon icon={faChevronLeft} />
+                        {' '}Perfil
                     </button>
                 </Link>
             </div>
             {gamesArray ?
                 <>
-                    <h1 style={{ fontSize: '2.2rem' }}>Historial</h1>
                     <h3
                         style={{
                             marginTop: '1rem',
                             textTransform: 'capitalize',
                         }}>
                         <img
-                            src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${summData.profileIconId}.png`}
-                            alt="Icon"
-                            className={data ? validarElo2(data.tier) : 'gold'}
+                            src={checkLvl(summData.summonerLevel)}
+                            alt="borderLvl"
+                            className="opgg"
                             style={{
-                                width: "3rem",
-                                marginRight: '.4rem',
-                                marginBottom: '.3rem',
+                                position: 'absolute',
+                                width: "4.8rem",
+                                height: "4.8rem",
+                                margin: "auto",
+                                marginTop: "-12px",
+                                zIndex: 1,
+                            }} />
+                        <img
+                            src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${summData.profileIconId}.png`}
+                            className="card-img-top"
+                            alt="..."
+                            style={{
+                                width: "4rem",
+                                zoom: "0.8",
+                                margin: "auto",
+                                marginRight: "2rem",
+                                marginBottom: "1rem",
                                 borderRadius: "50%",
+                                marginLeft: "16px",
                             }}
                         />
                         {name}

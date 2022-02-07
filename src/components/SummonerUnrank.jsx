@@ -9,6 +9,9 @@ import { ImgSummUnrank } from "../UI/SummonerUnrankUI";
 import opgg from "../assets/img/opgg.png";
 import { checkLvl } from "../functions/checkLevelBorder";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHistory } from '@fortawesome/free-solid-svg-icons'
+
 const SummonerUnrank = ({ name, summData, err, dataLive }) => {
 
     const [version, setVersion] = useState('');
@@ -91,7 +94,12 @@ const SummonerUnrank = ({ name, summData, err, dataLive }) => {
                     <div
                         style={{ margin: '20px' }}
                     >
-                        <Link to={`/histories/${name}`}><button style={{ marginBottom: '20px' }} type="button" className="btn btn-outline-info">Historial</button></Link>
+                        <Link to={`/histories/${name}`}>
+                            <button style={{ marginBottom: '20px' }} type="button" className="btn btn-outline-info">
+                                Historial {' '}
+                                <FontAwesomeIcon icon={faHistory} />
+                            </button>
+                        </Link>
                     </div>
                     <a
                         href={`https://euw.op.gg/summoner/userName=${name}`}

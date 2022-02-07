@@ -9,6 +9,9 @@ import ReactTooltip from 'react-tooltip';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+
 
 const StatsGraph = ({ name, getDataPlayer, setAllLoad }) => {
 
@@ -189,7 +192,12 @@ const StatsGraph = ({ name, getDataPlayer, setAllLoad }) => {
             {history2 ?
                 <>
                     <div>
-                        <Link to={`/history/${id}`}><button style={{ margin: '20px' }} type="button" className="btn btn-outline-info">Volver</button></Link>
+                        <Link to={`/history/${id}`}>
+                            <button style={{ margin: '20px' }} type="button" className="btn btn-outline-info">
+                                <FontAwesomeIcon icon={faChevronLeft} />
+                                {' '}Volver
+                            </button>
+                        </Link>
                         <h1>{history2 && history2.gameMode}</h1>
                         <p style={{ fontSize: '12px' }}>Id: {history2 && history2.gameId}</p>
                         <div>

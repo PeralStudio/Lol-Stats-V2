@@ -15,6 +15,9 @@ import Loader from "react-loader-spinner";
 import { queueId } from "../dataDragon/queueid";
 import { summonerSpells } from "../dataDragon/generalData";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChartBar, faChevronLeft, faHistory } from '@fortawesome/free-solid-svg-icons'
+
 dayjs.extend(relativeTime);
 dayjs.extend(updateLocale);
 dayjs.updateLocale('en', {
@@ -96,10 +99,16 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                             type="button"
                             className="btn btn-outline-info button-back"
                         >
-                            Historial
+                            Historial {' '}
+                            <FontAwesomeIcon icon={faHistory} />
                         </button>
                     </Link>
-                    <Link to={`/graphics/${id}`}><button style={{ marginLeft: '10px' }} type="button" className="btn btn-outline-info button-back">Gráfica</button></Link>
+                    <Link to={`/graphics/${id}`}>
+                        <button style={{ marginLeft: '10px' }} type="button" className="btn btn-outline-info button-back">
+                            Gráfica{" "}
+                            <FontAwesomeIcon icon={faChartBar} />
+                        </button>
+                    </Link>
                     <div>
                         <div>
                             <h1 className='h1-history'>
