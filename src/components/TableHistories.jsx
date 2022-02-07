@@ -155,6 +155,7 @@ const TableHistories = ({ name, gamesArray }) => {
                         </p>
                     </div>
 
+                    <h1 style={{ fontSize: '2.2rem' }}>Historial</h1>
 
                     <div style={{ marginTop: "1rem" }}>
                         <table className="table table-dark table-striped">
