@@ -122,32 +122,38 @@ const SummonerRank = ({ data, dataFlex, summData, name, allLoad, err, dataLive }
                         </h2>
 
                     </div>
-                    {data && <div className="container-data-rank" style={{ margin: 'auto' }}>
-                        <img
-                            src={validarElo(data ? data.tier : dataFlex.tier)}
-                            className="card-img-top"
-                            alt="rank"
-                            style={{
-                                width: "16rem",
-                                marginTop: '-120px',
-                                marginBottom: '-50px',
-                            }}
-                        />
-                        <img
-                            src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${summData.profileIconId}.png`}
-                            className={validarElo2(data ? data.tier : dataFlex.tier)}
-                            alt="..."
-                            style={{
-                                position: 'absolute',
-                                width: "6.5rem",
-                                zoom: "0.83",
-                                margin: "auto",
-                                borderRadius: "50%",
-                                marginTop: "42px",
-                                marginLeft: "-205px",
-                            }}
-                        />
-                    </div>}
+                    {data &&
+                        <>
+                            <div className="container-data-rank" style={{ margin: 'auto' }}>
+                                <img
+                                    src={validarElo(data ? data.tier : dataFlex.tier)}
+                                    className="card-img-top"
+                                    alt="rank"
+                                    style={{
+                                        width: "16rem",
+                                        marginTop: '-120px',
+                                        marginBottom: '-50px',
+                                    }}
+                                />
+                                <img
+                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${summData.profileIconId}.png`}
+                                    className={validarElo2(data ? data.tier : dataFlex.tier)}
+                                    alt="..."
+                                    style={{
+                                        position: 'absolute',
+                                        width: "6.5rem",
+                                        zoom: "0.83",
+                                        margin: "auto",
+                                        borderRadius: "50%",
+                                        marginTop: "42px",
+                                        marginLeft: "-205px",
+                                    }}
+                                />
+                            </div>
+                            <Link to={`/histories/${name}`}><button style={{ margin: '20px' }} type="button" className="btn btn-outline-info">Historial</button></Link>
+                        </>
+                    }
+
                     {!err & !found2 ?
                         <p
                             onClick={() => {
@@ -176,7 +182,6 @@ const SummonerRank = ({ data, dataFlex, summData, name, allLoad, err, dataLive }
 
                     {data &&
                         <>
-                            <Link to={`/histories/${name}`}><button style={{ margin: '20px' }} type="button" className="btn btn-outline-info">Historial</button></Link>
                             <div className="card-body" style={{ margin: '10px 0 10px 0', backgroundColor: '#0a1d30', borderRadius: '15px' }}>
                                 <h5 className="card-title">
                                     <span>
@@ -251,7 +256,8 @@ const SummonerRank = ({ data, dataFlex, summData, name, allLoad, err, dataLive }
                                     }}
                                 />
                             </div>
-                            <Link to={`/histories/${name}`}><button style={{ margin: '20px' }} type="button" className="btn btn-outline-info">Historial</button></Link>
+                            {dataFlex && !data &&
+                                <Link to={`/histories/${name}`}><button style={{ margin: '20px' }} type="button" className="btn btn-outline-info">Historial</button></Link>}
                             <div className="card-body" style={{ margin: '10px 0 10px 0', backgroundColor: '#0a1d30', borderRadius: '15px' }}>
                                 <h5 className="card-title">
                                     <span>
