@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import logoNavbar from "../assets/img/logonavbar.png";
 
-const Navbar = ({ setSummData, setData, setName, setHistoryGames, setAllLoad, setError, setDataLive, setErr }) => {
+const Navbar = ({ setSummData, setData, setDataFlex, setName, setHistoryGames, setAllLoad, setError, setDataLive, setErr }) => {
     return (
         <nav className="navbar" style={{ backgroundColor: "#0B151C" }}>
             <div className="container justify-content-center">
@@ -15,6 +15,7 @@ const Navbar = ({ setSummData, setData, setName, setHistoryGames, setAllLoad, se
                         onClick={() => {
                             setSummData("");
                             setData("");
+                            setDataFlex("");
                             setName("");
                             setHistoryGames("");
                             setAllLoad(false);
