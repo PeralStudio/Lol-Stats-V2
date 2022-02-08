@@ -127,7 +127,6 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
         }
     }, [history]);
 
-    console.log(dataRankSummoners);
     return (
         <>
             {history ? (
