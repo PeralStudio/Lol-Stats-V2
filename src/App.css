@@ -440,6 +440,11 @@ td {
     justify-content: center;
 }
 
+.mini-crest {
+    width: 2.5rem !important;
+    margin-right: 20px;
+}
+
 .search {
     width: 100%;
     position: relative;
@@ -537,6 +542,11 @@ td {
     .wrap {
         width: 45%;
     }
+
+    .mini-crest {
+        width: 2rem !important;
+        margin-right: 20px;
+    }
 }
 
 @media only screen and (max-width: 720px) {
@@ -555,6 +565,11 @@ td {
     .input-search {
         width: 40% !important;
         margin-right: 10px !important;
+    }
+
+    .mini-crest {
+        width: 2rem !important;
+        margin-right: 20px;
     }
 }
 
@@ -609,5 +624,10 @@ td {
 
     .logoportada {
         width: 16rem;
+    }
+
+    .mini-crest {
+        width: 1.5rem !important;
+        margin-right: 20px;
     }
 }

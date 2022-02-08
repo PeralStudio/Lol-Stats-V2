@@ -1,26 +1,25 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import Loader from 'react-loader-spinner';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Loader from "react-loader-spinner";
 import { Link, useHistory, useParams } from "react-router-dom";
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 
-import { champsId } from '../dataDragon/champsId';
-import { queueId } from '../dataDragon/queueid';
+import { champsId } from "../dataDragon/champsId";
+import { queueId } from "../dataDragon/queueid";
 
-import { PNoMargin } from '../UI/TableHistoriesUi';
+import { PNoMargin } from "../UI/TableHistoriesUi";
 import vsImage from "../assets/img/vs.png";
-import { validarElo2 } from '../functions/ValidarElo';
-import { summonerSpells } from '../dataDragon/generalData';
+import { validarElo2 } from "../functions/ValidarElo";
+import { summonerSpells } from "../dataDragon/generalData";
 import { checkMiniCrest } from "../functions/checkLevelBorder";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 const LiveGame = ({ dataLive, getDataPlayer }) => {
-
     const [dataRankSummoners, setDataRankSummoners] = useState([]);
     const [dataUnrankSummoners, setDataUnrankSummoners] = useState([]);
-    const [version, setVersion] = useState('');
+    const [version, setVersion] = useState("");
 
     const historyUrl = useHistory();
     const { name } = useParams();
@@ -37,7 +36,7 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
             } catch (error) {
                 console.log(error);
             }
-        }
+        };
         versionDataDdragon();
     }, []);
 
@@ -66,76 +65,111 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
     let foundChampId = [];
 
     for (let participant of dataLive.participants) {
-        summonerIds.push(participant.summonerId)
-        dataSumm.push(participant)
+        summonerIds.push(participant.summonerId);
+        dataSumm.push(participant);
     }
 
-    const summLevel = dataUnrankSummoners.map((element) => element.summonerLevel);
-    const found = queueId.find(element => element.queueId === dataLive.gameQueueConfigId);
-    const found2 = dataLive.gameType === 'CUSTOM_GAME' ? 'Personalizada' : '';
-    const gameStart = dayjs(dataLive.gameStartTime).fromNow() == 'hace 52 años' ? 'hace 0 minutos' : dayjs(dataLive.gameStartTime).fromNow();
-
+    const summLevel = dataUnrankSummoners.map(
+        (element) => element.summonerLevel
+    );
+    const found = queueId.find(
+        (element) => element.queueId === dataLive.gameQueueConfigId
+    );
+    const found2 = dataLive.gameType === "CUSTOM_GAME" ? "Personalizada" : "";
+    const gameStart =
+        dayjs(dataLive.gameStartTime).fromNow() == "hace 52 años"
+            ? "hace 0 minutos"
+            : dayjs(dataLive.gameStartTime).fromNow();
 
     useEffect(async () => {
-
         let res = [];
         let res2 = [];
         let i = 0;
 
         for (let summid of summonerIds) {
-
             res[i] = await axios.get(
                 `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/${summid}?api_key=${process.env.REACT_APP_API_RIOT}`
             );
-            const foundRankedSolo = res[i].data.find(element => element.queueType === 'RANKED_SOLO_5x5');
-            setDataRankSummoners(dataRankSummoners => [...dataRankSummoners, foundRankedSolo]);
-            i++
-
+            const foundRankedSolo = res[i].data.find(
+                (element) => element.queueType === "RANKED_SOLO_5x5"
+            );
+            setDataRankSummoners((dataRankSummoners) => [
+                ...dataRankSummoners,
+                foundRankedSolo,
+            ]);
+            i++;
 
             res2[i] = await axios.get(
                 `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/${summid}?api_key=${process.env.REACT_APP_API_RIOT}`
             );
-            setDataUnrankSummoners(dataUnrankSummoners => [...dataUnrankSummoners, res2[i].data]);
-            i++
+            setDataUnrankSummoners((dataUnrankSummoners) => [
+                ...dataUnrankSummoners,
+                res2[i].data,
+            ]);
+            i++;
         }
-
     }, []);
 
-    const yourStats = (index) => (name === dataLive.participants[index].summonerName.toLowerCase()) ? " me-loading" : "";
+    const yourStats = (index) =>
+        name === dataLive.participants[index].summonerName.toLowerCase()
+            ? " me-loading"
+            : "";
 
-    dataSumm.map((data, index) => foundChampId.push(champsId.find(element => element.champId === data.championId)));
+    dataSumm.map((data, index) =>
+        foundChampId.push(
+            champsId.find((element) => element.champId === data.championId)
+        )
+    );
 
     return (
         <>
-            {dataRankSummoners.length > 9 ?
+            {dataRankSummoners.length > 9 ? (
                 <div style={{ paddingBottom: ".5rem" }}>
                     <Link to={`/`}>
                         <button
                             type="button"
                             className="btn btn-outline-info button-back"
                         >
-                            <FontAwesomeIcon icon={faChevronLeft} />
-                            {' '}Volver
+                            <FontAwesomeIcon icon={faChevronLeft} /> Volver
                         </button>
                     </Link>
                     <h3>{found ? found.description : found2}</h3>
                     <p>Empezó {gameStart}</p>
-                    <div style={{ marginTop: ".5rem", display: 'flex', justifyContent: 'center' }}>
-                        {dataSumm.map((data, index) =>
+                    <div
+                        style={{
+                            marginTop: ".5rem",
+                            display: "flex",
+                            justifyContent: "center",
+                        }}
+                    >
+                        {dataSumm.map((data, index) => (
                             <>
-                                {index <= 4 &&
+                                {index <= 4 && (
                                     <div
                                         key={`${index}a`}
                                         onClick={() => {
                                             historyUrl.push(`/`);
                                             getDataPlayer(data.summonerName);
                                         }}
-                                        style={{ margin: '5px', cursor: 'pointer' }}
-                                        className={dataRankSummoners[index] && dataRankSummoners != undefined ? validarElo2(dataRankSummoners[index].tier) + '-loading' + yourStats(index) : 'unranked1' + yourStats(index)}
+                                        style={{
+                                            margin: "5px",
+                                            cursor: "pointer",
+                                        }}
+                                        className={
+                                            dataRankSummoners[index] &&
+                                            dataRankSummoners != undefined
+                                                ? validarElo2(
+                                                      dataRankSummoners[index]
+                                                          .tier
+                                                  ) +
+                                                  "-loading" +
+                                                  yourStats(index)
+                                                : "unranked1" + yourStats(index)
+                                        }
                                     >
                                         <img
                                             src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${foundChampId[index].name}_0.jpg`}
-                                            style={{ width: '8rem' }}
+                                            style={{ width: "8rem" }}
                                         />
                                         <div>
                                             <img
@@ -143,65 +177,126 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                                 style={{
                                                     width: "3.5rem",
                                                     borderRadius: "50%",
-                                                    marginTop: '-105px'
+                                                    marginTop: "-105px",
                                                 }}
-                                                className='gold'
+                                                className="gold"
                                             />
                                         </div>
-                                        <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '-15px' }}>
+                                        <div
+                                            style={{
+                                                display: "flex",
+                                                justifyContent: "space-around",
+                                                marginTop: "-15px",
+                                            }}
+                                        >
                                             <div>
                                                 <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${summonerSpells[data.spell1Id]}.png`}
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${
+                                                        summonerSpells[
+                                                            data.spell1Id
+                                                        ]
+                                                    }.png`}
                                                     alt="summ1"
                                                     // className="summ1"
-                                                    style={{ marginRight: '5px', width: '1.5rem' }}
+                                                    style={{
+                                                        marginRight: "5px",
+                                                        width: "1.5rem",
+                                                    }}
                                                 />
                                                 <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${summonerSpells[data.spell2Id]}.png`}
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${
+                                                        summonerSpells[
+                                                            data.spell2Id
+                                                        ]
+                                                    }.png`}
                                                     alt="summ1"
                                                     // className="summ1"
-                                                    style={{ width: '1.5rem' }}
+                                                    style={{ width: "1.5rem" }}
                                                 />
                                             </div>
                                         </div>
-                                        <div style={{ marginBottom: '10px', marginTop: '10px' }}>
+                                        <div
+                                            style={{
+                                                marginBottom: "10px",
+                                                marginTop: "10px",
+                                            }}
+                                        >
                                             <span>{data.summonerName}</span>
-                                            <PNoMargin style={{ fontSize: '.7rem' }}>
-                                                {dataRankSummoners[index] == undefined ? `Nivel ${summLevel[index]}` : `${dataRankSummoners[index].tier} - ${dataRankSummoners[index].rank} (${dataRankSummoners[index].leaguePoints} LP)`}
+                                            <PNoMargin
+                                                style={{ fontSize: ".7rem" }}
+                                            >
+                                                {dataRankSummoners[index] ==
+                                                undefined
+                                                    ? `Nivel ${summLevel[index]}`
+                                                    : `${dataRankSummoners[index].tier} - ${dataRankSummoners[index].rank} (${dataRankSummoners[index].leaguePoints} LP)`}
                                             </PNoMargin>
-                                            {dataRankSummoners[index] !== undefined ? <img
-                                                src={checkMiniCrest(dataRankSummoners[index].tier)}
-                                                alt="rank"
-                                                style={{ width: '2.5rem', marginBottom: '-10px' }}
-                                            /> : <img
-                                                src={checkMiniCrest()}
-                                                alt="rank"
-                                                style={{ width: '2rem', marginBottom: '-10px' }}
-                                            />}
+                                            {dataRankSummoners[index] !==
+                                            undefined ? (
+                                                <img
+                                                    src={checkMiniCrest(
+                                                        dataRankSummoners[index]
+                                                            .tier
+                                                    )}
+                                                    alt="rank"
+                                                    style={{
+                                                        width: "2.5rem",
+                                                        marginBottom: "-10px",
+                                                    }}
+                                                />
+                                            ) : (
+                                                <img
+                                                    src={checkMiniCrest()}
+                                                    alt="rank"
+                                                    style={{
+                                                        width: "2rem",
+                                                        marginBottom: "-10px",
+                                                    }}
+                                                />
+                                            )}
                                         </div>
-                                    </div>}
+                                    </div>
+                                )}
                             </>
-                        )}
+                        ))}
                     </div>
                     <div>
-                        <img src={vsImage} style={{ width: '4rem' }} />
+                        <img src={vsImage} style={{ width: "4rem" }} />
                     </div>
-                    <div style={{ marginTop: ".2rem", display: 'flex', justifyContent: 'center' }}>
-                        {dataSumm.map((data, index) =>
+                    <div
+                        style={{
+                            marginTop: ".2rem",
+                            display: "flex",
+                            justifyContent: "center",
+                        }}
+                    >
+                        {dataSumm.map((data, index) => (
                             <>
-                                {index >= 5 &&
+                                {index >= 5 && (
                                     <div
                                         key={`${index}b`}
                                         onClick={() => {
                                             historyUrl.push(`/`);
                                             getDataPlayer(data.summonerName);
                                         }}
-                                        style={{ margin: '5px', cursor: 'pointer' }}
-                                        className={dataRankSummoners[index] && dataRankSummoners != undefined ? validarElo2(dataRankSummoners[index].tier) + '-loading' + yourStats(index) : 'unranked2' + yourStats(index)}
+                                        style={{
+                                            margin: "5px",
+                                            cursor: "pointer",
+                                        }}
+                                        className={
+                                            dataRankSummoners[index] &&
+                                            dataRankSummoners != undefined
+                                                ? validarElo2(
+                                                      dataRankSummoners[index]
+                                                          .tier
+                                                  ) +
+                                                  "-loading" +
+                                                  yourStats(index)
+                                                : "unranked2" + yourStats(index)
+                                        }
                                     >
                                         <img
                                             src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${foundChampId[index].name}_0.jpg`}
-                                            style={{ width: '8rem' }}
+                                            style={{ width: "8rem" }}
                                         />
                                         <div>
                                             <img
@@ -209,61 +304,102 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                                 style={{
                                                     width: "3.5rem",
                                                     borderRadius: "50%",
-                                                    marginTop: '-105px'
+                                                    marginTop: "-105px",
                                                 }}
-                                                className='gold'
+                                                className="gold"
                                             />
                                         </div>
-                                        <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '-15px' }}>
+                                        <div
+                                            style={{
+                                                display: "flex",
+                                                justifyContent: "space-around",
+                                                marginTop: "-15px",
+                                            }}
+                                        >
                                             <div>
                                                 <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${summonerSpells[data.spell1Id]}.png`}
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${
+                                                        summonerSpells[
+                                                            data.spell1Id
+                                                        ]
+                                                    }.png`}
                                                     alt="summ1"
                                                     // className="summ1"
-                                                    style={{ marginRight: '5px', width: '1.5rem' }}
+                                                    style={{
+                                                        marginRight: "5px",
+                                                        width: "1.5rem",
+                                                    }}
                                                 />
                                                 <img
-                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${summonerSpells[data.spell2Id]}.png`}
+                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${
+                                                        summonerSpells[
+                                                            data.spell2Id
+                                                        ]
+                                                    }.png`}
                                                     alt="summ1"
                                                     // className="summ1"
-                                                    style={{ width: '1.5rem' }}
+                                                    style={{ width: "1.5rem" }}
                                                 />
                                             </div>
                                         </div>
-                                        <div style={{ marginBottom: '10px', marginTop: '10px' }}>
+                                        <div
+                                            style={{
+                                                marginBottom: "10px",
+                                                marginTop: "10px",
+                                            }}
+                                        >
                                             <span>{data.summonerName}</span>
-                                            <PNoMargin style={{ fontSize: '.7rem' }}>
-                                                {dataRankSummoners[index] == undefined ? `Nivel ${summLevel[index]}` : `${dataRankSummoners[index].tier} - ${dataRankSummoners[index].rank} (${dataRankSummoners[index].leaguePoints} LP)`}
+                                            <PNoMargin
+                                                style={{ fontSize: ".7rem" }}
+                                            >
+                                                {dataRankSummoners[index] ==
+                                                undefined
+                                                    ? `Nivel ${summLevel[index]}`
+                                                    : `${dataRankSummoners[index].tier} - ${dataRankSummoners[index].rank} (${dataRankSummoners[index].leaguePoints} LP)`}
                                             </PNoMargin>
-                                            {dataRankSummoners[index] !== undefined ? <img
-                                                src={checkMiniCrest(dataRankSummoners[index].tier)}
-                                                alt="rank"
-                                                style={{ width: '2.5rem', marginBottom: '-10px' }}
-                                            /> :
+                                            {dataRankSummoners[index] !==
+                                            undefined ? (
+                                                <img
+                                                    src={checkMiniCrest(
+                                                        dataRankSummoners[index]
+                                                            .tier
+                                                    )}
+                                                    alt="rank"
+                                                    style={{
+                                                        width: "2.5rem",
+                                                        marginBottom: "-10px",
+                                                    }}
+                                                />
+                                            ) : (
                                                 <img
                                                     src={checkMiniCrest()}
                                                     alt="rank"
-                                                    style={{ width: '2rem', marginBottom: '-10px' }}
+                                                    style={{
+                                                        width: "2rem",
+                                                        marginBottom: "-10px",
+                                                    }}
                                                 />
-                                            }
+                                            )}
                                         </div>
-                                    </div>}
+                                    </div>
+                                )}
                             </>
-                        )}
+                        ))}
                     </div>
                 </div>
-                :
+            ) : (
                 <>
                     <Loader
                         type="TailSpin"
                         color="#00c0b1"
                         height={100}
                         width={100}
-                        style={{ marginTop: '100px' }}
+                        style={{ marginTop: "100px" }}
                     />
                 </>
-            }
-        </>)
-}
+            )}
+        </>
+    );
+};
 
-export default LiveGame
+export default LiveGame;

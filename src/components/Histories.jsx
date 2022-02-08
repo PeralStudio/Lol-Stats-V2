@@ -1,23 +1,22 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
-import { validarElo2 } from '../functions/ValidarElo';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { validarElo2 } from "../functions/ValidarElo";
 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 
-import TableHistories from './TableHistories';
+import TableHistories from "./TableHistories";
 // import ArregloTableIntento from './TableHistories';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
-import { checkLvl } from '../functions/checkLevelBorder';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { checkLvl } from "../functions/checkLevelBorder";
 
 const Histories = ({ historyGames, summData, data }) => {
-
     const { name } = useParams();
     const [gamesArray, setGamesArray] = useState([]);
-    const [version, setVersion] = useState('');
+    const [version, setVersion] = useState("");
 
     if (historyGames === "") window.location.href = "/";
 
@@ -31,13 +30,11 @@ const Histories = ({ historyGames, summData, data }) => {
             } catch (error) {
                 console.log(error);
             }
-        }
+        };
         versionDataDdragon();
     }, []);
 
-
     useEffect(async () => {
-
         let res = [];
         let i = 0;
 
@@ -45,11 +42,10 @@ const Histories = ({ historyGames, summData, data }) => {
             res[i] = await axios.get(
                 `https://europe.api.riotgames.com/lol/match/v5/matches/${gameId}?api_key=${process.env.REACT_APP_API_RIOT}`
             );
-            setGamesArray(gamesArray => [...gamesArray, res[i].data.info]);
-            i++
+            setGamesArray((gamesArray) => [...gamesArray, res[i].data.info]);
+            i++;
         }
     }, []);
-
 
     return (
         <>
@@ -59,30 +55,31 @@ const Histories = ({ historyGames, summData, data }) => {
                         type="button"
                         className="btn btn-outline-info button-back"
                     >
-                        <FontAwesomeIcon icon={faChevronLeft} />
-                        {' '}Perfil
+                        <FontAwesomeIcon icon={faChevronLeft} /> Perfil
                     </button>
                 </Link>
             </div>
-            {gamesArray ?
+            {gamesArray ? (
                 <>
                     <h3
                         style={{
-                            marginTop: '1rem',
-                            textTransform: 'capitalize',
-                        }}>
+                            marginTop: "1rem",
+                            textTransform: "capitalize",
+                        }}
+                    >
                         <img
                             src={checkLvl(summData.summonerLevel)}
                             alt="borderLvl"
                             className="opgg"
                             style={{
-                                position: 'absolute',
+                                position: "absolute",
                                 width: "4.8rem",
                                 height: "4.8rem",
                                 margin: "auto",
                                 marginTop: "-12px",
                                 zIndex: 1,
-                            }} />
+                            }}
+                        />
                         <img
                             src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${summData.profileIconId}.png`}
                             className="card-img-top"
@@ -99,7 +96,12 @@ const Histories = ({ historyGames, summData, data }) => {
                         />
                         {name}
                     </h3>
-                    {gamesArray.length >= 10 && <h6 style={{ marginTop: '.8rem' }}>Partidas Recientes (Últimas {gamesArray.length} jugadas)</h6>}
+                    {gamesArray.length >= 10 && (
+                        <h6 style={{ marginTop: ".8rem" }}>
+                            Partidas Recientes (Últimas {gamesArray.length}{" "}
+                            jugadas)
+                        </h6>
+                    )}
                     {/* <TableHistories
                         gameOne={gameOne}
                         gameTwo={gameTwo}
@@ -113,22 +115,19 @@ const Histories = ({ historyGames, summData, data }) => {
                         gameTen={gameTen}
                         name={name}
                     /> */}
-                    <TableHistories
-                        name={name}
-                        gamesArray={gamesArray}
-                    />
+                    <TableHistories name={name} gamesArray={gamesArray} />
                 </>
-                :
+            ) : (
                 <Loader
                     type="TailSpin"
                     color="#00c0b1"
                     height={100}
                     width={100}
-                    style={{ marginTop: '100px' }}
+                    style={{ marginTop: "100px" }}
                 />
-            }
+            )}
         </>
-    )
-}
+    );
+};
 
-export default Histories
+export default Histories;

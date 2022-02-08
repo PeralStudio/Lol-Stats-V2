@@ -8,26 +8,41 @@ import { validarElo, validarElo2 } from "../functions/ValidarElo";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import { queueId } from "../dataDragon/queueid";
-import { champsId } from "../dataDragon/champsId"
+import { champsId } from "../dataDragon/champsId";
 
 import { checkMiniCrest } from "../functions/checkLevelBorder";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHistory } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHistory } from "@fortawesome/free-solid-svg-icons";
 
-const SummonerRank = ({ data, dataFlex, summData, name, allLoad, err, dataLive }) => {
-
-    const [version, setVersion] = useState('');
+const SummonerRank = ({
+    data,
+    dataFlex,
+    summData,
+    name,
+    allLoad,
+    err,
+    dataLive,
+}) => {
+    const [version, setVersion] = useState("");
     const historyUrl = useHistory();
 
-    const found = queueId.find(element => element.queueId === dataLive.gameQueueConfigId);
-    const found2 = dataLive.gameType == "CUSTOM_GAME" && 'Personalizada';
+    const found = queueId.find(
+        (element) => element.queueId === dataLive.gameQueueConfigId
+    );
+    const found2 = dataLive.gameType == "CUSTOM_GAME" && "Personalizada";
 
     // const data = data.find(element => element.queueType === 'RANKED_SOLO_5x5');
     // const foundRankedFlex = data.find(element => element.queueType === 'RANKED_FLEX_SR');
 
-    const foundSummId = dataLive && dataLive.participants.find(element => element.summonerId === data.summonerId);
-    const foundChampName = foundSummId && champsId.find(element => element.champId === foundSummId.championId);
+    const foundSummId =
+        dataLive &&
+        dataLive.participants.find(
+            (element) => element.summonerId === data.summonerId
+        );
+    const foundChampName =
+        foundSummId &&
+        champsId.find((element) => element.champId === foundSummId.championId);
 
     let winrateColor = "";
 
@@ -41,7 +56,7 @@ const SummonerRank = ({ data, dataFlex, summData, name, allLoad, err, dataLive }
             } catch (error) {
                 console.log(error);
             }
-        }
+        };
         versionDataDdragon();
     }, []);
 
@@ -77,26 +92,32 @@ const SummonerRank = ({ data, dataFlex, summData, name, allLoad, err, dataLive }
 
     const marginOfTier = () => {
         if (data && data.tier === "CHALLENGER") {
-            return '80px';
+            return "80px";
         } else if (data && data.tier === "GRANDMASTER") {
-            return '70px';
+            return "70px";
         } else if (data && data.tier === "MASTER") {
-            return '50px';
+            return "50px";
         } else if (data && data.tier === "DIAMOND") {
-            return '30px';
+            return "30px";
         } else {
-            return '0px';
+            return "0px";
         }
-    }
+    };
 
     return (
         <>
-            {allLoad ?
+            {allLoad ? (
                 <div className="container-data">
                     <div style={{ marginBottom: marginOfTier() }}>
-                        <h2 className="card-title" style={{ marginTop: '30px' }}>
+                        <h2
+                            className="card-title"
+                            style={{ marginTop: "30px" }}
+                        >
                             {data ? data.summonerName : dataFlex.summonerName} -
-                            <span style={{ fontSize: '18px' }}> Nivel {summData.summonerLevel}</span>
+                            <span style={{ fontSize: "18px" }}>
+                                {" "}
+                                Nivel {summData.summonerLevel}
+                            </span>
                             {/* <img
                                 src={checkLvl(summData.summonerLevel)}
                                 alt="borderLvl"
@@ -122,27 +143,33 @@ const SummonerRank = ({ data, dataFlex, summData, name, allLoad, err, dataLive }
                                 }}
                             /> */}
                         </h2>
-
                     </div>
-                    {data &&
+                    {data && (
                         <>
-                            <div className="container-data-rank" style={{ margin: 'auto' }}>
+                            <div
+                                className="container-data-rank"
+                                style={{ margin: "auto" }}
+                            >
                                 <img
-                                    src={validarElo(data ? data.tier : dataFlex.tier)}
+                                    src={validarElo(
+                                        data ? data.tier : dataFlex.tier
+                                    )}
                                     className="card-img-top"
                                     alt="rank"
                                     style={{
                                         width: "16rem",
-                                        marginTop: '-120px',
-                                        marginBottom: '-50px',
+                                        marginTop: "-120px",
+                                        marginBottom: "-50px",
                                     }}
                                 />
                                 <img
                                     src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${summData.profileIconId}.png`}
-                                    className={validarElo2(data ? data.tier : dataFlex.tier)}
+                                    className={validarElo2(
+                                        data ? data.tier : dataFlex.tier
+                                    )}
                                     alt="..."
                                     style={{
-                                        position: 'absolute',
+                                        position: "absolute",
                                         width: "6.5rem",
                                         zoom: "0.83",
                                         margin: "auto",
@@ -152,63 +179,123 @@ const SummonerRank = ({ data, dataFlex, summData, name, allLoad, err, dataLive }
                                     }}
                                 />
                             </div>
-                            {!err & !found2 ?
+                            {!err & !found2 ? (
                                 <p
                                     onClick={() => {
                                         historyUrl.push(`/livegame/${name}`);
                                     }}
-                                    style={{ backgroundColor: '#EE4142', width: 'max-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold', cursor: 'pointer' }}
+                                    style={{
+                                        backgroundColor: "#EE4142",
+                                        width: "max-content",
+                                        margin: "auto",
+                                        marginTop: "10px",
+                                        borderRadius: "5px",
+                                        padding: "0px 5px",
+                                        fontSize: "14px",
+                                        fontWeight: "bold",
+                                        cursor: "pointer",
+                                    }}
                                 >
-                                    En partida - ({found && found.description}) - {foundChampName && foundChampName.name}{' '}
+                                    En partida - ({found && found.description})
+                                    - {foundChampName && foundChampName.name}{" "}
                                     <img
-                                        src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${foundChampName && foundChampName.name}.png`}
+                                        src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${
+                                            foundChampName &&
+                                            foundChampName.name
+                                        }.png`}
                                         alt=""
-                                        style={{ width: '1.5rem', borderRadius: '50%', margin: '1px 2px' }}
+                                        style={{
+                                            width: "1.5rem",
+                                            borderRadius: "50%",
+                                            margin: "1px 2px",
+                                        }}
                                     />
                                 </p>
-                                :
-                                !err & !found ?
-                                    <p
-                                        style={{ backgroundColor: '#EE4142', width: 'max-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold' }}
-                                    >
-                                        En partida - {found2}
-                                    </p>
-                                    :
-                                    null
-                            }
+                            ) : !err & !found ? (
+                                <p
+                                    style={{
+                                        backgroundColor: "#EE4142",
+                                        width: "max-content",
+                                        margin: "auto",
+                                        marginTop: "10px",
+                                        borderRadius: "5px",
+                                        padding: "0px 5px",
+                                        fontSize: "14px",
+                                        fontWeight: "bold",
+                                    }}
+                                >
+                                    En partida - {found2}
+                                </p>
+                            ) : null}
                             <Link to={`/histories/${name}`}>
-                                <button style={{ margin: '20px' }} type="button" className="btn btn-outline-info">
-
-                                    Historial {' '}
+                                <button
+                                    style={{ margin: "20px" }}
+                                    type="button"
+                                    className="btn btn-outline-info"
+                                >
+                                    Historial{" "}
                                     <FontAwesomeIcon icon={faHistory} />
                                 </button>
                             </Link>
                         </>
-                    }
+                    )}
 
-                    {data &&
+                    {data && (
                         <>
-                            <div className="card-body" style={{ margin: '10px 0 10px 0', backgroundColor: '#0a1d30', borderRadius: '15px' }}>
+                            <div
+                                className="card-body"
+                                style={{
+                                    margin: "10px 0 10px 0",
+                                    backgroundColor: "#0a1d30",
+                                    borderRadius: "15px",
+                                }}
+                            >
                                 <h5 className="card-title">
                                     <span>
                                         Ranked Solo -
-                                        <span className={`${validarElo2(data.tier)}-font`}>
+                                        <span
+                                            className={`${validarElo2(
+                                                data.tier
+                                            )}-font`}
+                                        >
                                             {" "}
                                             {data.tier} {data.rank}
                                             <img
                                                 src={checkMiniCrest(data.tier)}
                                                 alt="rank"
-                                                style={{ width: '1.8rem', paddingBottom: '2px', marginLeft: '5px' }}
+                                                style={{
+                                                    width: "1.8rem",
+                                                    paddingBottom: "2px",
+                                                    marginLeft: "5px",
+                                                }}
                                             />
                                         </span>
                                     </span>
                                 </h5>
 
-                                <p style={{ fontSize: '18px', marginBottom: '5px' }}>
-                                    {data ? data.leaguePoints : dataFlex.tier} LP -{' '}
-                                    <span style={{ marginBottom: '0', color: "#2DAF7F" }}>
-                                        {data ? data.wins : dataFlex.wins}V </span>-
-                                    <span style={{ marginBottom: '0', color: "#ee5952" }}>
+                                <p
+                                    style={{
+                                        fontSize: "18px",
+                                        marginBottom: "5px",
+                                    }}
+                                >
+                                    {data ? data.leaguePoints : dataFlex.tier}{" "}
+                                    LP -{" "}
+                                    <span
+                                        style={{
+                                            marginBottom: "0",
+                                            color: "#2DAF7F",
+                                        }}
+                                    >
+                                        {data ? data.wins : dataFlex.wins}V{" "}
+                                    </span>
+                                    -
+                                    <span
+                                        style={{
+                                            marginBottom: "0",
+                                            color: "#ee5952",
+                                        }}
+                                    >
                                         {data ? data.losses : dataFlex.losses}L
                                     </span>
                                 </p>
@@ -219,7 +306,8 @@ const SummonerRank = ({ data, dataFlex, summData, name, allLoad, err, dataLive }
                                     <span>Tasa de Victoria </span>
                                     <span className={winrateColor}>
                                         {(
-                                            (data.wins / (data.wins + data.losses)) *
+                                            (data.wins /
+                                                (data.wins + data.losses)) *
                                             100
                                         ).toFixed(1)}
                                         %
@@ -233,26 +321,31 @@ const SummonerRank = ({ data, dataFlex, summData, name, allLoad, err, dataLive }
                                 </div>
                             </div>
                         </>
-                    }
-                    {dataFlex &&
+                    )}
+                    {dataFlex && (
                         <>
-                            <div className="container-data-rank" style={{ margin: 'auto' }}>
+                            <div
+                                className="container-data-rank"
+                                style={{ margin: "auto" }}
+                            >
                                 <img
                                     src={validarElo(dataFlex && dataFlex.tier)}
                                     className="card-img-top"
                                     alt="rank"
                                     style={{
                                         width: "16rem",
-                                        marginTop: '-120px',
-                                        marginBottom: '-50px',
+                                        marginTop: "-120px",
+                                        marginBottom: "-50px",
                                     }}
                                 />
                                 <img
                                     src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${summData.profileIconId}.png`}
-                                    className={validarElo2(dataFlex && dataFlex.tier)}
+                                    className={validarElo2(
+                                        dataFlex && dataFlex.tier
+                                    )}
                                     alt="..."
                                     style={{
-                                        position: 'absolute',
+                                        position: "absolute",
                                         width: "6.5rem",
                                         zoom: "0.83",
                                         margin: "auto",
@@ -262,36 +355,82 @@ const SummonerRank = ({ data, dataFlex, summData, name, allLoad, err, dataLive }
                                     }}
                                 />
                             </div>
-                            {dataFlex && !data &&
-                                <Link to={`/histories/${name}`}><button style={{ margin: '20px' }} type="button" className="btn btn-outline-info">Historial</button></Link>}
-                            <div className="card-body" style={{ margin: '10px 0 10px 0', backgroundColor: '#0a1d30', borderRadius: '15px' }}>
+                            {dataFlex && !data && (
+                                <Link to={`/histories/${name}`}>
+                                    <button
+                                        style={{ margin: "20px" }}
+                                        type="button"
+                                        className="btn btn-outline-info"
+                                    >
+                                        Historial
+                                    </button>
+                                </Link>
+                            )}
+                            <div
+                                className="card-body"
+                                style={{
+                                    margin: "10px 0 10px 0",
+                                    backgroundColor: "#0a1d30",
+                                    borderRadius: "15px",
+                                }}
+                            >
                                 <h5 className="card-title">
                                     <span>
                                         Ranked Flex -
-                                        <span className={`${validarElo2(dataFlex.tier)}-font`}>
+                                        <span
+                                            className={`${validarElo2(
+                                                dataFlex.tier
+                                            )}-font`}
+                                        >
                                             {" "}
                                             {dataFlex.tier} {dataFlex.rank}
                                             <img
-                                                src={checkMiniCrest(dataFlex.tier)}
+                                                src={checkMiniCrest(
+                                                    dataFlex.tier
+                                                )}
                                                 alt="rank"
-                                                style={{ width: '1.8rem', paddingBottom: '2px', marginLeft: '5px' }}
+                                                style={{
+                                                    width: "1.8rem",
+                                                    paddingBottom: "2px",
+                                                    marginLeft: "5px",
+                                                }}
                                             />
                                         </span>
                                     </span>
                                 </h5>
-                                <p style={{ fontSize: '18px', marginBottom: '5px' }}>
-                                    {dataFlex && dataFlex.leaguePoints} LP -{' '}
-                                    <span style={{ marginBottom: '0', color: "#2DAF7F" }}>
-                                        {dataFlex && dataFlex.wins}V </span>-
-                                    <span style={{ marginBottom: '0', color: "#ee5952" }}>
+                                <p
+                                    style={{
+                                        fontSize: "18px",
+                                        marginBottom: "5px",
+                                    }}
+                                >
+                                    {dataFlex && dataFlex.leaguePoints} LP -{" "}
+                                    <span
+                                        style={{
+                                            marginBottom: "0",
+                                            color: "#2DAF7F",
+                                        }}
+                                    >
+                                        {dataFlex && dataFlex.wins}V{" "}
+                                    </span>
+                                    -
+                                    <span
+                                        style={{
+                                            marginBottom: "0",
+                                            color: "#ee5952",
+                                        }}
+                                    >
                                         {dataFlex && dataFlex.losses}L
                                     </span>
                                 </p>
                                 <span>Tasa de Victoria </span>
                                 <span className={winrateColor}>
                                     {(
-                                        (dataFlex && dataFlex.wins / (dataFlex && dataFlex.wins + dataFlex.losses)) *
-                                        100
+                                        (dataFlex &&
+                                            dataFlex.wins /
+                                                (dataFlex &&
+                                                    dataFlex.wins +
+                                                        dataFlex.losses)) * 100
                                     ).toFixed(1)}
                                     %
                                 </span>
@@ -299,10 +438,9 @@ const SummonerRank = ({ data, dataFlex, summData, name, allLoad, err, dataLive }
                                 <div className="doughnut">
                                     <Doughnut data={dataChartFlex} />
                                 </div>
-
-
                             </div>
-                        </>}
+                        </>
+                    )}
                     {/* <a
                         href={`https://euw.op.gg/summoner/userName=${name}`}
                         target="_blank"
@@ -319,18 +457,18 @@ const SummonerRank = ({ data, dataFlex, summData, name, allLoad, err, dataLive }
                             }}
                         />
                     </a> */}
-                </div >
-                :
+                </div>
+            ) : (
                 <>
                     <Loader
                         type="TailSpin"
                         color="#00c0b1"
                         height={100}
                         width={100}
-                        style={{ marginTop: '100px' }}
+                        style={{ marginTop: "100px" }}
                     />
                 </>
-            }
+            )}
         </>
     );
 };

@@ -9,18 +9,25 @@ import { ImgSummUnrank } from "../UI/SummonerUnrankUI";
 import opgg from "../assets/img/opgg.png";
 import { checkLvl } from "../functions/checkLevelBorder";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHistory } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHistory } from "@fortawesome/free-solid-svg-icons";
 
 const SummonerUnrank = ({ name, summData, err, dataLive }) => {
-
-    const [version, setVersion] = useState('');
+    const [version, setVersion] = useState("");
     const historyUrl = useHistory();
 
-    const found = queueId.find(element => element.queueId === dataLive.gameQueueConfigId);
+    const found = queueId.find(
+        (element) => element.queueId === dataLive.gameQueueConfigId
+    );
 
-    const foundSummId = dataLive && dataLive.participants.find(element => element.summonerId === summData.id);
-    const foundChampName = foundSummId && champsId.find(element => element.champId === foundSummId.championId);
+    const foundSummId =
+        dataLive &&
+        dataLive.participants.find(
+            (element) => element.summonerId === summData.id
+        );
+    const foundChampName =
+        foundSummId &&
+        champsId.find((element) => element.champId === foundSummId.championId);
 
     useEffect(() => {
         const versionDataDdragon = async () => {
@@ -32,27 +39,28 @@ const SummonerUnrank = ({ name, summData, err, dataLive }) => {
             } catch (error) {
                 console.log(error);
             }
-        }
+        };
         versionDataDdragon();
     }, []);
 
     return (
         <>
-            <div className='container-data'>
-                <h2 className="card-title" style={{ marginTop: '30px' }}>
+            <div className="container-data">
+                <h2 className="card-title" style={{ marginTop: "30px" }}>
                     {summData.name}
                     <img
                         src={checkLvl(summData.summonerLevel)}
                         alt="borderLvl"
                         className="opgg"
                         style={{
-                            position: 'absolute',
+                            position: "absolute",
                             width: "4.8rem",
                             height: "4.8rem",
                             margin: "auto",
                             marginTop: "-12px",
                             zIndex: 1,
-                        }} />
+                        }}
+                    />
                     <img
                         src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${summData.profileIconId}.png`}
                         className="card-img-top"
@@ -71,33 +79,51 @@ const SummonerUnrank = ({ name, summData, err, dataLive }) => {
                     className="card-img-top"
                     alt="rank"
                 />
-                {found &&
+                {found && (
                     <p
                         onClick={() => {
                             historyUrl.push(`/livegame/${name}`);
                         }}
-                        style={{ backgroundColor: '#EE4142', width: 'max-content', margin: 'auto', marginTop: '10px', borderRadius: '5px', padding: '0px 5px', fontSize: '14px', fontWeight: 'bold', cursor: 'pointer' }}
+                        style={{
+                            backgroundColor: "#EE4142",
+                            width: "max-content",
+                            margin: "auto",
+                            marginTop: "10px",
+                            borderRadius: "5px",
+                            padding: "0px 5px",
+                            fontSize: "14px",
+                            fontWeight: "bold",
+                            cursor: "pointer",
+                        }}
                     >
-                        En partida - ({found && found.description}) - {foundChampName && foundChampName.name}
+                        En partida - ({found && found.description}) -{" "}
+                        {foundChampName && foundChampName.name}
                         <img
-                            src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${foundChampName && foundChampName.name}.png`}
+                            src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${
+                                foundChampName && foundChampName.name
+                            }.png`}
                             alt=""
-                            style={{ width: '1.5rem', borderRadius: '50%', margin: '1px 2px' }}
+                            style={{
+                                width: "1.5rem",
+                                borderRadius: "50%",
+                                margin: "1px 2px",
+                            }}
                         />
                     </p>
-                }
+                )}
                 <div className="card-body">
                     <h4>UNRANKED</h4>
                     <h5 className="card-title">
                         Nivel {summData.summonerLevel}
                     </h5>
-                    <div
-                        style={{ margin: '20px' }}
-                    >
+                    <div style={{ margin: "20px" }}>
                         <Link to={`/histories/${name}`}>
-                            <button style={{ marginBottom: '20px' }} type="button" className="btn btn-outline-info">
-                                Historial {' '}
-                                <FontAwesomeIcon icon={faHistory} />
+                            <button
+                                style={{ marginBottom: "20px" }}
+                                type="button"
+                                className="btn btn-outline-info"
+                            >
+                                Historial <FontAwesomeIcon icon={faHistory} />
                             </button>
                         </Link>
                     </div>
@@ -120,7 +146,7 @@ const SummonerUnrank = ({ name, summData, err, dataLive }) => {
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default SummonerUnrank
+export default SummonerUnrank;
