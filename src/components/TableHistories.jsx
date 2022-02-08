@@ -10,6 +10,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import minions from "../assets/img/icon_minions.png";
 import gold from "../assets/img/icon_gold.png";
 import damageDealt from "../assets/img/kills.png";
+import allItems from "../dataDragon/items.json";
 
 import {
     ImgChampAvatar,
@@ -131,6 +132,10 @@ const TableHistories = ({ name, gamesArray }) => {
         }
     };
 
+    const nameItem = (found) => {
+        return allItems.data[found].name;
+    };
+
     return (
         <>
             {gamesArray.length >= 10 ? (
@@ -228,6 +233,10 @@ const TableHistories = ({ name, gamesArray }) => {
                                                                         : `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${found[index].championName}.png`
                                                                 }
                                                                 alt="avatar"
+                                                                data-tip={
+                                                                    found[index]
+                                                                        .championName
+                                                                }
                                                             />
                                                         )}
                                                         {found && (
@@ -324,7 +333,11 @@ const TableHistories = ({ name, gamesArray }) => {
                                                                     index
                                                                 ].description}
                                                         </PTable>
-                                                        <p>
+                                                        <p
+                                                            data-tip={
+                                                                "Daño Realizado"
+                                                            }
+                                                        >
                                                             {found &&
                                                                 new Intl.NumberFormat(
                                                                     "es-Es"
@@ -357,6 +370,13 @@ const TableHistories = ({ name, gamesArray }) => {
                                                                             }.png`}
                                                                             alt="item"
                                                                             className="img-items"
+                                                                            data-tip={nameItem(
+                                                                                found &&
+                                                                                    found[
+                                                                                        index
+                                                                                    ]
+                                                                                        .item0
+                                                                            )}
                                                                         />
                                                                     </>
                                                                 )}
@@ -374,6 +394,13 @@ const TableHistories = ({ name, gamesArray }) => {
                                                                         }.png`}
                                                                         alt="item"
                                                                         className="img-items"
+                                                                        data-tip={nameItem(
+                                                                            found &&
+                                                                                found[
+                                                                                    index
+                                                                                ]
+                                                                                    .item1
+                                                                        )}
                                                                     />
                                                                 )}
                                                             {found &&
@@ -390,6 +417,13 @@ const TableHistories = ({ name, gamesArray }) => {
                                                                         }.png`}
                                                                         alt="item"
                                                                         className="img-items"
+                                                                        data-tip={nameItem(
+                                                                            found &&
+                                                                                found[
+                                                                                    index
+                                                                                ]
+                                                                                    .item2
+                                                                        )}
                                                                     />
                                                                 )}
                                                             {found &&
@@ -406,6 +440,13 @@ const TableHistories = ({ name, gamesArray }) => {
                                                                         }.png`}
                                                                         alt="item"
                                                                         className="img-items"
+                                                                        data-tip={nameItem(
+                                                                            found &&
+                                                                                found[
+                                                                                    index
+                                                                                ]
+                                                                                    .item3
+                                                                        )}
                                                                     />
                                                                 )}
                                                             {found &&
@@ -422,6 +463,13 @@ const TableHistories = ({ name, gamesArray }) => {
                                                                         }.png`}
                                                                         alt="item"
                                                                         className="img-items"
+                                                                        data-tip={nameItem(
+                                                                            found &&
+                                                                                found[
+                                                                                    index
+                                                                                ]
+                                                                                    .item4
+                                                                        )}
                                                                     />
                                                                 )}
                                                             {found &&
@@ -438,11 +486,20 @@ const TableHistories = ({ name, gamesArray }) => {
                                                                         }.png`}
                                                                         alt="item"
                                                                         className="img-items"
+                                                                        data-tip={nameItem(
+                                                                            found &&
+                                                                                found[
+                                                                                    index
+                                                                                ]
+                                                                                    .item5
+                                                                        )}
                                                                     />
                                                                 )}
                                                         </div>
                                                         <div className="kda-histories">
-                                                            <PNoMargin>
+                                                            <PNoMargin
+                                                                data-tip={"KDA"}
+                                                            >
                                                                 {`${
                                                                     found &&
                                                                     found[index]
@@ -458,7 +515,11 @@ const TableHistories = ({ name, gamesArray }) => {
                                                                 }`}
                                                             </PNoMargin>
                                                         </div>
-                                                        <PNoMargin>
+                                                        <PNoMargin
+                                                            data-tip={
+                                                                "Minions Totales"
+                                                            }
+                                                        >
                                                             {found &&
                                                                 found[index]
                                                                     .totalMinionsKilled +
@@ -474,7 +535,11 @@ const TableHistories = ({ name, gamesArray }) => {
                                                         </PNoMargin>
                                                     </td>
                                                     <td>
-                                                        <PGoldEarned>
+                                                        <PGoldEarned
+                                                            data-tip={
+                                                                "Oro Ganado"
+                                                            }
+                                                        >
                                                             {found &&
                                                                 new Intl.NumberFormat(
                                                                     "de-DE"
@@ -498,6 +563,9 @@ const TableHistories = ({ name, gamesArray }) => {
                                                             style={{
                                                                 margin: "0",
                                                             }}
+                                                            data-tip={
+                                                                "Duración"
+                                                            }
                                                         >
                                                             {timeString2[index]}
                                                         </p>
