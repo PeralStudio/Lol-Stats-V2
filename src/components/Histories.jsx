@@ -69,8 +69,8 @@ const Histories = ({ historyGames, summData, data }) => {
                     >
                         <img
                             src={checkLvl(summData.summonerLevel)}
-                            alt="borderLvl"
-                            className="opgg"
+                            alt="border-level"
+                            className="border-level"
                             style={{
                                 position: "absolute",
                                 width: "4.8rem",
@@ -79,11 +79,14 @@ const Histories = ({ historyGames, summData, data }) => {
                                 marginTop: "-12px",
                                 zIndex: 1,
                             }}
+                            data-tip={
+                                summData && `Nivel ${summData.summonerLevel}`
+                            }
                         />
                         <img
                             src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${summData.profileIconId}.png`}
                             className="card-img-top"
-                            alt="..."
+                            alt="icon-summoner"
                             style={{
                                 width: "4rem",
                                 zoom: "0.8",
