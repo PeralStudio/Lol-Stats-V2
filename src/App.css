@@ -50,7 +50,7 @@
 }
 
 .red:hover {
-    background-color: #52120f3f;
+    background-color: rgba(139, 32, 32, 0.589);
 }
 
 .green {
@@ -58,7 +58,7 @@
 }
 
 .green:hover {
-    background-color: #07411b3a;
+    background-color: rgba(22, 109, 22, 0.582);
 }
 
 .iron {
@@ -545,7 +545,7 @@ td {
 
     .mini-crest {
         width: 2rem !important;
-        margin-right: 20px;
+        margin-right: 0px;
     }
 }
 
@@ -569,7 +569,7 @@ td {
 
     .mini-crest {
         width: 2rem !important;
-        margin-right: 20px;
+        margin-right: 0px;
     }
 }
 
@@ -628,6 +628,6 @@ td {
 
     .mini-crest {
         width: 1.5rem !important;
-        margin-right: 20px;
+        margin-right: 0px;
     }
 }
