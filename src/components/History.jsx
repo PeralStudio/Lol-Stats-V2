@@ -194,13 +194,35 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                 key={index}
                                             >
                                                 <td
-                                                    className="first-td"
                                                     style={{
                                                         borderLeft: `6px solid ${colorWinLose(
                                                             index
                                                         )}`,
+                                                        verticalAlign: "middle",
                                                     }}
                                                 >
+                                                    <img
+                                                        src={checkMiniCrest(
+                                                            dataRankSummoners[
+                                                                index
+                                                            ]?.tier == undefined
+                                                                ? "UNRANKED"
+                                                                : dataRankSummoners[
+                                                                      index
+                                                                  ]?.tier
+                                                        )}
+                                                        alt="rank"
+                                                        className="mini-crest"
+                                                        data-tip={
+                                                            dataRankSummoners[
+                                                                index
+                                                            ]?.tier
+                                                                ? ` ${dataRankSummoners[index]?.tier} ${dataRankSummoners[index]?.rank} - ${dataRankSummoners[index]?.leaguePoints} LP`
+                                                                : "UNRANKED"
+                                                        }
+                                                    />
+                                                </td>
+                                                <td className="first-td">
                                                     <div>
                                                         <div
                                                             className={`Level ${colorWinLose(
@@ -276,32 +298,11 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                         style={{
                                                             display: "flex",
                                                             justifyContent:
-                                                                "start",
+                                                                "center",
                                                             alignItems:
                                                                 "center",
                                                         }}
                                                     >
-                                                        <img
-                                                            src={checkMiniCrest(
-                                                                dataRankSummoners[
-                                                                    index
-                                                                ]?.tier ==
-                                                                    undefined
-                                                                    ? "UNRANKED"
-                                                                    : dataRankSummoners[
-                                                                          index
-                                                                      ]?.tier
-                                                            )}
-                                                            alt="rank"
-                                                            className="mini-crest"
-                                                            data-tip={
-                                                                dataRankSummoners[
-                                                                    index
-                                                                ]?.tier
-                                                                    ? ` ${dataRankSummoners[index]?.tier} ${dataRankSummoners[index]?.rank} - ${dataRankSummoners[index]?.leaguePoints} LP`
-                                                                    : "UNRANKED"
-                                                            }
-                                                        />
                                                         {
                                                             participants.summonerName
                                                         }
