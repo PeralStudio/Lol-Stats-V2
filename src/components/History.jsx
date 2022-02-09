@@ -15,13 +15,10 @@ import Loader from "react-loader-spinner";
 import { queueId } from "../dataDragon/queueid";
 import { summonerSpells } from "../dataDragon/generalData";
 import { checkMiniCrest } from "../functions/checkLevelBorder";
+import allItems from "../dataDragon/items.json";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faChartBar,
-    faChevronLeft,
-    faHistory,
-} from "@fortawesome/free-solid-svg-icons";
+import { faChartBar, faHistory } from "@fortawesome/free-solid-svg-icons";
 
 dayjs.extend(relativeTime);
 dayjs.extend(updateLocale);
@@ -127,6 +124,10 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
         }
     }, [history]);
 
+    const nameItem = (found) => {
+        return allItems.data[found].name;
+    };
+
     return (
         <>
             {history ? (
@@ -190,9 +191,6 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                 className={`${colorWinLose(
                                                     index
                                                 )}${yourStats(index)}`}
-                                                data-tip={
-                                                    participants.summonerName
-                                                }
                                                 key={index}
                                             >
                                                 <td
@@ -217,6 +215,13 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                             )}
                                                             alt="rank"
                                                             className="mini-crest"
+                                                            data-tip={
+                                                                dataRankSummoners[
+                                                                    index
+                                                                ]?.tier
+                                                                    ? ` ${dataRankSummoners[index]?.tier} ${dataRankSummoners[index]?.rank} - ${dataRankSummoners[index]?.leaguePoints} LP`
+                                                                    : "UNRANKED"
+                                                            }
                                                         />
                                                         <div
                                                             className={`Level ${colorWinLose(
@@ -295,13 +300,16 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                     </span>
                                                 </td>
                                                 <td className="common-td">
-                                                    {`${participants.kills}/${participants.deaths}/${participants.assists}`}
+                                                    <span
+                                                        data-tip={"KDA"}
+                                                    >{`${participants.kills}/${participants.deaths}/${participants.assists}`}</span>
                                                     <p
                                                         style={{
                                                             margin: "0",
                                                             fontSize: ".7rem",
                                                             fontWeight: "100",
                                                         }}
+                                                        data-tip={"KDA"}
                                                     >
                                                         {(
                                                             (participants.kills +
@@ -316,8 +324,14 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                 </td>
                                                 <td className="common-td">
                                                     <div>
-                                                        {participants.totalMinionsKilled +
-                                                            participants.neutralMinionsKilled}
+                                                        <span
+                                                            data-tip={
+                                                                "Total súbditos asesinados"
+                                                            }
+                                                        >
+                                                            {participants.totalMinionsKilled +
+                                                                participants.neutralMinionsKilled}
+                                                        </span>
                                                         <img
                                                             src={minions}
                                                             alt="Champ"
@@ -339,6 +353,9 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                             fontWeight: "100",
                                                             marginTop: "-2px",
                                                         }}
+                                                        data-tip={
+                                                            "Súbditos asesinados por minuto"
+                                                        }
                                                     >
                                                         (
                                                         {(
@@ -353,7 +370,10 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                         )
                                                     </p>
                                                 </td>
-                                                <td className="common-td">
+                                                <td
+                                                    className="common-td"
+                                                    data-tip={"Daño Realizado"}
+                                                >
                                                     {new Intl.NumberFormat(
                                                         "de-DE"
                                                     ).format(
@@ -374,7 +394,10 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                         textAlign: "end",
                                                     }}
                                                 >
-                                                    <div className="gold-earned">
+                                                    <div
+                                                        className="gold-earned"
+                                                        data-tip={"Oro Ganado"}
+                                                    >
                                                         {new Intl.NumberFormat(
                                                             "de-DE"
                                                         ).format(
@@ -401,6 +424,9 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                                     marginTop:
                                                                         "-2px",
                                                                 }}
+                                                                data-tip={nameItem(
+                                                                    participants.item0
+                                                                )}
                                                             />
                                                         )}
                                                         {participants.item1 !==
@@ -413,6 +439,9 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                                     marginTop:
                                                                         "-2px",
                                                                 }}
+                                                                data-tip={nameItem(
+                                                                    participants.item1
+                                                                )}
                                                             />
                                                         )}
                                                         {participants.item2 !==
@@ -425,6 +454,9 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                                     marginTop:
                                                                         "-2px",
                                                                 }}
+                                                                data-tip={nameItem(
+                                                                    participants.item2
+                                                                )}
                                                             />
                                                         )}
                                                         {participants.item3 !==
@@ -437,6 +469,9 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                                     marginTop:
                                                                         "-2px",
                                                                 }}
+                                                                data-tip={nameItem(
+                                                                    participants.item3
+                                                                )}
                                                             />
                                                         )}
                                                         {participants.item4 !==
@@ -449,6 +484,9 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                                     marginTop:
                                                                         "-2px",
                                                                 }}
+                                                                data-tip={nameItem(
+                                                                    participants.item4
+                                                                )}
                                                             />
                                                         )}
                                                         {participants.item5 !==
@@ -461,6 +499,9 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                                     marginTop:
                                                                         "-2px",
                                                                 }}
+                                                                data-tip={nameItem(
+                                                                    participants.item5
+                                                                )}
                                                             />
                                                         )}
                                                     </div>

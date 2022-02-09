@@ -517,7 +517,7 @@ const TableHistories = ({ name, gamesArray }) => {
                                                         </div>
                                                         <PNoMargin
                                                             data-tip={
-                                                                "Minions Totales"
+                                                                "Total súbditos asesinados"
                                                             }
                                                         >
                                                             {found &&
