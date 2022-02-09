@@ -301,11 +301,11 @@
 }
 
 .table > :not(caption) > * > * {
-    padding: 0.6rem 3em !important;
+    padding: 0.6rem 4.5em !important;
 }
 
 td {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 .win-green {
@@ -440,11 +440,6 @@ td {
     justify-content: center;
 }
 
-.mini-crest {
-    width: 2.5rem !important;
-    margin-right: 20px;
-}
-
 .search {
     width: 100%;
     position: relative;
@@ -516,14 +511,19 @@ td {
     color: rgb(175, 33, 33);
 }
 
+.mini-crest {
+    width: 2.5rem !important;
+    margin-right: 10px;
+}
+
 @media only screen and (max-width: 920px) {
     .table > :not(caption) > * > * {
-        padding: 0.6rem 1.6em !important;
+        padding: 0.6rem 3em !important;
     }
 
     .first-td {
         vertical-align: middle;
-        font-size: 0.6rem;
+        font-size: 0.8rem;
     }
 
     .img-items {
@@ -551,7 +551,7 @@ td {
 
 @media only screen and (max-width: 720px) {
     .table > :not(caption) > * > * {
-        padding: 0.6rem 1.2em !important;
+        padding: 0.6rem 2em !important;
     }
 
     .img-items {
@@ -573,7 +573,7 @@ td {
     }
 }
 
-@media only screen and (max-width: 520px) {
+@media only screen and (max-width: 620px) {
     .table > :not(caption) > * > * {
         padding: 0.2rem 0.2em !important;
     }
