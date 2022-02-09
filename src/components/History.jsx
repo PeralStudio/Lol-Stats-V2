@@ -202,27 +202,6 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                     }}
                                                 >
                                                     <div>
-                                                        <img
-                                                            src={checkMiniCrest(
-                                                                dataRankSummoners[
-                                                                    index
-                                                                ]?.tier ==
-                                                                    undefined
-                                                                    ? "UNRANKED"
-                                                                    : dataRankSummoners[
-                                                                          index
-                                                                      ]?.tier
-                                                            )}
-                                                            alt="rank"
-                                                            className="mini-crest"
-                                                            data-tip={
-                                                                dataRankSummoners[
-                                                                    index
-                                                                ]?.tier
-                                                                    ? ` ${dataRankSummoners[index]?.tier} ${dataRankSummoners[index]?.rank} - ${dataRankSummoners[index]?.leaguePoints} LP`
-                                                                    : "UNRANKED"
-                                                            }
-                                                        />
                                                         <div
                                                             className={`Level ${colorWinLose(
                                                                 index
@@ -293,7 +272,36 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                             {/* <ReactTooltip place="top" effect='solid' /> */}
                                                         </div>
                                                     </div>
-                                                    <span>
+                                                    <span
+                                                        style={{
+                                                            display: "flex",
+                                                            justifyContent:
+                                                                "start",
+                                                            alignItems:
+                                                                "center",
+                                                        }}
+                                                    >
+                                                        <img
+                                                            src={checkMiniCrest(
+                                                                dataRankSummoners[
+                                                                    index
+                                                                ]?.tier ==
+                                                                    undefined
+                                                                    ? "UNRANKED"
+                                                                    : dataRankSummoners[
+                                                                          index
+                                                                      ]?.tier
+                                                            )}
+                                                            alt="rank"
+                                                            className="mini-crest"
+                                                            data-tip={
+                                                                dataRankSummoners[
+                                                                    index
+                                                                ]?.tier
+                                                                    ? ` ${dataRankSummoners[index]?.tier} ${dataRankSummoners[index]?.rank} - ${dataRankSummoners[index]?.leaguePoints} LP`
+                                                                    : "UNRANKED"
+                                                            }
+                                                        />
                                                         {
                                                             participants.summonerName
                                                         }
@@ -323,6 +331,27 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                     </p>
                                                 </td>
                                                 <td className="common-td">
+                                                    <span
+                                                        className="common-td"
+                                                        data-tip={
+                                                            "Daño Realizado"
+                                                        }
+                                                    >
+                                                        {new Intl.NumberFormat(
+                                                            "de-DE"
+                                                        ).format(
+                                                            participants.totalDamageDealtToChampions
+                                                        )}
+                                                        <img
+                                                            src={damageDealt}
+                                                            alt="damage"
+                                                            style={{
+                                                                width: ".8rem",
+                                                                marginTop:
+                                                                    "-2px",
+                                                            }}
+                                                        />
+                                                    </span>
                                                     <div>
                                                         <span
                                                             data-tip={
@@ -339,8 +368,6 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                                 width: ".8rem",
                                                                 marginTop:
                                                                     "0px",
-                                                                marginLeft:
-                                                                    "6px",
                                                             }}
                                                         />
                                                     </div>
@@ -370,24 +397,7 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
                                                         )
                                                     </p>
                                                 </td>
-                                                <td
-                                                    className="common-td"
-                                                    data-tip={"Daño Realizado"}
-                                                >
-                                                    {new Intl.NumberFormat(
-                                                        "de-DE"
-                                                    ).format(
-                                                        participants.totalDamageDealtToChampions
-                                                    )}
-                                                    <img
-                                                        src={damageDealt}
-                                                        alt="damage"
-                                                        style={{
-                                                            width: ".8rem",
-                                                            marginTop: "-2px",
-                                                        }}
-                                                    />
-                                                </td>
+
                                                 <td
                                                     style={{
                                                         verticalAlign: "middle",
