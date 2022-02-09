@@ -14,13 +14,13 @@ export const queueId = [
     {
         queueId: 4,
         map: "Grieta del invocador",
-        description: "5v5 Ranked",
+        description: "Ranked Solo",
         notes: "Deprecated in favor of queueId 420",
     },
     {
         queueId: 6,
         map: "Grieta del invocador",
-        description: "5v5 Ranked",
+        description: "Ranked Solo",
         notes: "Game mode deprecated",
     },
     {
@@ -92,7 +92,7 @@ export const queueId = [
     {
         queueId: 42,
         map: "Grieta del invocador",
-        description: "5v5 Ranked",
+        description: "Ranked Solo",
         notes: "Game mode deprecated",
     },
     {
@@ -254,7 +254,7 @@ export const queueId = [
     {
         queueId: 420,
         map: "Grieta del invocador",
-        description: "5v5 Ranked",
+        description: "Ranked Solo",
         notes: null,
     },
     {
