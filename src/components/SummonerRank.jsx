@@ -39,13 +39,16 @@ const SummonerRank = ({
     console.log("data", data);
     console.log("dataFlex", dataFlex);
 
-    const foundSummId =
-        dataLive &&
-        dataLive.participants.find((element) =>
-            element.summonerId === data
-                ? data?.summonerId
-                : dataFlex?.summonerId
-        );
+    const foundSummId = data
+        ? dataLive &&
+          dataLive.participants.find(
+              (element) => element.summonerId === data?.summonerId
+          )
+        : dataLive &&
+          dataLive.participants.find(
+              (element) => element.summonerId === dataFlex?.summonerId
+          );
+
     const foundChampName =
         foundSummId &&
         champsId.find((element) => element.champId === foundSummId.championId);
@@ -379,49 +382,55 @@ const SummonerRank = ({
                                     }}
                                 />
                             </div>
-                            {dataFlex && (
-                                <p
-                                    onClick={() => {
-                                        historyUrl.push(`/livegame/${name}`);
-                                    }}
-                                    style={{
-                                        backgroundColor: "#EE4142",
-                                        width: "max-content",
-                                        margin: "auto",
-                                        marginTop: "10px",
-                                        borderRadius: "5px",
-                                        padding: "0px 5px",
-                                        fontSize: "14px",
-                                        fontWeight: "bold",
-                                        cursor: "pointer",
-                                    }}
-                                >
-                                    En partida - ({found && found.description})
-                                    - {foundChampName && foundChampName.name}{" "}
-                                    <img
-                                        src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${
-                                            foundChampName &&
-                                            foundChampName.name
-                                        }.png`}
-                                        alt=""
-                                        style={{
-                                            width: "1.5rem",
-                                            borderRadius: "50%",
-                                            margin: "1px 2px",
-                                        }}
-                                    />
-                                </p>
-                            )}
+                            {/* {dataFlex ? (
+                                
+                            ) : null} */}
                             {dataFlex && !data && (
-                                <Link to={`/histories/${name}`}>
-                                    <button
-                                        style={{ margin: "20px" }}
-                                        type="button"
-                                        className="btn btn-outline-info"
+                                <>
+                                    <Link to={`/histories/${name}`}>
+                                        <button
+                                            style={{ margin: "20px" }}
+                                            type="button"
+                                            className="btn btn-outline-info"
+                                        >
+                                            Historial
+                                        </button>
+                                    </Link>
+                                    <p
+                                        onClick={() => {
+                                            historyUrl.push(
+                                                `/livegame/${name}`
+                                            );
+                                        }}
+                                        style={{
+                                            backgroundColor: "#EE4142",
+                                            width: "max-content",
+                                            margin: "auto",
+                                            marginTop: "10px",
+                                            borderRadius: "5px",
+                                            padding: "0px 5px",
+                                            fontSize: "14px",
+                                            fontWeight: "bold",
+                                            cursor: "pointer",
+                                        }}
                                     >
-                                        Historial
-                                    </button>
-                                </Link>
+                                        En partida - (
+                                        {found && found.description}) -{" "}
+                                        {foundChampName && foundChampName.name}{" "}
+                                        <img
+                                            src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${
+                                                foundChampName &&
+                                                foundChampName.name
+                                            }.png`}
+                                            alt=""
+                                            style={{
+                                                width: "1.5rem",
+                                                borderRadius: "50%",
+                                                margin: "1px 2px",
+                                            }}
+                                        />
+                                    </p>
+                                </>
                             )}
                             <div
                                 className="card-body"
