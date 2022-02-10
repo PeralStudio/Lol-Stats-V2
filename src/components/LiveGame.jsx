@@ -9,9 +9,10 @@ import { queueId } from "../dataDragon/queueid";
 
 import { PNoMargin } from "../UI/TableHistoriesUi";
 import vsImage from "../assets/img/vs.png";
+import ReactTooltip from "react-tooltip";
 import { validarElo2 } from "../functions/ValidarElo";
 import { summonerSpells } from "../dataDragon/generalData";
-import { checkMiniCrest } from "../functions/checkLevelBorder";
+import { checkLvl, checkMiniCrest } from "../functions/checkLevelBorder";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
@@ -172,7 +173,7 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                             style={{ width: "8rem" }}
                                         />
                                         <div>
-                                            <img
+                                            {/* <img
                                                 src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${data.profileIconId}.png`}
                                                 style={{
                                                     width: "3.5rem",
@@ -180,6 +181,34 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                                     marginTop: "-105px",
                                                 }}
                                                 className="gold"
+                                            /> */}
+                                            <img
+                                                src={checkLvl(summLevel[index])}
+                                                alt="borderLvl"
+                                                className="opgg"
+                                                style={{
+                                                    position: "absolute",
+                                                    width: "4.8rem",
+                                                    height: "4.8rem",
+                                                    margin: "auto",
+                                                    marginTop: "-90px",
+                                                    zIndex: 1,
+                                                }}
+                                                data-tip={`Nivel ${summLevel[index]}`}
+                                            />
+                                            {console.log(summLevel)}
+                                            <img
+                                                src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${data.profileIconId}.png`}
+                                                className="card-img-top"
+                                                alt="..."
+                                                style={{
+                                                    width: "4rem",
+                                                    zoom: "0.7",
+                                                    margin: "auto",
+                                                    borderRadius: "50%",
+                                                    marginLeft: "23px",
+                                                    marginTop: "-190px",
+                                                }}
                                             />
                                         </div>
                                         <div
@@ -242,6 +271,11 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                                         width: "2.5rem",
                                                         marginBottom: "-10px",
                                                     }}
+                                                    data-tip={
+                                                        dataRankSummoners[index]
+                                                            ?.tier &&
+                                                        ` ${dataRankSummoners[index]?.tier} ${dataRankSummoners[index]?.rank} - ${dataRankSummoners[index]?.leaguePoints} LP`
+                                                    }
                                                 />
                                             ) : (
                                                 <img
@@ -251,6 +285,7 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                                         width: "2rem",
                                                         marginBottom: "-10px",
                                                     }}
+                                                    data-tip={"UNRANKED"}
                                                 />
                                             )}
                                         </div>
@@ -299,7 +334,7 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                             style={{ width: "8rem" }}
                                         />
                                         <div>
-                                            <img
+                                            {/* <img
                                                 src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${data.profileIconId}.png`}
                                                 style={{
                                                     width: "3.5rem",
@@ -307,6 +342,34 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                                     marginTop: "-105px",
                                                 }}
                                                 className="gold"
+                                            /> */}
+                                            <img
+                                                src={checkLvl(summLevel[index])}
+                                                alt="borderLvl"
+                                                className="opgg"
+                                                style={{
+                                                    position: "absolute",
+                                                    width: "4.8rem",
+                                                    height: "4.8rem",
+                                                    margin: "auto",
+                                                    marginTop: "-90px",
+                                                    zIndex: 1,
+                                                }}
+                                                data-tip={`Nivel ${summLevel[index]}`}
+                                            />
+                                            {console.log(summLevel)}
+                                            <img
+                                                src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${data.profileIconId}.png`}
+                                                className="card-img-top"
+                                                alt="..."
+                                                style={{
+                                                    width: "4rem",
+                                                    zoom: "0.7",
+                                                    margin: "auto",
+                                                    borderRadius: "50%",
+                                                    marginLeft: "23px",
+                                                    marginTop: "-190px",
+                                                }}
                                             />
                                         </div>
                                         <div
@@ -369,6 +432,11 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                                         width: "2.5rem",
                                                         marginBottom: "-10px",
                                                     }}
+                                                    data-tip={
+                                                        dataRankSummoners[index]
+                                                            ?.tier &&
+                                                        ` ${dataRankSummoners[index]?.tier} ${dataRankSummoners[index]?.rank} - ${dataRankSummoners[index]?.leaguePoints} LP`
+                                                    }
                                                 />
                                             ) : (
                                                 <img
@@ -378,6 +446,7 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                                         width: "2rem",
                                                         marginBottom: "-10px",
                                                     }}
+                                                    data-tip={"UNRANKED"}
                                                 />
                                             )}
                                         </div>
@@ -386,6 +455,7 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                             </>
                         ))}
                     </div>
+                    <ReactTooltip />
                 </div>
             ) : (
                 <>
