@@ -22,6 +22,7 @@
 
 .card-title {
     margin-bottom: 0rem !important;
+    font-size: 1.7rem !important;
 }
 
 .circleDiv2 {
@@ -516,6 +517,16 @@ td {
     margin-right: -60px;
 }
 
+.livegame-row {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.img-loading {
+    width: 8rem;
+}
+
 @media only screen and (max-width: 920px) {
     .table > :not(caption) > * > * {
         padding: 0.6rem 2.5em !important;
@@ -570,6 +581,12 @@ td {
     .mini-crest {
         width: 2.5rem !important;
         margin-right: -30px;
+    }
+
+    .livegame-row {
+        margin-top: 0.5rem;
+        display: block;
+        margin: 0.5rem;
     }
 }
 
