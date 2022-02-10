@@ -19,6 +19,7 @@ import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 const LiveGame = ({ dataLive, getDataPlayer }) => {
     const [dataRankSummoners, setDataRankSummoners] = useState([]);
+    const [dataRankFlex, setDataRankFlex] = useState([]);
     const [dataUnrankSummoners, setDataUnrankSummoners] = useState([]);
     const [version, setVersion] = useState("");
 
@@ -76,6 +77,7 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
     const found = queueId.find(
         (element) => element.queueId === dataLive.gameQueueConfigId
     );
+
     const found2 = dataLive.gameType === "CUSTOM_GAME" ? "Personalizada" : "";
     const gameStart =
         dayjs(dataLive.gameStartTime).fromNow() == "hace 52 años"
@@ -94,9 +96,16 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
             const foundRankedSolo = res[i].data.find(
                 (element) => element.queueType === "RANKED_SOLO_5x5"
             );
+            const foundRankedFlex = res[i].data.find(
+                (element) => element.queueType === "RANKED_FLEX_SR"
+            );
             setDataRankSummoners((dataRankSummoners) => [
                 ...dataRankSummoners,
                 foundRankedSolo,
+            ]);
+            setDataRankFlex((dataRankFlex) => [
+                ...dataRankFlex,
+                foundRankedFlex,
             ]);
             i++;
 
@@ -135,6 +144,7 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                         </button>
                     </Link>
                     <h3>{found ? found.description : found2}</h3>
+                    {found && <h6>{found?.map}</h6>}
                     <p>Empezó {gameStart}</p>
                     <div className="livegame-row">
                         {dataSumm.map((data, index) => (
