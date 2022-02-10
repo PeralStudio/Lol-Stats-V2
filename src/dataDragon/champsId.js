@@ -122,6 +122,7 @@ export const champsId = [
     { champId: 201, name: "Braum" },
     { champId: 202, name: "Jhin" },
     { champId: 203, name: "Kindred" },
+    { champId: 221, name: "Zeri" },
     { champId: 222, name: "Jinx" },
     { champId: 223, name: "TahmKench" },
     { champId: 234, name: "Viego" },
