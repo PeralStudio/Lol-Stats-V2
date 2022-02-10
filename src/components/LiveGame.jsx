@@ -136,13 +136,7 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                     </Link>
                     <h3>{found ? found.description : found2}</h3>
                     <p>Empezó {gameStart}</p>
-                    <div
-                        style={{
-                            marginTop: ".5rem",
-                            display: "flex",
-                            justifyContent: "center",
-                        }}
-                    >
+                    <div className="livegame-row">
                         {dataSumm.map((data, index) => (
                             <>
                                 {index <= 4 && (
@@ -169,10 +163,11 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                         }
                                     >
                                         <img
-                                            src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${foundChampId[index].name}_0.jpg`}
-                                            style={{ width: "8rem" }}
+                                            src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${foundChampId[index]?.name}_0.jpg`}
+                                            // style={{ width: "8rem" }}
+                                            className="img-loading"
                                         />
-                                        <div>
+                                        <div style={{ marginRight: "15px" }}>
                                             {/* <img
                                                 src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${data.profileIconId}.png`}
                                                 style={{
@@ -196,7 +191,6 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                                 }}
                                                 data-tip={`Nivel ${summLevel[index]}`}
                                             />
-                                            {console.log(summLevel)}
                                             <img
                                                 src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${data.profileIconId}.png`}
                                                 className="card-img-top"
@@ -250,7 +244,9 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                                 marginTop: "10px",
                                             }}
                                         >
-                                            <span>{data.summonerName}</span>
+                                            <span style={{ fontSize: "15px" }}>
+                                                {data.summonerName}
+                                            </span>
                                             <PNoMargin
                                                 style={{ fontSize: ".7rem" }}
                                             >
@@ -297,13 +293,7 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                     <div>
                         <img src={vsImage} style={{ width: "4rem" }} />
                     </div>
-                    <div
-                        style={{
-                            marginTop: ".2rem",
-                            display: "flex",
-                            justifyContent: "center",
-                        }}
-                    >
+                    <div className="livegame-row">
                         {dataSumm.map((data, index) => (
                             <>
                                 {index >= 5 && (
@@ -331,9 +321,9 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                     >
                                         <img
                                             src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${foundChampId[index].name}_0.jpg`}
-                                            style={{ width: "8rem" }}
+                                            className="img-loading"
                                         />
-                                        <div>
+                                        <div style={{ marginRight: "15px" }}>
                                             {/* <img
                                                 src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${data.profileIconId}.png`}
                                                 style={{
@@ -357,7 +347,6 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                                 }}
                                                 data-tip={`Nivel ${summLevel[index]}`}
                                             />
-                                            {console.log(summLevel)}
                                             <img
                                                 src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${data.profileIconId}.png`}
                                                 className="card-img-top"
@@ -411,7 +400,9 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                                 marginTop: "10px",
                                             }}
                                         >
-                                            <span>{data.summonerName}</span>
+                                            <span style={{ fontSize: "15px" }}>
+                                                {data.summonerName}
+                                            </span>
                                             <PNoMargin
                                                 style={{ fontSize: ".7rem" }}
                                             >

@@ -133,7 +133,7 @@ const TableHistories = ({ name, gamesArray }) => {
     };
 
     const nameItem = (found) => {
-        return allItems.data[found].name;
+        return allItems.data[found]?.name;
     };
 
     return (
