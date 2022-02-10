@@ -35,10 +35,16 @@ const SummonerRank = ({
     // const data = data.find(element => element.queueType === 'RANKED_SOLO_5x5');
     // const foundRankedFlex = data.find(element => element.queueType === 'RANKED_FLEX_SR');
 
+    console.log("dataLive", dataLive);
+    console.log("data", data);
+    console.log("dataFlex", dataFlex);
+
     const foundSummId =
         dataLive &&
-        dataLive.participants.find(
-            (element) => element.summonerId === data.summonerId
+        dataLive.participants.find((element) =>
+            element.summonerId === data
+                ? data?.summonerId
+                : dataFlex?.summonerId
         );
     const foundChampName =
         foundSummId &&
@@ -90,7 +96,7 @@ const SummonerRank = ({
         ],
     };
 
-    const marginOfTier = () => {
+    const marginOfTierRankSolo = () => {
         if (data && data.tier === "CHALLENGER") {
             return "80px";
         } else if (data && data.tier === "GRANDMASTER") {
@@ -104,11 +110,29 @@ const SummonerRank = ({
         }
     };
 
+    const marginOfTier = (dataRank) => {
+        if (dataRank && dataRank.tier === "CHALLENGER") {
+            return "80px";
+        } else if (dataRank && dataRank.tier === "GRANDMASTER") {
+            return "70px";
+        } else if (dataRank && dataRank.tier === "MASTER") {
+            return "50px";
+        } else if (dataRank && dataRank.tier === "DIAMOND") {
+            return "30px";
+        } else {
+            return "0px";
+        }
+    };
+
     return (
         <>
             {allLoad ? (
                 <div className="container-data">
-                    <div style={{ marginBottom: marginOfTier() }}>
+                    <div
+                        style={{
+                            marginBottom: marginOfTier(data ? data : dataFlex),
+                        }}
+                    >
                         <h2
                             className="card-title"
                             style={{ marginTop: "30px" }}
@@ -239,7 +263,6 @@ const SummonerRank = ({
                             </Link>
                         </>
                     )}
-
                     {data && (
                         <>
                             <div
@@ -251,12 +274,13 @@ const SummonerRank = ({
                                 }}
                             >
                                 <h5 className="card-title">
-                                    <span>
+                                    <span style={{ fontSize: "1.1rem" }}>
                                         Ranked Solo -
                                         <span
                                             className={`${validarElo2(
                                                 data.tier
                                             )}-font`}
+                                            style={{ fontSize: "1.3rem" }}
                                         >
                                             {" "}
                                             {data.tier} {data.rank}
@@ -355,6 +379,39 @@ const SummonerRank = ({
                                     }}
                                 />
                             </div>
+                            {dataFlex && (
+                                <p
+                                    onClick={() => {
+                                        historyUrl.push(`/livegame/${name}`);
+                                    }}
+                                    style={{
+                                        backgroundColor: "#EE4142",
+                                        width: "max-content",
+                                        margin: "auto",
+                                        marginTop: "10px",
+                                        borderRadius: "5px",
+                                        padding: "0px 5px",
+                                        fontSize: "14px",
+                                        fontWeight: "bold",
+                                        cursor: "pointer",
+                                    }}
+                                >
+                                    En partida - ({found && found.description})
+                                    - {foundChampName && foundChampName.name}{" "}
+                                    <img
+                                        src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${
+                                            foundChampName &&
+                                            foundChampName.name
+                                        }.png`}
+                                        alt=""
+                                        style={{
+                                            width: "1.5rem",
+                                            borderRadius: "50%",
+                                            margin: "1px 2px",
+                                        }}
+                                    />
+                                </p>
+                            )}
                             {dataFlex && !data && (
                                 <Link to={`/histories/${name}`}>
                                     <button
@@ -375,12 +432,13 @@ const SummonerRank = ({
                                 }}
                             >
                                 <h5 className="card-title">
-                                    <span>
+                                    <span style={{ fontSize: "1.1rem" }}>
                                         Ranked Flex -
                                         <span
                                             className={`${validarElo2(
                                                 dataFlex.tier
                                             )}-font`}
+                                            style={{ fontSize: "1.3rem" }}
                                         >
                                             {" "}
                                             {dataFlex.tier} {dataFlex.rank}
