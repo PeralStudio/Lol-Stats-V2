@@ -35,10 +35,6 @@ const SummonerRank = ({
     // const data = data.find(element => element.queueType === 'RANKED_SOLO_5x5');
     // const foundRankedFlex = data.find(element => element.queueType === 'RANKED_FLEX_SR');
 
-    console.log("dataLive", dataLive);
-    console.log("data", data);
-    console.log("dataFlex", dataFlex);
-
     const foundSummId = data
         ? dataLive &&
           dataLive.participants.find(
