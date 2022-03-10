@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import dayjs from "dayjs";
@@ -11,6 +11,8 @@ import minions from "../assets/img/icon_minions.png";
 import gold from "../assets/img/icon_gold.png";
 import damageDealt from "../assets/img/kills.png";
 import allItems from "../dataDragon/items.json";
+
+import Paginations from "../hooks/Pagination";
 
 import {
     ImgChampAvatar,
@@ -26,6 +28,26 @@ import { summonerSpells } from "../dataDragon/generalData";
 const TableHistories = ({ name, gamesArray }) => {
     const [version, setVersion] = useState("");
     const history = useHistory();
+
+    const [ready, setReady] = useState(false);
+
+    const [currentPage, setCurrentPage] = useState(1);
+
+    let NUM_OF_RECORDS = gamesArray.length;
+    let LIMIT = 5;
+
+    const onPageChanged = useCallback(
+        (event, page) => {
+            event.preventDefault();
+            setCurrentPage(page);
+        },
+        [setCurrentPage]
+    );
+
+    const currentData = gamesArray.slice(
+        (currentPage - 1) * LIMIT,
+        (currentPage - 1) * LIMIT + LIMIT
+    );
 
     useEffect(() => {
         const versionDataDdragon = async () => {
@@ -61,7 +83,7 @@ const TableHistories = ({ name, gamesArray }) => {
 
     let allGamesArrayObject = [];
 
-    for (let allGames of gamesArray) {
+    for (let allGames of currentData) {
         allGamesArrayObject.push(allGames);
     }
 
@@ -136,9 +158,11 @@ const TableHistories = ({ name, gamesArray }) => {
         return allItems.data[found]?.name;
     };
 
+    setTimeout(() => setReady(true), 6000);
+
     return (
         <>
-            {gamesArray.length >= 10 ? (
+            {ready ? (
                 <>
                     <div>
                         <span style={{ color: "#2DAF7F" }}>V {wins} </span>-
@@ -147,15 +171,15 @@ const TableHistories = ({ name, gamesArray }) => {
 
                     <div>
                         <span>
-                            ({(nKills / gamesArray.length).toFixed(1)} /
+                            ({(nKills / currentData.length).toFixed(1)} /
                         </span>
                         <span style={{ color: "#ee5952" }}>
                             {" "}
-                            {(nDeaths / gamesArray.length).toFixed(1)}
+                            {(nDeaths / currentData.length).toFixed(1)}
                         </span>
                         <span>
                             {" "}
-                            / {(nAssists / gamesArray.length).toFixed(1)})
+                            / {(nAssists / currentData.length).toFixed(1)})
                         </span>
                         <p style={{ color: kdaColor(kda) }}>
                             {kda}
@@ -168,7 +192,7 @@ const TableHistories = ({ name, gamesArray }) => {
                     <div style={{ marginTop: "1rem" }}>
                         <table className="table table-dark table-striped">
                             <tbody>
-                                {allGamesArrayObject.map(
+                                {currentData.map(
                                     (games, index) =>
                                         games != undefined && (
                                             <>
@@ -587,6 +611,22 @@ const TableHistories = ({ name, gamesArray }) => {
                                 )}
                             </tbody>
                         </table>
+                    </div>
+                    <div
+                        className="pagination-wrapper"
+                        style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            marginTop: "1rem",
+                        }}
+                    >
+                        <Paginations
+                            totalRecords={NUM_OF_RECORDS}
+                            pageLimit={LIMIT}
+                            pageNeighbours={5}
+                            onPageChanged={onPageChanged}
+                            currentPage={currentPage}
+                        />
                     </div>
                 </>
             ) : (
