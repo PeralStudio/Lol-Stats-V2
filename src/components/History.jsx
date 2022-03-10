@@ -125,7 +125,7 @@ const History = ({ name, data, getDataPlayer, setAllLoad }) => {
     }, [history]);
 
     const nameItem = (found) => {
-        return allItems.data[found].name;
+        return allItems.data[found]?.name;
     };
 
     return (
