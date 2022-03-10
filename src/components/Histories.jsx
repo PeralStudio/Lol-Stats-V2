@@ -99,25 +99,12 @@ const Histories = ({ historyGames, summData, data }) => {
                         />
                         {name}
                     </h3>
-                    {gamesArray.length >= 10 && (
+                    {gamesArray.length >= 30 && (
                         <h6 style={{ marginTop: ".8rem" }}>
                             Partidas Recientes (Últimas {gamesArray.length}{" "}
                             jugadas)
                         </h6>
                     )}
-                    {/* <TableHistories
-                        gameOne={gameOne}
-                        gameTwo={gameTwo}
-                        gameThree={gameThree}
-                        gameFour={gameFour}
-                        gameFive={gameFive}
-                        gameSix={gameSix}
-                        gameSeven={gameSeven}
-                        gameEight={gameEight}
-                        gameNine={gameNine}
-                        gameTen={gameTen}
-                        name={name}
-                    /> */}
                     <TableHistories name={name} gamesArray={gamesArray} />
                 </>
             ) : (
