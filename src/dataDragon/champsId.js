@@ -157,4 +157,5 @@ export const champsId = [
     { champId: 711, name: "Vex" },
     { champId: 887, name: "Gwen" },
     { champId: 876, name: "Lillia" },
+    { champId: 888, name: "Renata" },
 ];
