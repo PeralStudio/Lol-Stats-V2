@@ -32,6 +32,7 @@ const App = () => {
     const [error, setError] = useState(false);
     const [historyGames, setHistoryGames] = useState("");
     const [allLoad, setAllLoad] = useState(false);
+    const [masteryChamps, setMasteryChamps] = useState(null);
 
     const [dataLive, setDataLive] = useState("");
     const [err, setErr] = useState(false);
@@ -49,6 +50,7 @@ const App = () => {
             setName(name.toLowerCase());
             setSummData(res.data);
             getDataPlayer2(res.data.id);
+            getChampsMasteries(res.data.id);
             setError(false);
             getDataPlayerMacthes(res.data.puuid);
         } catch (error) {
@@ -61,6 +63,7 @@ const App = () => {
         const res = await axios.get(
             `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.REACT_APP_API_RIOT}`
         );
+
         const foundRankedSolo = res.data.find(
             (element) => element.queueType === "RANKED_SOLO_5x5"
         );
@@ -73,10 +76,21 @@ const App = () => {
 
     const getDataPlayerMacthes = async (puuid) => {
         const res = await axios.get(
-            `https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=10&api_key=${process.env.REACT_APP_API_RIOT}`
+            `https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=30&api_key=${process.env.REACT_APP_API_RIOT}`
         );
         setHistoryGames(res.data);
         setAllLoad(true);
+    };
+
+    const getChampsMasteries = async (id) => {
+        const champsMastery = await axios.get(
+            `https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}?api_key=${process.env.REACT_APP_API_RIOT}`
+        );
+        setMasteryChamps([
+            champsMastery.data[1],
+            champsMastery.data[0],
+            champsMastery.data[2],
+        ]);
     };
 
     useEffect(() => {
@@ -133,6 +147,7 @@ const App = () => {
                                             allLoad={allLoad}
                                             err={err}
                                             dataLive={dataLive}
+                                            masteryChamps={masteryChamps}
                                         />
                                     </>
                                 ) : (
@@ -143,6 +158,7 @@ const App = () => {
                                                 summData={summData}
                                                 err={err}
                                                 dataLive={dataLive}
+                                                masteryChamps={masteryChamps}
                                             />
                                         </>
                                     )
