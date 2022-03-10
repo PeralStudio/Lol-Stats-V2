@@ -1,6 +1,7 @@
 .App {
     text-align: center;
     color: white;
+    padding-bottom: 20px;
 }
 
 .App-logo {
@@ -22,7 +23,7 @@
 
 .card-title {
     margin-bottom: 0rem !important;
-    font-size: 1.7rem !important;
+    font-size: 1.55rem !important;
 }
 
 .circleDiv2 {
@@ -527,6 +528,24 @@ td {
     width: 8rem;
 }
 
+.icon-logo,
+.icon-logo2 {
+    width: 3rem;
+    margin: 0 20px 0 20px;
+}
+
+.page-item.active .page-link {
+    background-color: #00c0b1 !important;
+    border-color: #00c0b1 !important;
+    color: #fff !important;
+}
+
+.page-link {
+    background-color: transparent !important;
+    color: #00c0b1 !important;
+    border: 1px solid #00c0b1 !important;
+}
+
 @media only screen and (max-width: 920px) {
     .table > :not(caption) > * > * {
         padding: 0.6rem 2.5em !important;
@@ -647,5 +666,15 @@ td {
         width: 1.5rem !important;
         margin-right: -10px;
         margin-left: 0px;
+    }
+
+    .icon-logo {
+        width: 3.3rem;
+        margin: 0 10px 0 0;
+    }
+
+    .icon-logo2 {
+        width: 2.5rem;
+        margin: 0 0 0 10px;
     }
 }
