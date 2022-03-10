@@ -176,6 +176,7 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                             src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${foundChampId[index]?.name}_0.jpg`}
                                             // style={{ width: "8rem" }}
                                             className="img-loading"
+                                            data-tip={foundChampId[index]?.name}
                                         />
                                         <div style={{ marginRight: "15px" }}>
                                             {/* <img
@@ -235,6 +236,11 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                                         marginRight: "5px",
                                                         width: "1.5rem",
                                                     }}
+                                                    data-tip={
+                                                        summonerSpells[
+                                                            data.spell1Id
+                                                        ]
+                                                    }
                                                 />
                                                 <img
                                                     src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${
@@ -245,6 +251,11 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                                     alt="summ1"
                                                     // className="summ1"
                                                     style={{ width: "1.5rem" }}
+                                                    data-tip={
+                                                        summonerSpells[
+                                                            data.spell2Id
+                                                        ]
+                                                    }
                                                 />
                                             </div>
                                         </div>
@@ -332,6 +343,7 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                         <img
                                             src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${foundChampId[index].name}_0.jpg`}
                                             className="img-loading"
+                                            data-tip={foundChampId[index]?.name}
                                         />
                                         <div style={{ marginRight: "15px" }}>
                                             {/* <img
@@ -391,6 +403,11 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                                         marginRight: "5px",
                                                         width: "1.5rem",
                                                     }}
+                                                    data-tip={
+                                                        summonerSpells[
+                                                            data.spell1Id
+                                                        ]
+                                                    }
                                                 />
                                                 <img
                                                     src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${
@@ -401,6 +418,11 @@ const LiveGame = ({ dataLive, getDataPlayer }) => {
                                                     alt="summ1"
                                                     // className="summ1"
                                                     style={{ width: "1.5rem" }}
+                                                    data-tip={
+                                                        summonerSpells[
+                                                            data.spell2Id
+                                                        ]
+                                                    }
                                                 />
                                             </div>
                                         </div>
