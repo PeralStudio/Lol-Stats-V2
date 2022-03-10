@@ -5,14 +5,16 @@ import unranked from "../assets/img/border-unranked.png";
 import { champsId } from "../dataDragon/champsId";
 import { queueId } from "../dataDragon/queueid";
 import { ImgSummUnrank } from "../UI/SummonerUnrankUI";
+import ReactTooltip from "react-tooltip";
 
 import opgg from "../assets/img/opgg.png";
 import { checkLvl } from "../functions/checkLevelBorder";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHistory } from "@fortawesome/free-solid-svg-icons";
+import ChampMasteries from "./ChampMasteries";
 
-const SummonerUnrank = ({ name, summData, err, dataLive }) => {
+const SummonerUnrank = ({ name, summData, err, dataLive, masteryChamps }) => {
     const [version, setVersion] = useState("");
     const historyUrl = useHistory();
 
@@ -60,6 +62,7 @@ const SummonerUnrank = ({ name, summData, err, dataLive }) => {
                             marginTop: "-12px",
                             zIndex: 1,
                         }}
+                        data-tip={`Nivel ${summData.summonerLevel}`}
                     />
                     <img
                         src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${summData.profileIconId}.png`}
@@ -73,11 +76,13 @@ const SummonerUnrank = ({ name, summData, err, dataLive }) => {
                             marginLeft: "16px",
                         }}
                     />
+                    <ReactTooltip />
                 </h2>
                 <ImgSummUnrank
                     src={unranked}
                     className="card-img-top"
                     alt="rank"
+                    data-tip={`Unranked`}
                 />
                 {found && (
                     <p
@@ -107,6 +112,7 @@ const SummonerUnrank = ({ name, summData, err, dataLive }) => {
                                 width: "1.5rem",
                                 borderRadius: "50%",
                                 margin: "1px 2px",
+                                marginLeft: "5px",
                             }}
                         />
                     </p>
@@ -116,6 +122,13 @@ const SummonerUnrank = ({ name, summData, err, dataLive }) => {
                     <h5 className="card-title">
                         Nivel {summData.summonerLevel}
                     </h5>
+                    {masteryChamps && (
+                        <ChampMasteries
+                            masteryChamps={masteryChamps}
+                            version={version}
+                        />
+                    )}
+
                     <div style={{ margin: "20px" }}>
                         <Link to={`/histories/${name}`}>
                             <button
