@@ -260,6 +260,7 @@ const SummonerRank = ({
                                                 width: "1.5rem",
                                                 borderRadius: "50%",
                                                 margin: "1px 2px",
+                                                border: "1px solid rgb(167, 124, 35)",
                                             }}
                                         />
                                     </p>
