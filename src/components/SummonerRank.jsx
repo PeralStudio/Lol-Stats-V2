@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Doughnut } from "react-chartjs-2";
 import { Link, useHistory } from "react-router-dom";
-import opgg from "../assets/img/opgg.png";
 import { validarElo, validarElo2 } from "../functions/ValidarElo";
 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";

@@ -48,7 +48,7 @@ const SummonerUnrank = ({ name, summData, err, dataLive, masteryChamps }) => {
     return (
         <>
             <div className="container-data">
-                <h2 className="card-title" style={{ marginTop: "30px" }}>
+                <h2 className="card-title" style={{ marginTop: "40px" }}>
                     {summData.name}
                     <img
                         src={checkLvl(summData.summonerLevel)}
@@ -56,10 +56,10 @@ const SummonerUnrank = ({ name, summData, err, dataLive, masteryChamps }) => {
                         className="opgg"
                         style={{
                             position: "absolute",
-                            width: "4.8rem",
-                            height: "4.8rem",
+                            width: "6.8rem",
+                            height: "6.8rem",
                             margin: "auto",
-                            marginTop: "-12px",
+                            marginTop: "-34px",
                             zIndex: 1,
                         }}
                         data-tip={`Nivel ${summData.summonerLevel}`}
@@ -70,10 +70,10 @@ const SummonerUnrank = ({ name, summData, err, dataLive, masteryChamps }) => {
                         alt="..."
                         style={{
                             width: "4rem",
-                            zoom: "0.8",
+                            zoom: "0.7",
                             margin: "auto",
                             borderRadius: "50%",
-                            marginLeft: "16px",
+                            marginLeft: "45px",
                         }}
                     />
                     <ReactTooltip />

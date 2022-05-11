@@ -1,23 +1,24 @@
-import lvl1 from "../assets/borderLevels/Level_1.png";
-import lvl50 from "../assets/borderLevels/Level_50.png";
-import lvl75 from "../assets/borderLevels/Level_75.png";
-import lvl100 from "../assets/borderLevels/Level_100.png";
-import lvl125 from "../assets/borderLevels/Level_125.png";
-import lvl150 from "../assets/borderLevels/Level_150.png";
-import lvl175 from "../assets/borderLevels/Level_175.png";
-import lvl200 from "../assets/borderLevels/Level_200.png";
-import lvl225 from "../assets/borderLevels/Level_225.png";
-import lvl250 from "../assets/borderLevels/Level_250.png";
-import lvl275 from "../assets/borderLevels/Level_275.png";
-import lvl300 from "../assets/borderLevels/Level_300.png";
-import lvl325 from "../assets/borderLevels/Level_325.png";
-import lvl350 from "../assets/borderLevels/Level_350.png";
-import lvl375 from "../assets/borderLevels/Level_375.png";
-import lvl400 from "../assets/borderLevels/Level_400.png";
-import lvl425 from "../assets/borderLevels/Level_425.png";
-import lvl450 from "../assets/borderLevels/Level_450.png";
-import lvl475 from "../assets/borderLevels/Level_475.png";
-import lvl500 from "../assets/borderLevels/Level_500.png";
+import lvl1 from "../assets/borderLevels/Level_1-1.png";
+import lvl30 from "../assets/borderLevels/Level_30-1.png";
+import lvl50 from "../assets/borderLevels/Level_50-1.png";
+import lvl75 from "../assets/borderLevels/Level_75-1.png";
+import lvl100 from "../assets/borderLevels/Level_100-1.png";
+import lvl125 from "../assets/borderLevels/Level_125-1.png";
+import lvl150 from "../assets/borderLevels/Level_150-1.png";
+import lvl175 from "../assets/borderLevels/Level_175-1.png";
+import lvl200 from "../assets/borderLevels/Level_200-1.png";
+import lvl225 from "../assets/borderLevels/Level_225-1.png";
+import lvl250 from "../assets/borderLevels/Level_250-1.png";
+import lvl275 from "../assets/borderLevels/Level_275-1.png";
+import lvl300 from "../assets/borderLevels/Level_300-1.png";
+import lvl325 from "../assets/borderLevels/Level_325-1.png";
+import lvl350 from "../assets/borderLevels/Level_350-1.png";
+import lvl375 from "../assets/borderLevels/Level_375-1.png";
+import lvl400 from "../assets/borderLevels/Level_400-1.png";
+import lvl425 from "../assets/borderLevels/Level_425-1.png";
+import lvl450 from "../assets/borderLevels/Level_450-1.png";
+import lvl475 from "../assets/borderLevels/Level_475-1.png";
+import lvl500 from "../assets/borderLevels/Level_500-1.png";
 
 import crestUnranked from "../assets/ranked-mini-crest/unranked.png";
 import crestIron from "../assets/ranked-mini-crest/iron.png";
@@ -31,8 +32,10 @@ import crestGrandmaster from "../assets/ranked-mini-crest/grandmaster.png";
 import crestChallenger from "../assets/ranked-mini-crest/challenger.png";
 
 export const checkLvl = (summonerLevel) => {
-    if (summonerLevel >= 1 && summonerLevel < 50) {
+    if (summonerLevel >= 1 && summonerLevel < 30) {
         return lvl1;
+    } else if (summonerLevel >= 30 && summonerLevel < 50) {
+        return lvl30;
     } else if (summonerLevel >= 50 && summonerLevel < 75) {
         return lvl50;
     } else if (summonerLevel >= 75 && summonerLevel < 100) {

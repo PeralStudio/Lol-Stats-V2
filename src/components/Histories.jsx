@@ -73,10 +73,10 @@ const Histories = ({ historyGames, summData, data }) => {
                             className="border-level"
                             style={{
                                 position: "absolute",
-                                width: "4.8rem",
-                                height: "4.8rem",
+                                width: "6.8rem",
+                                height: "6.8rem",
                                 margin: "auto",
-                                marginTop: "-12px",
+                                marginTop: "-34px",
                                 zIndex: 1,
                             }}
                             data-tip={
@@ -89,12 +89,12 @@ const Histories = ({ historyGames, summData, data }) => {
                             alt="icon-summoner"
                             style={{
                                 width: "4rem",
-                                zoom: "0.8",
+                                zoom: "0.7",
                                 margin: "auto",
-                                marginRight: "2rem",
+                                marginRight: "3rem",
                                 marginBottom: "1rem",
                                 borderRadius: "50%",
-                                marginLeft: "16px",
+                                marginLeft: "45px",
                             }}
                         />
                         {name}
