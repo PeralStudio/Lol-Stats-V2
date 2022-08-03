@@ -68,6 +68,7 @@ const SummonerRank = ({
         );
 
     let winrateColor = "";
+    let winrateColorFlex = "";
 
     useEffect(() => {
         const versionDataDdragon = async () => {
@@ -86,6 +87,11 @@ const SummonerRank = ({
     data && ((data.wins / (data.wins + data.losses)) * 100).toFixed(1) < 50
         ? (winrateColor = "winrate-red")
         : (winrateColor = "winrate-green");
+
+    dataFlex &&
+    ((dataFlex.wins / (dataFlex.wins + dataFlex.losses)) * 100).toFixed(1) < 50
+        ? (winrateColorFlex = "winrate-red")
+        : (winrateColorFlex = "winrate-green");
 
     const dataChartSolo = {
         labels: ["Perdidas", "Ganadas"],
@@ -527,7 +533,7 @@ const SummonerRank = ({
                                         </span>
                                     </p>
                                     <span>Tasa de Victoria </span>
-                                    <span className={winrateColor}>
+                                    <span className={winrateColorFlex}>
                                         {(
                                             (dataFlex &&
                                                 dataFlex.wins /
