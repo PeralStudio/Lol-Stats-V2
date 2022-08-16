@@ -119,6 +119,7 @@ export const champsId = [
     { champId: 163, name: "Taliyah" },
     { champId: 166, name: "Akshan" },
     { champId: 164, name: "Camille" },
+    { champId: 200, name: "Belveth" },
     { champId: 201, name: "Braum" },
     { champId: 202, name: "Jhin" },
     { champId: 203, name: "Kindred" },
@@ -158,4 +159,5 @@ export const champsId = [
     { champId: 887, name: "Gwen" },
     { champId: 876, name: "Lillia" },
     { champId: 888, name: "Renata" },
+    { champId: 895, name: "Nilah" },
 ];
