@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ImgDamage = styled.img`
-    width: .8rem;
+    width: 0.8rem;
     margin-top: -2px;
 `;
 
