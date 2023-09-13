@@ -14,13 +14,7 @@ import allItems from "../dataDragon/items.json";
 
 import Paginations from "../hooks/Pagination";
 
-import {
-    ImgChampAvatar,
-    ImgDamage,
-    PGoldEarned,
-    PNoMargin,
-    PTable,
-} from "../UI/TableHistoriesUi";
+import { ImgChampAvatar, ImgDamage, PGoldEarned, PNoMargin, PTable } from "../UI/TableHistoriesUi";
 import { queueId } from "../dataDragon/queueid";
 // import { queueId } from '../queueId/queueid';
 import { summonerSpells } from "../dataDragon/generalData";
@@ -77,8 +71,8 @@ const TableHistories = ({ name, gamesArray }) => {
             M: "hace un mes",
             MM: "hace %d meses",
             y: "hace un año",
-            yy: "hace %d años",
-        },
+            yy: "hace %d años"
+        }
     });
 
     let allGamesArrayObject = [];
@@ -103,22 +97,15 @@ const TableHistories = ({ name, gamesArray }) => {
         found.push(
             games &&
                 games.participants.find(
-                    (element) =>
-                        element.summonerName.toLowerCase() ===
-                        `${name.toLowerCase()}`
+                    (element) => element.summonerName.toLowerCase() === `${name.toLowerCase()}`
                 )
         );
 
-        found[index] != undefined && found[index].win === true
-            ? (wins += 1)
-            : (losses += 1);
+        found[index] != undefined && found[index].win === true ? (wins += 1) : (losses += 1);
 
         found[index] == undefined && (wins -= 0) & (losses -= 1);
 
-        foundQueueId.push(
-            games &&
-                queueId.find((element) => element.queueId === games.queueId)
-        );
+        foundQueueId.push(games && queueId.find((element) => element.queueId === games.queueId));
     });
 
     const champUpperCase = (found) => {
@@ -170,17 +157,12 @@ const TableHistories = ({ name, gamesArray }) => {
                     </div>
 
                     <div>
-                        <span>
-                            ({(nKills / currentData.length).toFixed(1)} /
-                        </span>
+                        <span>({(nKills / currentData.length).toFixed(1)} /</span>
                         <span style={{ color: "#ee5952" }}>
                             {" "}
                             {(nDeaths / currentData.length).toFixed(1)}
                         </span>
-                        <span>
-                            {" "}
-                            / {(nAssists / currentData.length).toFixed(1)})
-                        </span>
+                        <span> / {(nAssists / currentData.length).toFixed(1)})</span>
                         <p style={{ color: kdaColor(kda) }}>
                             {kda}
                             :1 KDA
@@ -200,15 +182,11 @@ const TableHistories = ({ name, gamesArray }) => {
                                                     key={index++}
                                                     onClick={() =>
                                                         history.push(
-                                                            `/history/${
-                                                                games &&
-                                                                games.gameId
-                                                            }`
+                                                            `/history/${games && games.gameId}`
                                                         )
                                                     }
                                                     className={
-                                                        found &&
-                                                        games.gameDuration < 300
+                                                        found && games.gameDuration < 300
                                                             ? "grey"
                                                             : found[index].win
                                                             ? "green"
@@ -216,51 +194,38 @@ const TableHistories = ({ name, gamesArray }) => {
                                                     }
                                                     style={{
                                                         border: `1px solid ${
-                                                            found &&
-                                                            games.gameDuration <
-                                                                300
+                                                            found && games.gameDuration < 300
                                                                 ? "#a3a1a1"
-                                                                : found[index]
-                                                                      .win
+                                                                : found[index].win
                                                                 ? "green"
                                                                 : "red"
                                                         } `,
-                                                        cursor: "pointer",
+                                                        cursor: "pointer"
                                                     }}
                                                 >
                                                     <td
                                                         style={{
                                                             borderLeft: `6px solid ${
-                                                                found &&
-                                                                games.gameDuration <
-                                                                    300
+                                                                found && games.gameDuration < 300
                                                                     ? "#a3a1a1"
-                                                                    : found[
-                                                                          index
-                                                                      ].win
+                                                                    : found[index].win
                                                                     ? "green"
                                                                     : "red"
-                                                            } `,
+                                                            } `
                                                         }}
                                                     >
                                                         {found && (
                                                             <ImgChampAvatar
                                                                 src={
-                                                                    found[index]
-                                                                        .championName ===
+                                                                    found[index].championName ===
                                                                     "FiddleSticks"
                                                                         ? champUpperCase(
-                                                                              found[
-                                                                                  index
-                                                                              ]
+                                                                              found[index]
                                                                           )
                                                                         : `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${found[index].championName}.png`
                                                                 }
                                                                 alt="avatar"
-                                                                data-tip={
-                                                                    found[index]
-                                                                        .championName
-                                                                }
+                                                                data-tip={found[index].championName}
                                                             />
                                                         )}
                                                         {found && (
@@ -268,17 +233,11 @@ const TableHistories = ({ name, gamesArray }) => {
                                                                 <img
                                                                     src={
                                                                         summonerSpells[
-                                                                            found[
-                                                                                index
-                                                                            ]
-                                                                                .summoner1Id
-                                                                        ] !==
-                                                                        undefined
+                                                                            found[index].summoner1Id
+                                                                        ] !== undefined
                                                                             ? `https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${
                                                                                   summonerSpells[
-                                                                                      found[
-                                                                                          index
-                                                                                      ]
+                                                                                      found[index]
                                                                                           .summoner1Id
                                                                                   ]
                                                                               }.png`
@@ -288,27 +247,18 @@ const TableHistories = ({ name, gamesArray }) => {
                                                                     className="summ1"
                                                                     data-tip={
                                                                         summonerSpells[
-                                                                            found[
-                                                                                index
-                                                                            ]
-                                                                                .summoner1Id
+                                                                            found[index].summoner1Id
                                                                         ]
                                                                     }
                                                                 />
                                                                 <img
                                                                     src={
                                                                         summonerSpells[
-                                                                            found[
-                                                                                index
-                                                                            ]
-                                                                                .summoner1Id
-                                                                        ] !==
-                                                                        undefined
+                                                                            found[index].summoner1Id
+                                                                        ] !== undefined
                                                                             ? `https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/Summoner${
                                                                                   summonerSpells[
-                                                                                      found[
-                                                                                          index
-                                                                                      ]
+                                                                                      found[index]
                                                                                           .summoner2Id
                                                                                   ]
                                                                               }.png`
@@ -318,10 +268,7 @@ const TableHistories = ({ name, gamesArray }) => {
                                                                     className="summ2"
                                                                     data-tip={
                                                                         summonerSpells[
-                                                                            found[
-                                                                                index
-                                                                            ]
-                                                                                .summoner2Id
+                                                                            found[index].summoner2Id
                                                                         ]
                                                                     }
                                                                 />
@@ -331,37 +278,24 @@ const TableHistories = ({ name, gamesArray }) => {
                                                     <td>
                                                         <PTable
                                                             className={
-                                                                found &&
-                                                                games.gameDuration <
-                                                                    300
+                                                                found && games.gameDuration < 300
                                                                     ? "winrate-grey"
-                                                                    : found[
-                                                                          index
-                                                                      ].win
+                                                                    : found[index].win
                                                                     ? "winrate-green"
                                                                     : "winrate-red"
                                                             }
                                                         >
-                                                            {found &&
-                                                            games.gameDuration <
-                                                                300
+                                                            {found && games.gameDuration < 300
                                                                 ? "REHECHA"
-                                                                : found[index]
-                                                                      .win
+                                                                : found[index].win
                                                                 ? "VICTORIA"
                                                                 : "DERROTA"}
                                                         </PTable>
                                                         <PTable>
                                                             {foundQueueId &&
-                                                                foundQueueId[
-                                                                    index
-                                                                ].description}
+                                                                foundQueueId[index].description}
                                                         </PTable>
-                                                        <p
-                                                            data-tip={
-                                                                "Daño Realizado"
-                                                            }
-                                                        >
+                                                        <p data-tip={"Daño Realizado"}>
                                                             {found &&
                                                                 new Intl.NumberFormat(
                                                                     "es-Es"
@@ -370,242 +304,149 @@ const TableHistories = ({ name, gamesArray }) => {
                                                                         .totalDamageDealtToChampions
                                                                 )}
                                                             <ImgDamage
-                                                                src={
-                                                                    damageDealt
-                                                                }
+                                                                src={damageDealt}
                                                                 alt="damage"
                                                             />
                                                         </p>
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            {found &&
-                                                                found[index]
-                                                                    .item0 !==
-                                                                    0 && (
-                                                                    <>
-                                                                        <img
-                                                                            src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${
-                                                                                found &&
-                                                                                found[
-                                                                                    index
-                                                                                ]
-                                                                                    .item0
-                                                                            }.png`}
-                                                                            alt="item"
-                                                                            className="img-items"
-                                                                            data-tip={nameItem(
-                                                                                found &&
-                                                                                    found[
-                                                                                        index
-                                                                                    ]
-                                                                                        .item0
-                                                                            )}
-                                                                        />
-                                                                    </>
-                                                                )}
-                                                            {found &&
-                                                                found[index]
-                                                                    .item1 !==
-                                                                    0 && (
+                                                            {found && found[index].item0 !== 0 && (
+                                                                <>
                                                                     <img
                                                                         src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${
                                                                             found &&
-                                                                            found[
-                                                                                index
-                                                                            ]
-                                                                                .item1
+                                                                            found[index].item0
                                                                         }.png`}
                                                                         alt="item"
                                                                         className="img-items"
                                                                         data-tip={nameItem(
                                                                             found &&
-                                                                                found[
-                                                                                    index
-                                                                                ]
-                                                                                    .item1
+                                                                                found[index].item0
                                                                         )}
                                                                     />
-                                                                )}
-                                                            {found &&
-                                                                found[index]
-                                                                    .item2 !==
-                                                                    0 && (
-                                                                    <img
-                                                                        src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${
-                                                                            found &&
-                                                                            found[
-                                                                                index
-                                                                            ]
-                                                                                .item2
-                                                                        }.png`}
-                                                                        alt="item"
-                                                                        className="img-items"
-                                                                        data-tip={nameItem(
-                                                                            found &&
-                                                                                found[
-                                                                                    index
-                                                                                ]
-                                                                                    .item2
-                                                                        )}
-                                                                    />
-                                                                )}
-                                                            {found &&
-                                                                found[index]
-                                                                    .item3 !==
-                                                                    0 && (
-                                                                    <img
-                                                                        src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${
-                                                                            found &&
-                                                                            found[
-                                                                                index
-                                                                            ]
-                                                                                .item3
-                                                                        }.png`}
-                                                                        alt="item"
-                                                                        className="img-items"
-                                                                        data-tip={nameItem(
-                                                                            found &&
-                                                                                found[
-                                                                                    index
-                                                                                ]
-                                                                                    .item3
-                                                                        )}
-                                                                    />
-                                                                )}
-                                                            {found &&
-                                                                found[index]
-                                                                    .item4 !==
-                                                                    0 && (
-                                                                    <img
-                                                                        src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${
-                                                                            found &&
-                                                                            found[
-                                                                                index
-                                                                            ]
-                                                                                .item4
-                                                                        }.png`}
-                                                                        alt="item"
-                                                                        className="img-items"
-                                                                        data-tip={nameItem(
-                                                                            found &&
-                                                                                found[
-                                                                                    index
-                                                                                ]
-                                                                                    .item4
-                                                                        )}
-                                                                    />
-                                                                )}
-                                                            {found &&
-                                                                found[index]
-                                                                    .item5 !==
-                                                                    0 && (
-                                                                    <img
-                                                                        src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${
-                                                                            found &&
-                                                                            found[
-                                                                                index
-                                                                            ]
-                                                                                .item5
-                                                                        }.png`}
-                                                                        alt="item"
-                                                                        className="img-items"
-                                                                        data-tip={nameItem(
-                                                                            found &&
-                                                                                found[
-                                                                                    index
-                                                                                ]
-                                                                                    .item5
-                                                                        )}
-                                                                    />
-                                                                )}
+                                                                </>
+                                                            )}
+                                                            {found && found[index].item1 !== 0 && (
+                                                                <img
+                                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${
+                                                                        found && found[index].item1
+                                                                    }.png`}
+                                                                    alt="item"
+                                                                    className="img-items"
+                                                                    data-tip={nameItem(
+                                                                        found && found[index].item1
+                                                                    )}
+                                                                />
+                                                            )}
+                                                            {found && found[index].item2 !== 0 && (
+                                                                <img
+                                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${
+                                                                        found && found[index].item2
+                                                                    }.png`}
+                                                                    alt="item"
+                                                                    className="img-items"
+                                                                    data-tip={nameItem(
+                                                                        found && found[index].item2
+                                                                    )}
+                                                                />
+                                                            )}
+                                                            {found && found[index].item3 !== 0 && (
+                                                                <img
+                                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${
+                                                                        found && found[index].item3
+                                                                    }.png`}
+                                                                    alt="item"
+                                                                    className="img-items"
+                                                                    data-tip={nameItem(
+                                                                        found && found[index].item3
+                                                                    )}
+                                                                />
+                                                            )}
+                                                            {found && found[index].item4 !== 0 && (
+                                                                <img
+                                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${
+                                                                        found && found[index].item4
+                                                                    }.png`}
+                                                                    alt="item"
+                                                                    className="img-items"
+                                                                    data-tip={nameItem(
+                                                                        found && found[index].item4
+                                                                    )}
+                                                                />
+                                                            )}
+                                                            {found && found[index].item5 !== 0 && (
+                                                                <img
+                                                                    src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${
+                                                                        found && found[index].item5
+                                                                    }.png`}
+                                                                    alt="item"
+                                                                    className="img-items"
+                                                                    data-tip={nameItem(
+                                                                        found && found[index].item5
+                                                                    )}
+                                                                />
+                                                            )}
                                                         </div>
                                                         <div className="kda-histories">
-                                                            <PNoMargin
-                                                                data-tip={"KDA"}
-                                                            >
+                                                            <PNoMargin data-tip={"KDA"}>
                                                                 {`${
-                                                                    found &&
-                                                                    found[index]
-                                                                        .kills
+                                                                    found && found[index].kills
                                                                 } / ${
-                                                                    found &&
-                                                                    found[index]
-                                                                        .deaths
+                                                                    found && found[index].deaths
                                                                 } / ${
-                                                                    found &&
-                                                                    found[index]
-                                                                        .assists
+                                                                    found && found[index].assists
                                                                 }`}
                                                             </PNoMargin>
                                                         </div>
                                                         <PNoMargin
-                                                            data-tip={
-                                                                "Total súbditos asesinados"
-                                                            }
+                                                            data-tip={"Total súbditos asesinados"}
                                                         >
                                                             {found &&
-                                                                found[index]
-                                                                    .totalMinionsKilled +
+                                                                found[index].totalMinionsKilled +
                                                                     found[index]
                                                                         .neutralMinionsKilled}
                                                             <img
                                                                 src={minions}
                                                                 alt=""
                                                                 style={{
-                                                                    width: "0.7rem",
+                                                                    width: "0.7rem"
                                                                 }}
                                                             />
                                                         </PNoMargin>
                                                     </td>
                                                     <td>
-                                                        <PGoldEarned
-                                                            data-tip={
-                                                                "Oro Ganado"
-                                                            }
-                                                        >
+                                                        <PGoldEarned data-tip={"Oro Ganado"}>
                                                             {found &&
                                                                 new Intl.NumberFormat(
                                                                     "de-DE"
-                                                                ).format(
-                                                                    found[index]
-                                                                        .goldEarned
-                                                                )}
+                                                                ).format(found[index].goldEarned)}
                                                             <img
                                                                 src={gold}
                                                                 alt="gold"
                                                                 style={{
                                                                     width: ".8rem",
-                                                                    marginLeft:
-                                                                        "2px",
-                                                                    marginBottom:
-                                                                        "2px",
+                                                                    marginLeft: "2px",
+                                                                    marginBottom: "2px"
                                                                 }}
                                                             />
                                                         </PGoldEarned>
                                                         <p
                                                             style={{
-                                                                margin: "0",
+                                                                margin: "0"
                                                             }}
-                                                            data-tip={
-                                                                "Duración"
-                                                            }
+                                                            data-tip={"Duración"}
                                                         >
                                                             {timeString2[index]}
                                                         </p>
                                                         <PNoMargin>{`${dayjs(
-                                                            allGamesArrayObject[
-                                                                index
-                                                            ].gameCreation
+                                                            allGamesArrayObject[index].gameCreation
                                                         ).fromNow()}`}</PNoMargin>
                                                     </td>
                                                 </tr>
                                                 <br />
 
-                                                <ReactTooltip
-                                                    place="top"
-                                                    effect="solid"
-                                                />
+                                                <ReactTooltip place="top" effect="solid" />
                                             </>
                                         )
                                 )}
@@ -617,7 +458,7 @@ const TableHistories = ({ name, gamesArray }) => {
                         style={{
                             display: "flex",
                             justifyContent: "center",
-                            marginTop: "1rem",
+                            marginTop: "1rem"
                         }}
                     >
                         <Paginations

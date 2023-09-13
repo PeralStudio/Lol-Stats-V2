@@ -22,10 +22,7 @@ export function useLocalStorage(key, initialValue) {
         if (unique.length > 3) unique.shift();
     }
 
-    useEffect(
-        () => localStorage.setItem(key, JSON.stringify(unique)),
-        [unique, key]
-    );
+    useEffect(() => localStorage.setItem(key, JSON.stringify(unique)), [unique, key]);
 
     return [value, setValue];
 }

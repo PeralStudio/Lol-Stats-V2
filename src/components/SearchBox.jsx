@@ -10,17 +10,14 @@ const SearchBox = ({
     name,
     summonerNameLS,
     summData,
-    setSummonerNameLS,
+    setSummonerNameLS
 }) => {
     const savedValue = JSON.parse(localStorage.getItem("SummonerSearch"));
 
-    if (savedValue === null)
-        localStorage.setItem("SummonerSearch", JSON.stringify(""));
+    if (savedValue === null) localStorage.setItem("SummonerSearch", JSON.stringify(""));
 
     const handleDeleteLS = (nameToDelete) => {
-        const arrayFilter = savedValue.filter(
-            (element) => element !== nameToDelete
-        );
+        const arrayFilter = savedValue.filter((element) => element !== nameToDelete);
         if (arrayFilter.length > 3) arrayFilter.shift();
         localStorage.setItem("SummonerSearch", JSON.stringify(arrayFilter));
         setSummonerNameLS(arrayFilter);
@@ -34,9 +31,7 @@ const SearchBox = ({
     return (
         <>
             <div>
-                {!summData && (
-                    <img src={logoportada} alt="logo" className="logoportada" />
-                )}
+                {!summData && <img src={logoportada} alt="logo" className="logoportada" />}
                 <form onSubmit={(e) => e.preventDefault()}>
                     <div className="wrap">
                         <div className="search">
@@ -66,9 +61,7 @@ const SearchBox = ({
             {!data & !summData & (summonerNameLS.length !== 0) ? (
                 <>
                     <div>
-                        <h5
-                            style={{ marginBottom: ".8rem", marginTop: "1rem" }}
-                        >
+                        <h5 style={{ marginBottom: ".8rem", marginTop: "1rem" }}>
                             Buscados Recientemente
                         </h5>
                     </div>
