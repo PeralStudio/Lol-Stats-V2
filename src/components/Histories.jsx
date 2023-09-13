@@ -51,10 +51,7 @@ const Histories = ({ historyGames, summData, data }) => {
         <>
             <div>
                 <Link to="/">
-                    <button
-                        type="button"
-                        className="btn btn-outline-info button-back"
-                    >
+                    <button type="button" className="btn btn-outline-info button-back">
                         <FontAwesomeIcon icon={faChevronLeft} /> Perfil
                     </button>
                 </Link>
@@ -63,8 +60,8 @@ const Histories = ({ historyGames, summData, data }) => {
                 <>
                     <h3
                         style={{
-                            marginTop: "1rem",
-                            textTransform: "capitalize",
+                            marginTop: "2rem",
+                            textTransform: "capitalize"
                         }}
                     >
                         <img
@@ -77,11 +74,9 @@ const Histories = ({ historyGames, summData, data }) => {
                                 height: "6.8rem",
                                 margin: "auto",
                                 marginTop: "-34px",
-                                zIndex: 1,
+                                zIndex: 1
                             }}
-                            data-tip={
-                                summData && `Nivel ${summData.summonerLevel}`
-                            }
+                            data-tip={summData && `Nivel ${summData.summonerLevel}`}
                         />
                         <img
                             src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${summData.profileIconId}.png`}
@@ -94,15 +89,14 @@ const Histories = ({ historyGames, summData, data }) => {
                                 marginRight: "3rem",
                                 marginBottom: "1rem",
                                 borderRadius: "50%",
-                                marginLeft: "45px",
+                                marginLeft: "45px"
                             }}
                         />
                         {name}
                     </h3>
                     {gamesArray.length >= 30 && (
-                        <h6 style={{ marginTop: ".8rem" }}>
-                            Partidas Recientes (Últimas {gamesArray.length}{" "}
-                            jugadas)
+                        <h6 style={{ marginTop: "1.2rem" }}>
+                            Partidas Recientes (Últimas {gamesArray.length} jugadas)
                         </h6>
                     )}
                     <TableHistories name={name} gamesArray={gamesArray} />
