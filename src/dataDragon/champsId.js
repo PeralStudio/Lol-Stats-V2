@@ -160,4 +160,8 @@ export const champsId = [
     { champId: 876, name: "Lillia" },
     { champId: 888, name: "Renata" },
     { champId: 895, name: "Nilah" },
+    { champId: 950, name: "Naafiri" },
+    { champId: 233, name: "Briar" },
+    { champId: 897, name: "KSante" },
+    { champId: 902, name: "Milio" }
 ];
